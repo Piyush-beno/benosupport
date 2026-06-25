@@ -91,7 +91,7 @@ export default function CompanyHero() {
           className="text-4xl sm:text-5xl lg:text-[64px] font-extrabold text-white leading-[1.1] tracking-tight max-w-4xl mx-auto"
         >
           Building Future-Ready Digital&nbsp;
-          <span className="text-[#3b67ff]">Enterprises Since 2008</span>
+          <span >Enterprises Since 2008</span>
         </h1>
 
         <p

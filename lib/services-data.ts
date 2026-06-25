@@ -62,11 +62,11 @@ export type ServiceData = {
   }[]
 }
 
-export const servicesData: Record<string, ServiceData> = 
-{
+
+export const servicesData: Record<string, ServiceData> = {
   "core-engineering-application-architecture": {
     meta: {
-      title: "Core Engineering & Application Architecture",
+      title: "Custom Software Development & SaaS Engineering Services ",
       description:
         "Beno Support delivers scalable custom software development, SaaS engineering, API architecture, and microservices solutions for startups, SMBs, and enterprises.",
       canonicalUrl: "/services/software-development-company/",
@@ -83,7 +83,7 @@ export const servicesData: Record<string, ServiceData> =
       sectionLabel: "Intro",
       title: "BEYOND CODE: HIGH-PERFORMANCE SOFTWARE ENGINEERING",
       paragraphs: [
-        "Modern businesses require more than software development — they require scalable engineering systems built for performance, security, and continuous innovation . At Beno Support, we help organizations develop cloud-native applications, SaaS platforms, mobile experiences, and API-driven ecosystems that support digital transformation and long-term business growth. Our engineering teams combine architecture expertise, agile delivery, DevOps practices, and product-focused execution to deliver high-performance digital solutions.",
+        "Modern businesses require more than software development — they require scalable engineering systems built for performance, security, and continuous innovation ."," At Beno Support, we help organizations develop cloud-native applications, SaaS platforms, mobile experiences, and API-driven ecosystems that support digital transformation and long-term business growth. "," Our engineering teams combine architecture expertise, agile delivery, DevOps practices, and product-focused execution to deliver high-performance digital solutions.",
       ],
     },
     capabilities: {
@@ -347,7 +347,7 @@ export const servicesData: Record<string, ServiceData> =
 
   "cyber-resilience-threat-intelligence": {
     meta: {
-      title: "Cyber Resilience & Threat Intelligence",
+      title: "Cybersecurity Services & Threat Intelligence Solutions",
       description:
         "Protect digital infrastructure with cybersecurity consulting, SOC services, threat intelligence, compliance frameworks, and AI security solutions.",
       canonicalUrl: "/services/cybersecurity-services/",
@@ -861,18 +861,18 @@ export const servicesData: Record<string, ServiceData> =
     },
     hero: {
       image:"/assets/services/hero/4.svg",
-      tagline: "Experiences That",
-      tagline2: "Drive Engagement",
+      tagline: "Create Digital Experiences That Drive Engagement & Growth",
+  
       description:
-        "Beautiful, performant digital products engineered from strategy through pixel — designed to delight users and deliver measurable business outcomes.",
+        "Beno Support helps startups, SMBs, and enterprises design user-focused digital products, optimize customer journeys, and build scalable digital experiences that improve engagement and conversions",
     },
     intro: {
       sectionLabel: "Intro",
-      title: "BEYOND DESIGN: EXPERIENCE-DRIVEN PRODUCT ENGINEERING",
+      title: "Digital Product Engineering Services",
       paragraphs: [
-        "Great digital products are not just beautiful — they are fast, accessible, conversion-optimised, and engineered to delight users at every interaction.",
-        "At Beno Support, we combine deep UX research, design systems thinking, and high-performance frontend engineering to build digital products that users love and businesses profit from.",
-        "Our product engineering teams work at the intersection of design and technology, ensuring that every pixel, interaction, and user flow is backed by data and serves a clear business purpose.",
+        "Modern digital products require more than attractive interfaces — they require seamless user experiences, scalable product design, and performance-focused engineering.",
+        "Beno Support helps organizations create intuitive digital experiences through UX strategy, interface engineering, product design systems, and conversion-focused optimization that support business growth and customer engagement.",
+        "Our product engineering teams combine UX research, UI design, frontend engineering, and digital optimization expertise to deliver scalable and user-centric digital products.",
       ],
     },
     capabilities: {
@@ -883,94 +883,143 @@ export const servicesData: Record<string, ServiceData> =
       cards: [
         {
           iconName: "Palette",
-          title: "UX Research\n& Design",
+          title: "UX Research & Design Strategy",
           description:
-            "In-depth user research, journey mapping, wireframing, and high-fidelity prototyping creating products validated by real users before a single line of code is written.",
+            "Understand customer behaviour and build data-driven user experiences through research-focused design strategies.",
+            features: [
+            "User journey mapping",
+            "UX research & testing",
+            "Product experience strategy",
+            "Customer behavior analysis",
+            "Information architecture",
+            "Design system planning",
+          ],
+          highlighted: false,
+        },
+                {
+          iconName: "Layers",
+          title: "UI Design & Prototyping",
+          description:
+            "Create modern and responsive interfaces optimized for usability and digital engagement.",
+           features: [
+            "Responsive UI design",
+            "Interactive prototyping",
+            "Design systems",
+            "Product interface optimization",
+            "Mobile-first design",
+            "Brand-focused UI experiences",
+          ],
           highlighted: false,
         },
         {
           iconName: "Monitor",
-          title: "Frontend\nEngineering",
+          title: " Conversion Rate Optimisation",
           description:
-            "Performant, accessible React and Next.js applications with pixel-perfect design implementation, Core Web Vitals optimisation, and progressive enhancement.",
+            "Improve digital performance and maximize customer engagement through conversion-focused optimization strategies.",
+          features: [
+            "Conversion funnel optimization",
+            "Landing page improvements",
+            "User behavior analytics",
+            "Performance optimization",
+            "A/B testing support",
+            "Customer engagement strategies",
+          ],
           highlighted: true,
         },
-        {
-          iconName: "Layers",
-          title: "Design Systems\n& Component Libraries",
-          description:
-            "Scalable, token-based design systems ensuring consistent UI across all platforms, products, and teams — dramatically reducing time-to-market for new features.",
-          highlighted: false,
-        },
+
         {
           iconName: "Target",
-          title: "Product Strategy\n& Roadmapping",
+          title: "Website Transformation & Localisation",
           description:
-            "Product discovery, opportunity mapping, OKR alignment, and sprint-ready backlog prioritisation for fast-moving product teams at any stage.",
+            "Modernize websites for global accessibility, localization, and scalable digital experiences.",
+            features: [
+            "Website modernization",
+            "Localization support",
+            "Multilingual experiences",
+            "Accessibility optimization",
+            "SEO-focused structure",
+            "Performance enhancement",
+          ],
           highlighted: false,
         },
         {
           iconName: "BarChart2",
-          title: "Conversion Rate\nOptimisation",
+          title: "Virtual Experience Design",
           description:
-            "Data-driven CRO programs combining user behavioural analysis, heatmaps, session recording, and A/B testing to continuously improve conversion metrics.",
+            "Build immersive and interactive digital experiences for customer engagement and enterprise communication.",
+            features: [
+            "Interactive digital experiences",
+            "Virtual engagement systems",
+            "Experience-driven design",
+            "Digital presentation platforms",
+            "Enterprise interaction design",
+            "Customer engagement optimization",
+          ],
           highlighted: false,
         },
         {
           iconName: "Eye",
-          title: "Accessibility &\nInclusive Design",
+          title: "Martech & Analytics Engineering",
           description:
-            "WCAG 2.1 AA compliance, screen reader testing, keyboard navigation, and inclusive design patterns ensuring every user can fully engage with your product.",
+            "Integrated marketing and analytics systems powering customer insights and performance tracking.",
+            features: [
+            "Martech stack integration",
+            "CRM & CDP implementation",
+            "Analytics engineering",
+            "Customer data architecture",
+            "Attribution modelling",
+            "Revenue analytics dashboards",
+          ],
           highlighted: false,
         },
       ],
     },
     scale: {
       sectionLabel: "How We Guarantee Scale",
-      title: "HOW WE GUARANTEE EXPERIENCE AT SCALE",
+      title: "Architectural Rigor & Experience Assurance",
       subtitle:
-        "Performance, consistency, and data-driven iteration are built into our delivery model — ensuring your digital product keeps improving as your user base grows.",
+        "Beno Support combines user-centric design frameworks, rigorous optimization, and scalable frontend engineering to deliver high-performing digital products.",
       cards: [
         {
           iconName: "Zap",
-          title: "Performance\nOptimisation",
+          title: "Atomic Design Systems",
           description:
-            "Sub-2-second page loads through code splitting, lazy loading, image optimisation, edge caching, and Core Web Vitals engineering across all platforms.",
+            "Uses central Figma libraries and atomic design to transition concepts smoothly to live frontend code.",
           highlighted: false,
         },
         {
           iconName: "Layers",
-          title: "Component\nArchitecture",
+          title: "Empirical UX Research",
           description:
-            "Atomic design principles and reusable component libraries reducing frontend development time by up to 60% while maintaining visual consistency.",
+            "Runs multi-variant usability tests and behavior mapping via Miro and Hotjar before engineering layouts.",
           highlighted: true,
         },
         {
           iconName: "TrendingUp",
-          title: "Analytics &\nProduct Insights",
+          title: "Continuous Optimization Loops",
           description:
-            "GA4, Mixpanel, and Hotjar integration delivering granular behavioural insights that inform every product decision and roadmap iteration.",
+            "Uses continuous behavioral testing and analytics loops to eliminate user friction and boost conversions.",
           highlighted: false,
         },
         {
           iconName: "Search",
-          title: "SEO & Core\nWeb Vitals",
+          title: "Localized Global Architecture",
           description:
-            "Technical SEO audits, structured data implementation, and Core Web Vitals engineering delivering measurable organic traffic growth.",
+            "Applies automated translation pipelines and WCAG checklists to ensure global deployment and seamless payments.",
           highlighted: false,
         },
         {
           iconName: "Award",
-          title: "A/B Testing\nPrograms",
+          title: "High-Fidelity Prototyping",
           description:
-            "Structured experimentation with statistically significant test design, automated analysis pipelines, and full rollout frameworks for winning variants.",
+            "Mandates fast experience prototyping to remove interface bugs and keep systems stable during high surges.",
           highlighted: false,
         },
         {
           iconName: "Globe",
-          title: "Brand-Consistent\nExecution",
+          title: "Unified Analytics Telemetry",
           description:
-            "Design token governance and comprehensive review processes ensuring complete brand integrity across every product touchpoint and screen size.",
+            "Deploys real-time tracking rules and clean data-layer checks across analytics pipelines for exact attribution.",
           highlighted: false,
         },
       ],
@@ -1037,22 +1086,56 @@ export const servicesData: Record<string, ServiceData> =
            visualimg: "/assets/services/servicemain.svg",
         },
       ],
+      
     },
+        cta: {
+      title: "Ready to Build Better Digital Experiences?",
+      content:
+        "Partner with Beno Support to create scalable digital products, optimize customer journeys, and improve user engagement through modern product engineering solutions.",
+      buttons: ["Request a Proposal", "Schedule a Consultation", "Talk to Our Experts"],
+    },
+    faq: [
+      {
+        question: "Do you provide UI/UX design services?",
+        answer:
+          "Yes. We provide UX research, UI design, prototyping, design systems, and product experience optimization services.",
+      },
+      {
+        question: "Can you redesign existing websites and applications?",
+        answer:
+          "Absolutely. We modernize websites and applications with improved UX, scalable design systems, and performance optimization.",
+      },
+      {
+        question: "Do you provide product engineering services for startups?",
+        answer:
+          "Yes. We help startups build MVPs, scalable digital products, and customer-focused applications.",
+      },
+      {
+        question: "Can you improve website conversion rates?",
+        answer:
+          "Yes. Our conversion optimization services help improve engagement, lead generation, and digital performance.",
+      },
+      {
+        question: "Do you support multilingual and localized website experiences?",
+        answer:
+          "Yes. We provide localization and accessibility solutions for global digital experiences.",
+      },
+    ],
+
   },
 
   "enterprise-startup-tech-strategy": {
     meta: {
-      title: "Enterprise & Startup Tech Strategy ",
+      title: "Digital Transformation & Enterprise Technology Consulting ",
       description:
         "Modernize infrastructure, optimize technology ecosystems, and accelerate digital transformation with Beno Support's consulting services.",
       canonicalUrl: "/services/enterprise-tech-strategy-consulting/",
     },
     hero: {
       image:"/assets/services/hero/5.svg",
-      tagline: "Align Technology Strategy with",
-      tagline2: "Business Growth",
+      tagline: "Turn Business Vision into a Scalable Digital Enterprise",
       description:
-        "Beno Support helps businesses modernize infrastructure, optimize enterprise architecture, and accelerate digital transformation through strategic technology consulting.",
+        " Helping enterprises accelerate innovation, improve operational efficiency, and maximize technology investments with a strategy-first approach.",
       ctaButtons: ["Request a Proposal", "Talk to Our Experts"],
     },
     intro: {
@@ -1302,18 +1385,17 @@ export const servicesData: Record<string, ServiceData> =
     },
     hero: {
       image:"/assets/services/hero/6.svg",
-      tagline: "Governance That",
-      tagline2: "Drives Continuity",
+      tagline: "Strengthen IT Operations with Governance-Driven Managed Services",
       description:
-        "Round-the-clock managed IT operations, ITIL-aligned service management, and strategic governance frameworks delivering 99.9% uptime and cost-optimised technology operations.",
+        "Beno Support helps startups, SMBs, and enterprises improve operational continuity, optimize IT infrastructure, and reduce technology risks through proactive managed services and governance consulting.",
     },
     intro: {
       sectionLabel: "Intro",
-      title: "BEYOND SUPPORT: STRATEGIC IT OPERATIONS",
+      title: "Managed IT Services & IT Governance Solutions",
       paragraphs: [
-        "Managed services are no longer just about keeping the lights on — they are a strategic lever for operational excellence, cost reduction, and business agility.",
-        "At Beno Support, we deliver fully managed IT operations, service management, and governance programs that free your internal teams to focus on innovation while we ensure your technology runs reliably.",
-        "Our managed services teams operate with contractual SLA commitments, AIOps-enhanced monitoring, and proactive engineering that prevents incidents before they impact your business.",
+        "Modern businesses require secure, scalable, and reliable IT operations to support growth and digital transformation",
+        "Beno Support provides governance-focused managed IT services that help organizations optimize infrastructure performance, improve operational visibility, strengthen security, and maintain business continuity through proactive monitoring and strategic technology support.",
+        "Our teams combine infrastructure expertise, IT governance frameworks, cloud operations, and enterprise support capabilities to deliver reliable and scalable managed services.",
       ],
     },
     capabilities: {
@@ -1324,94 +1406,143 @@ export const servicesData: Record<string, ServiceData> =
       cards: [
         {
           iconName: "Settings",
-          title: "24/7 Managed\nIT Operations",
+          title: "vCIO Advisory",
           description:
-            "Round-the-clock infrastructure monitoring, incident management, and proactive maintenance ensuring maximum uptime across all technology layers.",
+            "Access strategic technology leadership and executive-level IT guidance without the need for a full-time CIO.",
+            features: [
+            "IT strategy planning",
+            "Technology roadmap development",
+            "Digital transformation advisory",
+            "IT governance consulting",
+            "Vendor management support",
+            "Budget & infrastructure planning",
+          ],
           highlighted: false,
         },
         {
           iconName: "Headphones",
-          title: "IT Service\nManagement (ITSM)",
+          title: "Managed IT Support (24/7 NOC)",
           description:
-            "ITIL-aligned service management covering change, incident, problem, and configuration management with full audit trail and reporting.",
+            "Ensure operational continuity with proactive infrastructure monitoring and round-the-clock technical support services.",
+            features: [
+            "24/7 monitoring & support",
+            "Incident response management",
+            "Network operations support",
+            "Performance monitoring",
+            "System uptime optimization",
+            "Remote infrastructure support",
+          ],
           highlighted: true,
         },
         {
           iconName: "Server",
-          title: "Infrastructure\nManagement",
+          title: "Infrastructure Management",
           description:
-            "End-to-end management of on-premise, hybrid, and cloud infrastructure including servers, networks, storage, and endpoint devices.",
+            "Manage cloud, hybrid, and enterprise IT infrastructure environments with scalable operational support.",
+           features: [
+            "Server & infrastructure management",
+            "Cloud infrastructure support",
+            "Hybrid environment management",
+            "Infrastructure optimization",
+            "Security patch management",
+            "Performance management",
+          ],
           highlighted: false,
         },
         {
           iconName: "Headphones",
-          title: "Help Desk &\nEnd-User Support",
+          title: "IT Helpdesk & Support",
           description:
-            "Tier 1–3 technical support with guaranteed SLAs, knowledge base management, and continuous first-call resolution improvement programs.",
+            "Provide reliable IT assistance and technical issue resolution for employees, teams, and enterprise users.",
+             features: [
+            "End-user technical support",
+            "Ticket management systems",
+            "Device & software support",
+            "User access management",
+            "Remote troubleshooting",
+            "IT service desk operations",
+          ],
           highlighted: false,
         },
         {
           iconName: "RefreshCw",
-          title: "Change &\nRelease Management",
+          title: "Disaster Recovery Planning",
           description:
-            "Structured change control processes minimising service disruption while accelerating the speed of technology delivery across your estate.",
+            "Protect critical business operations with proactive disaster recovery and business continuity strategies.",
+          features: [
+            "Backup & recovery planning",
+            "Business continuity strategy",
+            "Disaster recovery testing",
+            "Infrastructure redundancy",
+            "Risk mitigation planning",
+            "Recovery automation solutions",
+          ],
           highlighted: false,
         },
         {
           iconName: "FileText",
-          title: "IT Governance\n& Policy",
+          title: "Network Infrastructure & Security Management",
           description:
-            "IT governance frameworks, policy development, RACI definition, and compliance controls ensuring accountability and regulatory alignment.",
+            "Enterprise network infrastructure secured with continuous monitoring and access control.",
+            features: [
+            "Enterprise network architecture",
+            "Firewall & intrusion management",
+            "SD-WAN & VPN implementation",
+            "Zero-trust network access",
+            "Network monitoring & auditing",
+            "Recovery automation solutions",
+          ],
           highlighted: false,
         },
+        
       ],
     },
     scale: {
       sectionLabel: "How We Guarantee Scale",
-      title: "HOW WE GUARANTEE SERVICE AT SCALE",
+      title: "Governing for Scale & Stability",
       subtitle:
-        "Our managed services model is built on contractual commitments, proactive engineering, and continuous optimisation — not reactive firefighting.",
+        "Dependable blueprints, secure cloud transitions, and rigorous technical evaluations to confidently future-proof your business operations.",
       cards: [
         {
           iconName: "Award",
-          title: "Guaranteed SLA\nPerformance",
+          title: "Core Infrastructure Strategy",
           description:
-            "99.9% uptime SLA with contractual commitments, real-time performance dashboards, and financial penalties ensuring accountability at every level.",
+            "Enforces high-availability design patterns and automated load balancing across cloud clusters to handle system stress.",
           highlighted: false,
         },
         {
           iconName: "Activity",
-          title: "Proactive\nAIOps Monitoring",
+          title: "Repeatable Environments & IaC",
           description:
-            "AIOps-enhanced monitoring detecting anomalies before they become incidents, reducing unplanned downtime by up to 75% across your entire estate.",
+            "Uses pre-validated Terraform blueprints and container checklists to ensure rapid, error-free system replication.",
           highlighted: true,
         },
         {
           iconName: "Database",
-          title: "Asset Lifecycle\nManagement",
+          title: "DevOps Workflows & Delivery",
           description:
-            "Complete visibility into IT assets from procurement through decommission, eliminating shadow IT and ensuring cost-effective technology refresh cycles.",
+            "Utilizes automated deployment pipelines and mandatory technical peer reviews before pushing architecture changes live.",
           highlighted: false,
         },
         {
           iconName: "Users",
-          title: "Multi-Vendor\nManagement",
+          title: "Threat Isolation & Governance",
           description:
-            "Single-point vendor governance covering procurement, licensing, renewal, and performance management across your entire technology supplier ecosystem.",
+            "Integrates a native DevSecOps pipeline with automated safety scans to lock down administrative access.",
           highlighted: false,
         },
         {
           iconName: "DollarSign",
-          title: "IT Cost\nOptimisation",
+          title: "System Debt & SLA Tracking",
           description:
-            "Regular IT cost reviews identifying consolidation opportunities, licence rationalisation, and cloud spend optimisation delivering consistent savings.",
+            "Deploys precise telemetry monitoring rules and database validation runs to eliminate performance overhead.",
           highlighted: false,
         },
         {
           iconName: "FileCheck",
-          title: "Audit &\nCompliance Reporting",
+          title: "Specialized Engineering Support",
           description:
-            "Automated compliance reports, audit logs, and policy attestations ensuring you are always audit-ready across all frameworks and regulatory requirements.",
+            "Synchronizes team operations through internal knowledge vaults to enforce strict quality gates across deliverables.",
           highlighted: false,
         },
       ],
@@ -1479,6 +1610,7 @@ export const servicesData: Record<string, ServiceData> =
         },
       ],
     },
+    
   },
 
   "cloud-platform-engineering": {
