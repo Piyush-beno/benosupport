@@ -1,0 +1,30 @@
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-family: var(--font-plex-sans), "IBM Plex Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-plex-sans), "IBM Plex Sans", sans-serif;
+  }
+
+  code,
+  pre {
+    font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
+  }
+}
