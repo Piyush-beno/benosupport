@@ -1,8 +1,8 @@
 export const SOCIAL_LINKS = [
-  {
-    href: "https://twitter.com/benosupport",
-    label: "X (Twitter)",
-  },
+  // {
+  //   href: "https://twitter.com/benosupport",
+  //   label: "X (Twitter)",
+  // },
   {
     href: "https://www.facebook.com/benosupport",
     label: "Facebook",

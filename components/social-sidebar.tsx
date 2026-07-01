@@ -11,11 +11,12 @@ if (typeof window !== "undefined") {
   } catch (e) {}
 }
 
-const XIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
-  </svg>
-)
+// const XIcon = () => (
+//   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+//     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+//   </svg>
+// )
+// Twitter — hidden until ready
 const FBIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
@@ -47,11 +48,11 @@ const YTIcon = () => (
 )
 
 const socials = [
-  { ...SOCIAL_LINKS[0], icon: <XIcon />, hoverBg: "#000000", hoverBorder: "#000000" },
-  { ...SOCIAL_LINKS[1], icon: <FBIcon />, hoverBg: "#1877F2", hoverBorder: "#1877F2" },
-  { ...SOCIAL_LINKS[2], icon: <IGIcon />, hoverBg: "#E1306C", hoverBorder: "#E1306C" },
-  { ...SOCIAL_LINKS[3], icon: <LIIcon />, hoverBg: "#0A66C2", hoverBorder: "#0A66C2" },
-  { ...SOCIAL_LINKS[4], icon: <YTIcon />, hoverBg: "#FF0000", hoverBorder: "#FF0000" },
+  // { ...SOCIAL_LINKS[0], icon: <XIcon />, hoverBg: "#000000", hoverBorder: "#000000" },
+  { ...SOCIAL_LINKS[0], icon: <FBIcon />, hoverBg: "#1877F2", hoverBorder: "#1877F2" },
+  { ...SOCIAL_LINKS[1], icon: <IGIcon />, hoverBg: "#E1306C", hoverBorder: "#E1306C" },
+  { ...SOCIAL_LINKS[2], icon: <LIIcon />, hoverBg: "#0A66C2", hoverBorder: "#0A66C2" },
+  { ...SOCIAL_LINKS[3], icon: <YTIcon />, hoverBg: "#FF0000", hoverBorder: "#FF0000" },
 ]
 
 export default function SocialSidebar() {
