@@ -11,11 +11,7 @@ const LOGOS: { src: string; w: number; h: number; invert?: boolean }[] = [
   { src: "/assets/netflix.svg", w: 210, h: 100  },
   { src: "/assets/army.svg",    w: 200,  h: 70  },
   { src: "/assets/ap.svg",      w: 200, h: 140  },
-  { src: "/assets/home/white_indian_navy_logo.png", w: 180, h: 80, invert: false },
-  { src: "/assets/home/white_indian_navy_logo_1.png", w: 180, h: 80, invert: false },
-  { src: "/assets/home/white_indian_navy_logo_2.png", w: 180, h: 80, invert: false },
   { src: "/assets/home/white_up_logo.png", w: 160, h: 80, invert: false },
-  { src: "/assets/home/white_up_logo_1.png", w: 160, h: 80, invert: false },
 ]
 
 const ITEMS = [...LOGOS, ...LOGOS, ...LOGOS]

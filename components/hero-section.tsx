@@ -12,8 +12,7 @@ import Link from "next/link"
 const HEADLINE_LINES = [
   "Innovating Tomorrow,",
   "Empowering Today— 15 Years of",
-  "Depth.",
-  "Now AI-Native.",
+  "Depth. Now AI-Native.",
 ]
 
 export function HeroSection() {
