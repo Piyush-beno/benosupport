@@ -64,11 +64,11 @@ import Image from "next/image"
 //     <section ref={ref} className="bg-[#072448] py-20 lg:py-28">
 //       <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
 //         <div className="mx-auto mb-10 max-w-2xl text-center">
-//           <span className="label-chip text-xs font-semibold uppercase tracking-wider text-white">
+//           <span className="label-chip type-label font-semibold text-white">
 //             {techStackData.sectionLabel}
 //           </span>
 
-//           <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+//           <h2 className="mt-4 type-heading font-bold text-white">
 //             {techStackData.title}
 //           </h2>
 //         </div>

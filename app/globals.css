@@ -137,4 +137,129 @@
   }
 }
 
+@layer components {
+  .type-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .type-heading {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .type-body {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  @media (min-width: 1024px) {
+    .type-body {
+      font-size: 16px;
+    }
+  }
+
+  /* Bitrix24 CRM form — scoped to proposal modal */
+  .bitrix-form-theme .b24-form,
+  .bitrix-form-theme .b24-form * {
+    font-family: var(--font-plex-sans), "IBM Plex Sans", sans-serif !important;
+  }
+
+  .bitrix-form-theme .b24-form-header-title {
+    color: #072448 !important;
+    font-weight: 700 !important;
+  }
+
+  .bitrix-form-theme .b24-form-header-description {
+    color: #565558 !important;
+  }
+
+  .bitrix-form-theme .b24-form-control-label,
+  .bitrix-form-theme .b24-form-control-select-label {
+    color: #565558 !important;
+  }
+
+  /* Default field borders — skip phone/list widgets (breaks Bitrix mask on keydown) */
+  .bitrix-form-theme .b24-form-control-string .b24-form-control,
+  .bitrix-form-theme .b24-form-control-text .b24-form-control,
+  .bitrix-form-theme .b24-form-field-string .b24-form-control,
+  .bitrix-form-theme .b24-form-field-email .b24-form-control {
+    border: 1px solid #b8b8b8 !important;
+    border-color: #b8b8b8 !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+  }
+
+  .bitrix-form-theme .b24-form-control-string .b24-form-control:hover:not([readonly]),
+  .bitrix-form-theme .b24-form-control-text .b24-form-control:hover:not([readonly]) {
+    border-color: #0a3a73 !important;
+  }
+
+  .bitrix-form-theme .b24-form-control:focus + .b24-form-control-label,
+  .bitrix-form-theme .b24-form-control-not-empty + .b24-form-control-label,
+  .bitrix-form-theme .b24-form-field-required .b24-form-control-label {
+    color: #0a3a73 !important;
+  }
+
+  .bitrix-form-theme .b24-form-control-string .b24-form-control:focus:not([readonly]),
+  .bitrix-form-theme .b24-form-control-text .b24-form-control:focus:not([readonly]) {
+    border-color: #0a3a73 !important;
+    outline: 3px solid rgba(59, 103, 255, 0.25) !important;
+    outline-offset: 2px !important;
+  }
+
+  .bitrix-form-theme .b24-form-btn {
+    background: #0a3a73 !important;
+    border: 1px solid #0a3a73 !important;
+    border-radius: 12px !important;
+    color: #fff !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    height: auto !important;
+    min-height: 48px !important;
+    padding: 12px 24px !important;
+    transition: background-color 0.2s ease !important;
+  }
+
+  .bitrix-form-theme .b24-form-btn:hover {
+    background: #124e96 !important;
+    border-color: #124e96 !important;
+  }
+
+  .bitrix-form-theme .b24-form-btn:focus-visible {
+    outline: 3px solid rgba(59, 103, 255, 0.35) !important;
+    outline-offset: 2px !important;
+  }
+
+  .bitrix-form-theme .b24-form-header-padding,
+  .bitrix-form-theme .b24-form-header-separator {
+    border-color: #b8b8b8 !important;
+  }
+
+  /* Success / thank-you screen after submit */
+  .bitrix-form-theme .b24-form-state.b24-form-success,
+  .bitrix-form-theme .b24-form-success {
+    background: #f0f4ff !important;
+    background-color: #f0f4ff !important;
+  }
+
+  .bitrix-form-theme .b24-form-state-icon,
+  .bitrix-form-theme .b24-form-success-icon {
+    background-color: #0a3a73 !important;
+    border-color: #0a3a73 !important;
+    color: #fff !important;
+  }
+
+  .bitrix-form-theme .b24-form-state-text,
+  .bitrix-form-theme .b24-form-state-title,
+  .bitrix-form-theme .b24-form-state-description,
+  .bitrix-form-theme .b24-form-success-text {
+    color: #072448 !important;
+  }
+}
+
 

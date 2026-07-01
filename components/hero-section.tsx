@@ -1,9 +1,12 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { FileText, BadgeCheck, UserRoundCheck, Star } from "lucide-react"
+import { FileText, BadgeCheck, UserRoundCheck } from "lucide-react"
 import { gsap } from "@/lib/gsap"
 import { PartnerStrip } from "./partnerStrip"
+import { useProposalModal } from "@/hooks/use-proposal-modal"
+import { CONTACT_GET_IN_TOUCH_HREF } from "@/lib/proposal-cta"
+import Link from "next/link"
 
 // Pre-defined headline lines for clean stagger reveal
 const HEADLINE_LINES = [
@@ -14,6 +17,7 @@ const HEADLINE_LINES = [
 ]
 
 export function HeroSection() {
+  const { openProposalModal } = useProposalModal()
   const heroRef     = useRef<HTMLDivElement>(null)
   const videoRef    = useRef<HTMLVideoElement>(null)
   const overlayRef  = useRef<HTMLDivElement>(null)
@@ -21,7 +25,6 @@ export function HeroSection() {
   const lineRefs    = useRef<(HTMLSpanElement | null)[]>([])
   const paraRef     = useRef<HTMLParagraphElement>(null)
   const ctaRef      = useRef<HTMLDivElement>(null)
-  const badgesRef   = useRef<HTMLDivElement>(null)
   const statsRef    = useRef<HTMLDivElement>(null)
   const statNum1Ref = useRef<HTMLHeadingElement>(null)
   const statNum2Ref = useRef<HTMLHeadingElement>(null)
@@ -32,16 +35,14 @@ export function HeroSection() {
     const ctx = gsap.context(() => {
       const lines  = lineRefs.current.filter(Boolean)
       const stats  = statsRef.current ? Array.from(statsRef.current.children) : []
-      const badges = badgesRef.current ? Array.from(badgesRef.current.children) : []
 
       // Start everything hidden
-      gsap.set([lines, paraRef.current, ctaRef.current, badges, stats], {
+      gsap.set([lines, paraRef.current, ctaRef.current, stats], {
         opacity: 0,
       })
       gsap.set(lines, { yPercent: 110 })
       gsap.set(paraRef.current, { y: 28 })
       gsap.set(ctaRef.current, { scale: 0.7, y: 16 })
-      gsap.set(badges, { x: -24 })
       gsap.set(stats, {
         y: 70,
         scale: 0.82,
@@ -90,14 +91,7 @@ export function HeroSection() {
         1.05
       )
 
-      // 6. Badge items stagger from left
-      tl.to(
-        badges,
-        { x: 0, opacity: 1, duration: 0.55, stagger: 0.1, ease: "back.out(2)" },
-        1.18
-      )
-
-      // 7. Stat cards pop from depth with stagger
+      // 6. Stat cards pop from depth with stagger
       tl.to(
         stats,
         {
@@ -113,7 +107,7 @@ export function HeroSection() {
         1.05
       )
 
-      // 8. Count-up animations synced with each card's stagger offset
+      // 7. Count-up animations synced with each card's stagger offset
       const c1 = { val: 0 }
       const c2 = { val: 0 }
       const c3 = { val: 0 }
@@ -192,7 +186,7 @@ export function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative overflow-hidden bg-[#072448] min-h-[calc(100vh)] flex flex-col"
+      className="relative flex h-dvh min-h-[640px] flex-col overflow-hidden bg-[#072448]"
     >
       {/* ─── BACKGROUND VIDEO ─── */}
       <video
@@ -208,13 +202,13 @@ export function HeroSection() {
       {/* Dark overlay */}
       <div ref={overlayRef} className="absolute inset-0 bg-[#072448]/70 z-[1]" />
 
-      <div className="relative z-10 flex-1 flex flex-col w-full mx-auto px-6 lg:px-10">
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col w-full mx-auto px-6 lg:px-10">
 
         {/* Spacer for fixed header */}
         <div className="h-[72px] shrink-0" />
 
         {/* GRID — left content | right stats */}
-        <div className="flex-1 grid lg:grid-cols-[1fr_260px] xl:grid-cols-[1.2fr_280px] gap-10 xl:gap-14 py-14 lg:py-0">
+        <div className="min-h-0 flex-1 grid lg:grid-cols-[1fr_260px] xl:grid-cols-[1.2fr_280px] gap-10 xl:gap-14 py-10 lg:py-8">
 
           {/* ─── LEFT ─── */}
           <div className="flex flex-col justify-center">
@@ -234,7 +228,7 @@ export function HeroSection() {
 
             <p
               ref={paraRef}
-              className="mt-6 text-[#c8d4e3] text-[15px] sm:text-[17px] leading-[1.85] max-w-[560px] will-change-transform"
+              className="mt-6 type-body max-w-[560px] text-[#c8d4e3] will-change-transform"
             >
               Transforming businesses with cutting-edge technology and tailored solutions
               for the modern enterprise. We bridge the gap between legacy stability and
@@ -243,39 +237,19 @@ export function HeroSection() {
 
             {/* CTA */}
             <div ref={ctaRef} className="mt-8 flex gap-4 will-change-transform">
-              <button className="h-[50px] px-8 rounded-xl bg-[#0A3A73] text-white text-[15px] font-semibold hover:bg-blue-900 transition-colors active:scale-[0.98]">
+              <button
+                type="button"
+                onClick={openProposalModal}
+                className="h-[50px] px-8 rounded-xl bg-[#0A3A73] text-white text-[15px] font-semibold hover:bg-blue-900 transition-colors active:scale-[0.98]"
+              >
                Request a Proposal
               </button>
-              <button className="h-[50px] px-8 rounded-xl border-[0.5px] border-white text-white text-[15px] font-semibold hover:bg-blue-900 transition-colors active:scale-[0.98]">
+              <Link
+                href={CONTACT_GET_IN_TOUCH_HREF}
+                className="h-[50px] px-8 rounded-xl border-[0.5px] border-white text-white text-[15px] font-semibold hover:bg-blue-900 transition-colors active:scale-[0.98] inline-flex items-center justify-center"
+              >
                 Talk to an Expert
-              </button>
-            </div>
-
-            {/* Review badges */}
-            <div ref={badgesRef} className="mt-10 flex items-center gap-6 flex-wrap">
-              <div className="flex items-center gap-2 will-change-transform">
-                <div className="w-7 h-7 rounded-md bg-[#c89b2b] flex items-center justify-center shrink-0">
-                  <Star className="w-3.5 h-3.5 text-white fill-white" />
-                </div>
-                <div>
-                  <p className="text-white text-[12px] font-semibold leading-tight">Good firms</p>
-                  <div className="flex gap-[2px] mt-[2px]">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="w-[10px] h-[10px] text-[#f59e0b] fill-[#f59e0b]" />)}
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 will-change-transform">
-                <div className="w-7 h-7 rounded-full bg-[#ef4444] flex items-center justify-center shrink-0">
-                  <span className="text-white text-[12px] font-extrabold leading-none">C</span>
-                </div>
-                <div>
-                  <p className="text-white text-[12px] font-semibold leading-tight">Clutch</p>
-                  <div className="flex gap-[2px] mt-[2px]">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="w-[10px] h-[10px] text-[#f59e0b] fill-[#f59e0b]" />)}
-                  </div>
-                </div>
-              </div>
+              </Link>
             </div>
           </div>
 
@@ -325,13 +299,10 @@ export function HeroSection() {
             </div>
           </div>
         </div>
-
-        <div className="h-[88px] shrink-0" />
       </div>
 
-      {/* BLUE STRIP */}
+      {/* Sliding client logos */}
       <PartnerStrip />
-      {/* <div className="relative z-10 h-[88px] bg-gradient-to-r from-[#3b67ff] via-[#4d7bff] to-[#3b67ff] shrink-0" /> */}
     </section>
   )
 }

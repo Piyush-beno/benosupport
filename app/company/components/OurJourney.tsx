@@ -1,12 +1,25 @@
-"use client";
+"use client"
 
-import { Rocket, Monitor, Cloud, Shield, Brain, Globe, LucideIcon } from "lucide-react";
+import { useRef, useEffect } from "react"
+import {
+  Rocket,
+  Monitor,
+  Cloud,
+  Cog,
+  Brain,
+  Globe,
+  type LucideIcon,
+} from "lucide-react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface Milestone {
-  year: string;
-  title: string;
-  icon: LucideIcon;
-  position: "top" | "bottom";
+  year: string
+  title: string
+  icon: LucideIcon
+  iconAbove: boolean
 }
 
 const milestones: Milestone[] = [
@@ -14,252 +27,316 @@ const milestones: Milestone[] = [
     year: "2008",
     title: "Company Founded",
     icon: Rocket,
-    position: "top",
+    iconAbove: true,
   },
   {
     year: "2012",
     title: "Expanded into Enterprise Software Development",
     icon: Monitor,
-    position: "bottom",
+    iconAbove: false,
   },
   {
     year: "2016",
     title: "Entered Cloud & Digital Transformation Services",
     icon: Cloud,
-    position: "top",
+    iconAbove: true,
   },
   {
     year: "2020",
     title: "Enhanced Engineering, DevOps & Cybersecurity Expertise",
-    icon: Shield,
-    position: "bottom",
+    icon: Cog,
+    iconAbove: false,
   },
   {
     year: "2023",
     title: "Launched AI Automation & Intelligent Solutions",
     icon: Brain,
-    position: "top",
+    iconAbove: true,
   },
   {
     year: "Present",
     title: "Delivering Global AI, Cloud & Engineering Excellence",
     icon: Globe,
-    position: "bottom",
+    iconAbove: false,
   },
-];
+]
 
-const blockColors: string[] = [
+const blockColors = [
   "#0B2345",
   "#143D73",
   "#1F5A99",
   "#2D73BD",
   "#4288D5",
   "#72AFE8",
-];
+]
 
-const iconBgColors: string[] = [
-  "#0B2345",
-  "#143D73",
-  "#1F5A99",
-  "#2D73BD",
-  "#4288D5",
-  "#5A9BD4",
-];
+export default function OurJourney() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const headingRef = useRef<HTMLDivElement>(null)
+  const barRef = useRef<HTMLDivElement>(null)
+  const desktopRef = useRef<HTMLDivElement>(null)
+  const mobileRef = useRef<HTMLDivElement>(null)
 
-export default function JourneyTimeline() {
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 72%",
+          toggleActions: "play none none none",
+        },
+      })
+
+      if (headingRef.current) {
+        tl.fromTo(
+          headingRef.current.children,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.12,
+            ease: "power3.out",
+          },
+          0
+        )
+      }
+
+      const segments = barRef.current?.querySelectorAll<HTMLElement>(".journey-bar-segment")
+      if (segments?.length) {
+        gsap.set(segments, { scaleX: 0, transformOrigin: "left center" })
+        tl.to(
+          segments,
+          {
+            scaleX: 1,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "power2.out",
+          },
+          0.2
+        )
+      }
+
+      const icons = desktopRef.current?.querySelectorAll<HTMLElement>(".journey-icon")
+      if (icons?.length) {
+        tl.fromTo(
+          icons,
+          { opacity: 0, scale: 0.4 },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.55,
+            stagger: 0.1,
+            ease: "back.out(1.8)",
+          },
+          0.55
+        )
+      }
+
+      const connectors = desktopRef.current?.querySelectorAll<HTMLElement>(".journey-connector")
+      if (connectors?.length) {
+        gsap.set(connectors, { scaleY: 0, transformOrigin: "center top" })
+        tl.to(
+          connectors,
+          {
+            scaleY: 1,
+            duration: 0.35,
+            stagger: 0.1,
+            ease: "power2.out",
+          },
+          0.65
+        )
+      }
+
+      const labels = desktopRef.current?.querySelectorAll<HTMLElement>(".journey-text")
+      if (labels?.length) {
+        tl.fromTo(
+          labels,
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power3.out",
+          },
+          0.7
+        )
+      }
+
+      const mobileLine = mobileRef.current?.querySelector<HTMLElement>(".journey-mobile-line")
+      const mobileItems = mobileRef.current?.querySelectorAll<HTMLElement>(".journey-mobile-item")
+
+      if (mobileLine) {
+        gsap.set(mobileLine, { scaleY: 0, transformOrigin: "top center" })
+        gsap.to(mobileLine, {
+          scaleY: 1,
+          duration: 0.9,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: mobileRef.current,
+            start: "top 78%",
+            toggleActions: "play none none none",
+          },
+        })
+      }
+
+      if (mobileItems?.length) {
+        gsap.fromTo(
+          mobileItems,
+          { opacity: 0, x: -24 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: mobileRef.current,
+              start: "top 78%",
+              toggleActions: "play none none none",
+            },
+          }
+        )
+      }
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className="w-full py-20 px-6" style={{ backgroundColor: "#F8FAFC" }}>
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="mb-16">
-          <p
-            className="text-xs font-semibold tracking-widest uppercase mb-3"
-            style={{ color: "#3b67ff" }}
-          >
-            OUR JOURNEY TIMELINE
-          </p>
-          <h2
-            className="text-4xl font-extrabold"
-            style={{ color: "#0B2345" }}
-          >
-            Our Journey
-          </h2>
+    <section ref={sectionRef} className="bg-white pt-16 pb-12 lg:pt-20 lg:pb-14">
+      <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
+        <div ref={headingRef} className="mb-12 lg:mb-16">
+          <p className="type-label mb-3 text-[#0B2345]">OUR JOURNEY TIMELINE</p>
+          <h2 className="type-heading text-[#0B2345]">Our Journey</h2>
         </div>
 
-        {/* Desktop Timeline */}
-        <div className="hidden md:block">
-          {/* Top row: icons + descriptions for "top" milestones */}
-          <div className="flex items-end" style={{ minHeight: "180px" }}>
+        {/* Desktop timeline */}
+        <div ref={desktopRef} className="hidden lg:block">
+          <div className="flex min-h-[200px] items-end">
             {milestones.map((milestone, index) => {
-              const Icon = milestone.icon;
+              const Icon = milestone.icon
+              const color = blockColors[index]
+
               return (
                 <div
                   key={milestone.year}
-                  className="flex-1 flex flex-col items-center justify-end"
+                  className="flex flex-1 flex-col items-center justify-end"
                 >
-                  {milestone.position === "top" ? (
-                    <div className="flex flex-col items-center gap-3 pb-0">
-                      {/* Description above icon */}
-                      <p
-                        className="text-center text-sm font-semibold leading-snug"
-                        style={{
-                          maxWidth: "160px",
-                          color: index >= 3 ? "#2D73BD" : "#0B2345",
-                        }}
-                      >
-                        {milestone.title}
-                      </p>
-
-                      {/* Icon Circle */}
+                  {milestone.iconAbove ? (
+                    <div className="flex flex-col items-center">
                       <div
-                        className="rounded-full flex items-center justify-center"
-                        style={{
-                          width: "80px",
-                          height: "80px",
-                          backgroundColor: iconBgColors[index],
-                          flexShrink: 0,
-                        }}
+                        className="journey-icon flex h-20 w-20 items-center justify-center rounded-full"
+                        style={{ backgroundColor: color }}
                       >
                         <Icon color="white" size={34} strokeWidth={1.5} />
                       </div>
-
-                      {/* Connector Line */}
                       <div
-                        className="w-px"
-                        style={{
-                          height: "32px",
-                          backgroundColor: iconBgColors[index],
-                        }}
+                        className="journey-connector w-px"
+                        style={{ height: 36, backgroundColor: color }}
                       />
                     </div>
                   ) : (
-                    /* Empty spacer for bottom milestones */
-                    <div style={{ height: "80px" }} />
+                    <div className="journey-text flex flex-col items-center px-2 pb-4">
+                      <p className="type-body max-w-[160px] text-center font-semibold leading-snug text-[#0B2345]">
+                        {milestone.title}
+                      </p>
+                    </div>
                   )}
                 </div>
-              );
+              )
             })}
           </div>
 
-          {/* Timeline Bar */}
-          <div className="flex" style={{ borderRadius: "4px", overflow: "hidden" }}>
+          <div ref={barRef} className="flex overflow-hidden rounded-md">
             {milestones.map((milestone, index) => (
               <div
                 key={milestone.year}
-                className="flex-1 flex items-center justify-center py-5"
+                className="journey-bar-segment flex flex-1 items-center justify-center py-5"
                 style={{ backgroundColor: blockColors[index] }}
               >
-                <span
-                  className="font-extrabold text-white"
-                  style={{ fontSize: "clamp(1.1rem, 2vw, 1.75rem)", letterSpacing: "-0.01em" }}
-                >
+                <span className="text-xl font-extrabold tracking-tight text-white xl:text-[1.75rem]">
                   {milestone.year}
                 </span>
               </div>
             ))}
           </div>
 
-          {/* Bottom row: icons + descriptions for "bottom" milestones */}
-          <div className="flex items-start" style={{ minHeight: "180px" }}>
+          <div className="flex min-h-[200px] items-start">
             {milestones.map((milestone, index) => {
-              const Icon = milestone.icon;
+              const Icon = milestone.icon
+              const color = blockColors[index]
+
               return (
                 <div
                   key={milestone.year}
-                  className="flex-1 flex flex-col items-center justify-start"
+                  className="flex flex-1 flex-col items-center justify-start"
                 >
-                  {milestone.position === "bottom" ? (
-                    <div className="flex flex-col items-center gap-3 pt-0">
-                      {/* Connector Line */}
-                      <div
-                        className="w-px"
-                        style={{
-                          height: "32px",
-                          backgroundColor: iconBgColors[index],
-                        }}
-                      />
-
-                      {/* Icon Circle */}
-                      <div
-                        className="rounded-full flex items-center justify-center"
-                        style={{
-                          width: "80px",
-                          height: "80px",
-                          backgroundColor: iconBgColors[index],
-                          flexShrink: 0,
-                        }}
-                      >
-                        <Icon color="white" size={34} strokeWidth={1.5} />
-                      </div>
-
-                      {/* Description below icon */}
-                      <p
-                        className="text-center text-sm font-semibold leading-snug"
-                        style={{
-                          maxWidth: "160px",
-                          color: index >= 3 ? "#2D73BD" : "#0B2345",
-                        }}
-                      >
+                  {milestone.iconAbove ? (
+                    <div className="journey-text flex flex-col items-center px-2 pt-4">
+                      <p className="type-body max-w-[160px] text-center font-semibold leading-snug text-[#0B2345]">
                         {milestone.title}
                       </p>
                     </div>
                   ) : (
-                    /* Empty spacer for top milestones */
-                    <div style={{ height: "80px" }} />
+                    <div className="flex flex-col items-center">
+                      <div
+                        className="journey-connector w-px"
+                        style={{ height: 36, backgroundColor: color }}
+                      />
+                      <div
+                        className="journey-icon flex h-20 w-20 items-center justify-center rounded-full"
+                        style={{ backgroundColor: color }}
+                      >
+                        <Icon color="white" size={34} strokeWidth={1.5} />
+                      </div>
+                    </div>
                   )}
                 </div>
-              );
+              )
             })}
           </div>
         </div>
 
-        {/* Mobile Timeline */}
-        <div className="flex flex-col gap-0 md:hidden">
+        {/* Mobile timeline */}
+        <div ref={mobileRef} className="lg:hidden">
           <div className="relative pl-12">
-            {/* Vertical line */}
             <div
-              className="absolute left-5 top-0 bottom-0 w-px"
+              className="journey-mobile-line absolute bottom-0 left-5 top-0 w-px"
               style={{ backgroundColor: "#4288D5" }}
             />
 
             {milestones.map((milestone, index) => {
-              const Icon = milestone.icon;
+              const Icon = milestone.icon
               return (
-                <div key={milestone.year} className="relative flex items-start mb-8 last:mb-0">
-                  {/* Icon Circle on the line */}
+                <div
+                  key={milestone.year}
+                  className="journey-mobile-item relative mb-8 flex items-start last:mb-0"
+                >
                   <div
-                    className="absolute -left-7 rounded-full flex items-center justify-center z-10 flex-shrink-0"
-                    style={{
-                      width: "48px",
-                      height: "48px",
-                      backgroundColor: iconBgColors[index],
-                      top: "0px",
-                    }}
+                    className="absolute -left-7 z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full"
+                    style={{ backgroundColor: blockColors[index] }}
                   >
                     <Icon color="white" size={22} strokeWidth={1.5} />
                   </div>
-
-                  {/* Card content */}
                   <div className="ml-6 pt-1">
                     <span
-                      className="block text-lg font-extrabold mb-1"
+                      className="mb-1 block text-lg font-extrabold"
                       style={{ color: blockColors[index] }}
                     >
                       {milestone.year}
                     </span>
-                    <p
-                      className="text-sm font-medium leading-snug"
-                      style={{ color: "#334155" }}
-                    >
+                    <p className="type-body font-medium leading-snug text-[#334155]">
                       {milestone.title}
                     </p>
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

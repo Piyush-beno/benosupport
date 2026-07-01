@@ -6,7 +6,7 @@ import { ProcessSection } from "@/components/process-section"
 import { TechStack } from "@/components/tech-stack"
 import { TechPartners } from "@/components/tech-partners"
 import { IndustriesSection } from "@/components/industries-section"
-import { SuccessStories } from "@/components/success-stories"
+// import { SuccessStories } from "@/components/success-stories"
 import { InsightsSection } from "@/components/insights-section"
 import { FaqSection } from "@/components/faq-section"
 import { CtaSection } from "@/components/cta-section"
@@ -25,7 +25,7 @@ export default function Page() {
         <TechStack />
         <TechPartners />
         <IndustriesSection />
-        <SuccessStories />
+        {/* <SuccessStories /> — hidden until feature is ready */}
         {/* <InsightsSection /> */}
         <FaqSection />
         <CtaSection />

@@ -21,10 +21,10 @@ export function TechPartners() {
   return (
     <section className="bg-primary py-16 text-primary-foreground lg:py-24">
       <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-        <span className="text-xs font-semibold uppercase tracking-wider text-primary-foreground/60">
+        <span className="type-label font-semibold text-primary-foreground/60">
           Tech Alliances
         </span>
-        <h2 className="mt-2 text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+        <h2 className="mt-2 text-balance type-heading font-bold">
           Our Tech Partners &amp; Certifications
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-pretty leading-relaxed text-primary-foreground/75">

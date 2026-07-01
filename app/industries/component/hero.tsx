@@ -1,7 +1,14 @@
+"use client"
+
 import gsap from 'gsap'
 import React, { useEffect, useRef } from 'react'
+import { useProposalModal } from '@/hooks/use-proposal-modal'
+import { CONTACT_GET_IN_TOUCH_HREF } from '@/lib/proposal-cta'
+import { prepareHeadingWordAnimation } from '@/lib/prepare-heading-word-animation'
+import Link from 'next/link'
 
 export default function IndustriesHero() {
+  const { openProposalModal } = useProposalModal()
   const sectionRef = useRef<HTMLElement>(null)
   const h1Ref = useRef<HTMLHeadingElement>(null)
   const subRef = useRef<HTMLParagraphElement>(null)
@@ -28,32 +35,24 @@ export default function IndustriesHero() {
       const tl = gsap.timeline({ delay: 0.1 })
 
       if (h1Ref.current) {
-        const words = (h1Ref.current.dataset.text ?? "").split(" ")
+        const wordEls = prepareHeadingWordAnimation(h1Ref.current)
 
-        h1Ref.current.innerHTML = words
-          .map(
-            (w) =>
-              `<span style="display:inline-block;overflow:hidden;vertical-align:bottom;margin-right:.2em">
-                <span class="wi" style="display:inline-block">${w}</span>
-              </span>`
+        if (wordEls.length)
+          tl.fromTo(
+            wordEls,
+            {
+              y: "115%",
+              opacity: 0,
+            },
+            {
+              y: "0%",
+              opacity: 1,
+              duration: 0.95,
+              stagger: 0.045,
+              ease: "expo.out",
+            },
+            0
           )
-          .join("")
-
-        tl.fromTo(
-          h1Ref.current.querySelectorAll(".wi"),
-          {
-            y: "115%",
-            opacity: 0,
-          },
-          {
-            y: "0%",
-            opacity: 1,
-            duration: 0.95,
-            stagger: 0.045,
-            ease: "expo.out",
-          },
-          0
-        )
       }
 
       tl.fromTo(
@@ -140,26 +139,9 @@ export default function IndustriesHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#072448] py-28 lg:py-36"
+      className="relative flex h-dvh min-h-[640px] flex-col overflow-hidden bg-[#072448]"
     >
-      {/* Grid */}
-      <div
-        className="absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px)",
-          backgroundSize: "64px 64px",
-        }}
-      />
-
-      {/* Glows */}
-      <div className="absolute left-1/2 top-[-250px] h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-[#3B67FF]/20 blur-[180px]" />
-
-      <div className="absolute -left-32 bottom-0 h-[300px] w-[300px] rounded-full bg-[#3B67FF]/10 blur-[120px]" />
-
-      <div className="absolute right-0 top-0 h-[400px] w-[400px] rounded-full bg-cyan-400/10 blur-[160px]" />
-
-      <div className="relative z-10 mx-auto max-w-[1300px] px-6 text-center lg:px-12">
+      <div className="relative z-10 mx-auto flex max-w-[1300px] flex-1 flex-col justify-center px-6 pb-12 pt-[72px] text-center lg:px-12">
         {/* Eyebrow */}
         {/* <span className="inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-white/70 backdrop-blur-md">
           {heroData.eyebrow}
@@ -178,7 +160,7 @@ export default function IndustriesHero() {
         <p
           ref={subRef}
           style={{ opacity: 0 }}
-          className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-white/65"
+          className="mx-auto mt-8 max-w-3xl type-body text-white/85"
         >
           {heroData.subtitle}
         </p>
@@ -191,17 +173,10 @@ export default function IndustriesHero() {
           {heroData.stats.map((s) => (
             <div
               key={s.label}
-              style={{
-                opacity: 0,
-                backgroundColor: "rgba(255,255,255,.05)",
-              }}
-              className="rounded-2xl border border-white/10 px-8 py-7 backdrop-blur-md transition-all duration-300 hover:border-white/20 hover:bg-white/10"
+              style={{ opacity: 0 }}
+              className="rounded-lg border border-white/10 bg-[#0d2f5c] px-6 py-6 transition-colors duration-300 hover:border-[#3b67ff]/40"
             >
-              {/* <div className="text-4xl font-extrabold text-white">
-                {s.value}
-              </div> */}
-
-              <div className="mt-3 text-sm uppercase tracking-wider text-white/55">
+              <div className="text-sm font-medium uppercase tracking-wider text-white/80">
                 {s.label}
               </div>
             </div>
@@ -214,18 +189,21 @@ export default function IndustriesHero() {
           className="mt-14 flex flex-wrap justify-center gap-5"
         >
           <button
+            type="button"
+            onClick={openProposalModal}
             style={{ opacity: 0 }}
-            className="rounded-xl bg-[#0A3A73] px-8 py-4 text-sm font-semibold text-white shadow-[0_10px_40px_rgba(7,36,72,.45)] transition hover:bg-[#0a3557]"
+            className="rounded-lg bg-[#0A3A73] px-7 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-[#124e96]"
           >
             {heroData.cta1}
           </button>
 
-          <button
+          <Link
+            href={CONTACT_GET_IN_TOUCH_HREF}
             style={{ opacity: 0 }}
-            className="rounded-xl border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/10"
+            className="rounded-lg border border-[#3b67ff]/70 px-7 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-white/5"
           >
             {heroData.cta2}
-          </button>
+          </Link>
         </div>
       </div>
     </section>

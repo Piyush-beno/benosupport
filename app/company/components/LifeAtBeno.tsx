@@ -1,19 +1,36 @@
 "use client"
 
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import Image from "next/image"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { cn } from "@/lib/utils"
 
 gsap.registerPlugin(ScrollTrigger)
 
+const slides = [
+  {
+    src: "/assets/company/life_at_beno/L1_1.png",
+    alt: "Life at Beno — team collaboration",
+  },
+  {
+    src: "/assets/company/life_at_beno/life_at_beno_2_1.png",
+    alt: "Life at Beno — office culture",
+  },
+  {
+    src: "/assets/company/life_at_beno/life_at_beno_3_1.png",
+    alt: "Life at Beno — workspace",
+  },
+]
+
+const SLIDE_INTERVAL_MS = 2000
+
 export default function LifeAtBeno() {
   const ref = useRef<HTMLElement>(null)
-  const imageRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Text animation
       gsap.fromTo(
         ref.current!.querySelectorAll("[data-fade]"),
         { opacity: 0, y: 24 },
@@ -29,38 +46,17 @@ export default function LifeAtBeno() {
           },
         }
       )
-
-      // Image animation
-      gsap.fromTo(
-        imageRef.current,
-        { opacity: 0, scale: 0.95, y: 20 },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: imageRef.current,
-            start: "top 80%",
-          },
-        }
-      )
-
-      // Parallax effect
-      gsap.to("[data-inner]", {
-        yPercent: -10,
-        ease: "none",
-        scrollTrigger: {
-          trigger: imageRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      })
     }, ref)
 
     return () => ctx.revert()
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % slides.length)
+    }, SLIDE_INTERVAL_MS)
+
+    return () => clearInterval(timer)
   }, [])
 
   return (
@@ -69,27 +65,21 @@ export default function LifeAtBeno() {
       className="overflow-hidden bg-[#f7f9fc] py-20 lg:py-24"
     >
       <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left */}
           <div>
-            <span
-              data-fade
-              className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#3b67ff]"
-            >
+            <span data-fade className="type-label text-[#3b67ff]">
               Culture &amp; People
             </span>
 
             <h2
               data-fade
-              className="mt-3 mb-5 text-3xl font-extrabold text-[#0a1628] lg:text-[36px]"
+              className="type-heading mt-3 mb-5 text-[#0a1628]"
             >
               Life at Beno
             </h2>
 
-            <p
-              data-fade
-              className="mb-6 text-[14.5px] leading-[1.8] text-[#4b5a72]"
-            >
+            <p data-fade className="type-body mb-6 text-[#4b5a72]">
               At Beno Support, we encourage innovation, continuous learning,
               collaboration, and technology-driven problem solving. Our teams
               work on modern digital transformation projects that create real
@@ -105,7 +95,7 @@ export default function LifeAtBeno() {
               ].map((point) => (
                 <li
                   key={point}
-                  className="flex items-start gap-2.5 text-[13.5px] text-[#4b5a72]"
+                  className="type-body flex items-start gap-2.5 text-[#4b5a72]"
                 >
                   <span className="mt-0.5 shrink-0 text-base leading-none text-[#3b67ff]">
                     •
@@ -116,19 +106,44 @@ export default function LifeAtBeno() {
             </ul>
           </div>
 
-          {/* Right */}
-          <div
-            ref={imageRef}
-            className="relative h-[400px] overflow-hidden rounded-3xl lg:h-[520px]"
-          >
-            <div data-inner className="absolute inset-[-5%] will-change-transform">
-              <Image
-                src="/assets/lifeatbeno.svg"
-                alt="Life at Beno"
-                fill
-                className="object-cover object-center"
-                priority
-              />
+          {/* Right — image carousel */}
+          <div data-fade className="w-full">
+            <div className="relative w-full">
+              {slides.map((slide, index) => (
+                <Image
+                  key={slide.src}
+                  src={slide.src}
+                  alt={slide.alt}
+                  width={605}
+                  height={403}
+                  quality={100}
+                  sizes="(max-width: 1024px) 100vw, 600px"
+                  className={cn(
+                    "h-auto w-full rounded-3xl transition-opacity duration-700 ease-in-out",
+                    index === activeIndex
+                      ? "relative opacity-100"
+                      : "pointer-events-none absolute inset-0 opacity-0"
+                  )}
+                  priority={index === 0}
+                />
+              ))}
+            </div>
+
+            <div className="mt-4 flex justify-center gap-2">
+              {slides.map((slide, index) => (
+                <button
+                  key={slide.src}
+                  type="button"
+                  aria-label={`Go to slide ${index + 1}`}
+                  onClick={() => setActiveIndex(index)}
+                  className={cn(
+                    "h-2 rounded-full transition-all duration-300",
+                    index === activeIndex
+                      ? "w-6 bg-[#3b67ff]"
+                      : "w-2 bg-[#c5d0e0] hover:bg-[#9aacc4]"
+                  )}
+                />
+              ))}
             </div>
           </div>
         </div>

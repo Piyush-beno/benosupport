@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
 
 const leaders = [
-   {
+  {
     name: "Abinesh Pratap Singh",
     role: "Managing Director",
     img: "/assets/md.svg",
@@ -18,9 +18,8 @@ const leaders = [
     name: "Pavan Sengar",
     role: "Group CEO",
     img: "/assets/ceo.svg",
-    bio: "Pavan Sengar leads Beno Support’s long-term vision, business strategy, and enterprise transformation initiatives with a focus on innovation, scalable growth, and engineering excellence.",
+    bio: "Pavan Sengar leads Beno Support's long-term vision, business strategy, and enterprise transformation initiatives with a focus on innovation, scalable growth, and engineering excellence.",
   },
- 
 ]
 
 export default function LeadershipTeam() {
@@ -49,61 +48,47 @@ export default function LeadershipTeam() {
   }, [])
 
   return (
-    <section ref={ref} className="bg-[#f7f9fc] py-20 lg:py-24">
+    <section ref={ref} className="bg-white pb-16 lg:pb-20">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
-        <div className="mb-3">
-          <span
+        <div className="border-t border-[#e2e8f0] pt-12 lg:pt-16">
+          <h2
             data-fade
-            className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#3b67ff]"
+            className="type-heading mb-10 uppercase text-[#0B2345] lg:mb-12"
           >
             Leadership Team
-          </span>
+          </h2>
+
+          <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+            {leaders.map((leader) => (
+              <div
+                key={leader.name}
+                data-fade
+                className="flex flex-col gap-6 rounded-2xl border border-[#e2e8f0] bg-white p-6 sm:flex-row sm:gap-8 sm:p-8"
+              >
+                <div className="relative mx-auto h-[210px] w-[190px] shrink-0 overflow-hidden rounded-xl sm:mx-0 sm:h-[230px] sm:w-[210px]">
+                  <Image
+                    src={leader.img}
+                    alt={leader.name}
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+
+                <div className="flex flex-col justify-center">
+                  <h3 className="text-[22px] font-bold leading-tight text-[#0B2345] lg:text-[24px]">
+                    {leader.name}
+                  </h3>
+                  <p className="mt-1 text-[15px] font-bold text-[#0B2345] lg:text-[16px]">
+                    {leader.role}
+                  </p>
+                  <p className="mt-4 text-[13px] leading-relaxed text-[#5b6473] lg:text-[14px]">
+                    {leader.bio}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-
-        <h2
-          data-fade
-          className="mb-10 text-3xl font-extrabold text-[#0a1628] lg:text-[36px]"
-        >
-          Leadership Team
-        </h2>
-
-        {/* Full-width cards */}
-    {/* Cards */}
-<div className="grid gap-6 lg:grid-cols-2">
-  {leaders.map((l, index) => (
-    <div
-      key={l.name}
-      data-fade
-      className={`flex gap-7 rounded-[24px] bg-white p-7 transition-all duration-300
-     `}
-    >
-      {/* Image */}
-      <div className="relative h-[220px] w-[200px] shrink-0 overflow-hidden rounded-xl">
-        <Image
-          src={l.img}
-          alt={l.name}
-          fill
-          className="object-cover object-top"
-        />
-      </div>
-
-      {/* Content */}
-      <div className="flex flex-col">
-        <h3 className="text-[22px] font-bold text-[#111827]">
-          {l.name}
-        </h3>
-
-        <p className="mb-5 text-[15px] font-bold text-[#0b2c5f]">
-          {l.role}
-        </p>
-
-        <p className="text-[15px] leading-[1.8] text-[#5b6473]">
-          {l.bio}
-        </p>
-      </div>
-    </div>
-  ))}
-</div>
       </div>
     </section>
   )

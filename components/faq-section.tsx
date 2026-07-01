@@ -45,21 +45,21 @@ export function FaqSection() {
     <section className="bg-background py-16 lg:py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center">
-          <span className="text-xs font-semibold uppercase tracking-wider text-accent">
+          <span className="type-label font-semibold text-accent">
             Frequently Asked Questions
           </span>
-          <h2 className="mt-2 text-balance text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+          <h2 className="mt-2 text-balance type-heading font-bold text-primary">
             Frequently Asked Questions
           </h2>
         </div>
 
-        <Accordion type="single" collapsible="true" className="w-full">
+        <Accordion className="w-full">
           {faqs.map((faq, i) => (
             <AccordionItem key={faq.q} value={`item-${i}`}>
               <AccordionTrigger className="text-left text-base font-medium text-primary">
                 {faq.q}
               </AccordionTrigger>
-              <AccordionContent className="text-sm leading-relaxed text-secondary">
+              <AccordionContent className="type-body text-secondary">
                 {faq.a}
               </AccordionContent>
             </AccordionItem>

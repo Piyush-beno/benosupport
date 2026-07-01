@@ -9,14 +9,20 @@ import {
   Code2, Bot, ShieldCheck, Cloud, Database, Monitor, Boxes, Cpu,
   Briefcase, Heart, Building2, ShoppingCart, GraduationCap, Plane,
   Factory, Landmark, Globe, Truck, Zap, Film,
-  Star, ArrowRight,
+  Star,
 } from "lucide-react"
 import UseCasesSection from "./component/useCase"
 import { SiteFooter } from "@/components/site-footer"
+import { prepareHeadingWordAnimation } from "@/lib/prepare-heading-word-animation"
 import { SiteHeader } from "@/components/site-header"
 import IndustriesHero from "./component/hero"
-import BusinessOutcomes, { OutcomeMetricsSection } from "./component/outcomeMetrix"
-import { Button } from "@/components/ui/button"
+import BusinessOutcomes from "./component/outcomeMetrix"
+import {
+  PageCTAOutlineButton,
+  PageCTAPrimaryButton,
+  PageCTASection,
+} from "@/components/page-cta"
+import { useProposalModal } from "@/hooks/use-proposal-modal"
 import Image from "next/image"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -217,13 +223,11 @@ function useSectionEntrance(
 
       const h = el.querySelector<HTMLElement>(headingSelector)
       if (h) {
-        const words = (h.textContent ?? "").split(" ")
-        h.innerHTML = words
-          .map(w => `<span style="display:inline-block;overflow:hidden;vertical-align:bottom;margin-right:.2em"><span class="wi" style="display:inline-block">${w}</span></span>`)
-          .join("")
-        tl.fromTo(h.querySelectorAll(".wi"),
-          { y: "115%", opacity: 0 },
-          { y: "0%", opacity: 1, duration: 0.75, stagger: 0.05, ease: "expo.out" }, 0.1)
+        const wordEls = prepareHeadingWordAnimation(h)
+        if (wordEls.length)
+          tl.fromTo(wordEls,
+            { y: "115%", opacity: 0 },
+            { y: "0%", opacity: 1, duration: 0.75, stagger: 0.05, ease: "expo.out" }, 0.1)
       }
 
       const sub = el.querySelector("p.section-sub")
@@ -282,10 +286,10 @@ function ChallengesSection() {
     <section ref={ref} className="bg-[#f7f9fc] py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="mb-12 max-w-7xl">
-          <span className="label-chip text-xs font-semibold uppercase tracking-wider text-[#072448]">
+          <span className="label-chip type-label font-semibold text-[#072448]">
             {challengesData.sectionLabel}
           </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#0a1628] sm:text-4xl lg:text-5xl">
+          <h2 className="mt-4 type-heading font-bold text-[#0a1628]">
             {challengesData.title}
           </h2>
           <p className="section-sub mt-4 text-base leading-relaxed text-[#4b5a72] sm:text-lg" style={{ opacity: 0 }}>
@@ -305,8 +309,8 @@ function ChallengesSection() {
   <div className="ch-icon mb-5 flex size-11 items-center justify-center rounded-xl bg-[#eef2ff]">
     <Icon className="size-5 text-[#072448] transition-colors duration-300 group-hover:text-white" />
   </div>
-  <h3 className="mb-2 text-[15px] font-bold text-[#0a1628]">{c.title}</h3>
-                <p className="text-[13px] leading-relaxed text-[#4b5a72]">{c.desc}</p>
+  <h3 className="mb-2 type-body font-bold text-[#0a1628]">{c.title}</h3>
+                <p className="type-body text-[#4b5a72]">{c.desc}</p>
 </div>
             )
           })}
@@ -322,7 +326,6 @@ function ChallengesSection() {
 // ─────────────────────────────────────────────────────────────────
 
 function SolutionsSection() {
-  const [activeSolution, setActiveSolution] = useState<typeof solutionsData.cards[number] | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
   const headingRef = useRef<HTMLDivElement>(null)
   const cardsRef   = useRef<HTMLDivElement>(null)
@@ -336,11 +339,11 @@ function SolutionsSection() {
       const label = headingRef.current?.querySelector(".label-chip")
       if (label) tl.fromTo(label, { opacity: 0, y: 14, scale: 0.82 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(2)" }, 0)
 
-      const h2 = headingRef.current?.querySelector("h2")
+      const h2 = headingRef.current?.querySelector<HTMLElement>("h2")
       if (h2) {
-        const words = (h2.textContent ?? "").split(" ")
-        h2.innerHTML = words.map(w => `<span style="overflow:hidden;vertical-align:bottom;margin-right:.2em"><span class="wi" style="display:inline-block">${w}</span></span>`).join("")
-        tl.fromTo(h2.querySelectorAll(".wi"), { y: "115%", opacity: 0 }, { y: "0%", opacity: 1, duration: 0.75, stagger: 0.05, ease: "expo.out" }, 0.1)
+        const wordEls = prepareHeadingWordAnimation(h2)
+        if (wordEls.length)
+          tl.fromTo(wordEls, { y: "115%", opacity: 0 }, { y: "0%", opacity: 1, duration: 0.75, stagger: 0.05, ease: "expo.out" }, 0.1)
       }
 
       const sub = headingRef.current?.querySelector("p")
@@ -377,10 +380,10 @@ function SolutionsSection() {
     <section className="bg-[#072348] py-20 lg:py-28">
       <div ref={sectionRef} className="mx-auto max-w-[1300px] px-6 lg:px-12">
         <div ref={headingRef} className="mb-12 max-w-7xl">
-          <span className="label-chip text-xs font-semibold uppercase tracking-wider text-[#9db4d4]">
+          <span className="label-chip type-label font-semibold text-[#9db4d4]">
             {solutionsData.sectionLabel}
           </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-3xl lg:text-5xl">
+          <h2 className="mt-4 type-heading font-bold text-white">
             {solutionsData.title}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-white/65 sm:text-lg">
@@ -408,64 +411,13 @@ function SolutionsSection() {
                   style={{ transition: "none" }}>
                   <Icon className="size-5" />
                 </div>
-                <h3 className="text-[15px] font-bold text-white leading-snug">{card.title}</h3>
-                <p className="text-[13px] leading-relaxed text-white/60">{card.desc}</p>
-                  <button
-                    type="button"
-                    onClick={() => setActiveSolution(card)}
-                    className="mt-auto inline-flex items-center gap-1.5 rounded-full text-white px-3 py-2 text-[12px] font-semibold text-[#072448] transition-all duration-200 hover:gap-3 "
-                  >
-                    Learn More <ArrowRight className="size-3.5" />
-                  </button>
+                <h3 className="type-body font-bold text-white leading-snug">{card.title}</h3>
+                <p className="type-body text-white/60">{card.desc}</p>
               </div>
             )
           })}
         </div>
       </div>
-      {activeSolution ? (
-        <div className="fixed top-4 inset-0 z-50">
-          {/* backdrop - clicking it closes the modal */}
-          <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
-            onClick={() => setActiveSolution(null)}
-          />
-
-          {/* centered modal container; stop clicks from bubbling to backdrop */}
-          <div className="relative z-50 flex mt-40 items-center justify-center px-4 py-6">
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-2xl rounded-3xl border border-white/10 bg-slate-950 p-6 shadow-2xl backdrop-blur-xl text-white"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#3b67ff] text-white">
-                    <activeSolution.icon className="size-5" />
-                  </div>
-                  <h3 className="text-2xl font-semibold">{activeSolution.title}</h3>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setActiveSolution(null)}
-                  className="rounded-full border border-white/10 bg-white/10 px-3 py-2 text-sm font-semibold text-white transition hover:bg-white/20"
-                >
-                  Close
-                </button>
-              </div>
-              <p className="mt-4 text-sm leading-7 text-slate-300">{activeSolution.desc}</p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">What this includes</p>
-                  <p className="mt-2 text-sm text-white/90">A focused strategy, implementation roadmap, and delivery support built around the selected capability.</p>
-                </div>
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Why it matters</p>
-                  <p className="mt-2 text-sm text-white/90">Helps your business accelerate digital transformation while lowering risk and improving operational resilience.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : null}
     </section>
   )
 }
@@ -496,8 +448,8 @@ function IndustriesGrid() {
     <section ref={ref} className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
         <div className="mb-10 max-w-3xl">
-          <span className="label-chip text-xs font-semibold uppercase tracking-wider text-[#072448]">Industries</span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#0a1628] sm:text-4xl lg:text-5xl">
+          <span className="label-chip type-label font-semibold text-[#072448]">Industries</span>
+          <h2 className="mt-4 type-heading font-bold text-[#0a1628]">
             Industries We Serve
           </h2>
         </div>
@@ -554,8 +506,8 @@ function IndustriesGrid() {
 //     <section ref={ref} className="bg-[#f7f9fc] py-20 lg:py-28">
 //       <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
 //         <div className="mb-10 max-w-2xl">
-//           <span className="label-chip text-xs font-semibold uppercase tracking-wider text-[#072448]">Case Studies</span>
-//           <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#0a1628] sm:text-4xl lg:text-5xl">
+//           <span className="label-chip type-label font-semibold text-[#072448]">Case Studies</span>
+//           <h2 className="mt-4 type-heading font-bold text-[#0a1628]">
 //             Real-World Use Cases Across Industries
 //           </h2>
 //           <p className="section-sub mt-4 text-base leading-relaxed text-[#4b5a72]" style={{ opacity: 0 }}>
@@ -620,10 +572,20 @@ function OutcomeMetrics() {
         { opacity: 0, scale: 0.8 },
         { opacity: 1, scale: 1, duration: 0.6, stagger: 0.07, ease: "back.out(1.8)",
           scrollTrigger: { trigger: el, start: "top 78%" } })
-      if (center) gsap.fromTo(center,
-        { opacity: 0, scale: 0.6 },
-        { opacity: 1, scale: 1, duration: 0.9, ease: "back.out(2)",
-          scrollTrigger: { trigger: el, start: "top 78%", delay: 0.3 } })
+      if (center) {
+        gsap.fromTo(
+          center,
+          { opacity: 0, scale: 0.6 },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.9,
+            ease: "back.out(2)",
+            delay: 0.3,
+            scrollTrigger: { trigger: el, start: "top 78%" },
+          }
+        )
+      }
     }, el)
     return () => ctx.revert()
   }, [])
@@ -636,8 +598,8 @@ function OutcomeMetrics() {
     <section ref={ref} className="bg-[#072348] py-20 lg:py-28">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
         <div className="mb-12 text-center max-w-2xl mx-auto">
-          <span className="label-chip text-xs font-semibold uppercase tracking-wider text-[#9db4d4]">Business Success</span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <span className="label-chip type-label font-semibold text-[#9db4d4]">Business Success</span>
+          <h2 className="mt-4 type-heading font-bold text-white">
             Measurable Business Impact
           </h2>
           <p className="section-sub mt-4 text-base leading-relaxed text-white/60">
@@ -758,11 +720,11 @@ function TechStackSection() {
     <section ref={ref} className="bg-[#072448] py-20 lg:py-28">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
         <div className="mx-auto mb-10 max-w-2xl text-center">
-          <span className="label-chip text-xs font-semibold uppercase tracking-wider text-white">
+          <span className="label-chip type-label font-semibold text-white">
             {techStackData.sectionLabel}
           </span>
 
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-4 type-heading font-bold text-white">
             {techStackData.title}
           </h2>
         </div>
@@ -834,11 +796,11 @@ function WhyChooseSection() {
       const label = headingRef.current?.querySelector(".label-chip")
       if (label) tl.fromTo(label, { opacity: 0, y: 14, scale: 0.82 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(2)" }, 0)
 
-      const h2 = headingRef.current?.querySelector("h2")
+      const h2 = headingRef.current?.querySelector<HTMLElement>("h2")
       if (h2) {
-        const words = (h2.textContent ?? "").split(" ")
-        h2.innerHTML = words.map(w => `<span style="display:inline-block;overflow:hidden;vertical-align:bottom;margin-right:.2em"><span class="wi" style="display:inline-block">${w}</span></span>`).join("")
-        tl.fromTo(h2.querySelectorAll(".wi"), { y: "115%", opacity: 0 }, { y: "0%", opacity: 1, duration: 0.75, stagger: 0.05, ease: "expo.out" }, 0.1)
+        const wordEls = prepareHeadingWordAnimation(h2)
+        if (wordEls.length)
+          tl.fromTo(wordEls, { y: "115%", opacity: 0 }, { y: "0%", opacity: 1, duration: 0.75, stagger: 0.05, ease: "expo.out" }, 0.1)
       }
 
       const sub = headingRef.current?.querySelector("p")
@@ -875,10 +837,10 @@ function WhyChooseSection() {
     <section className="bg-[#072348] py-20 lg:py-28">
       <div ref={sectionRef} className="mx-auto max-w-[1300px] px-6 lg:px-12">
         <div ref={headingRef} className="mb-12 max-w-6xl">
-          <span className="label-chip text-xs font-semibold uppercase tracking-wider text-[#9db4d4]">
+          <span className="label-chip type-label font-semibold text-[#9db4d4]">
             {whyData.sectionLabel}
           </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-3xl lg:text-5xl">
+          <h2 className="mt-4 type-heading font-bold text-white">
             {whyData.title}
           </h2>
           {/* <p className="mt-4 text-base leading-relaxed text-white/65 sm:text-lg">
@@ -906,11 +868,8 @@ function WhyChooseSection() {
                   style={{ transition: "none" }}>
                   <Icon className="size-5" />
                 </div>
-                <h3 className="text-[15px] font-bold text-white leading-snug">{card.title}</h3>
-                <p className="text-[13px] leading-relaxed text-white/60">{card.desc}</p>
-                {/* <button className="mt-auto flex items-center gap-1.5 text-[12px] font-semibold text-[#072448] hover:gap-3 transition-all duration-200">
-                  Learn More <ArrowRight className="size-3.5" />
-                </button> */}
+                <h3 className="type-body font-bold text-white leading-snug">{card.title}</h3>
+                <p className="type-body text-white/60">{card.desc}</p>
               </div>
             )
           })}
@@ -972,10 +931,10 @@ function IndustriesFAQ() {
     <section ref={ref} className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-3xl px-6 lg:px-12">
         <div className="text-center mb-12">
-          <span className="label-chip text-xs font-semibold uppercase tracking-wider text-[#072448]">
+          <span className="label-chip type-label font-semibold text-[#072448]">
             FAQ
           </span>
-          <h2 className="mt-4 text-3xl font-bold  text-[#0a1628] sm:text-4xl">
+          <h2 className="mt-4 type-heading font-bold text-[#0a1628]">
             Frequently Asked Questions
           </h2>
           <p className="section-sub mt-4 text-base leading-relaxed text-[#4b5a72]" style={{ opacity: 0 }}>
@@ -992,7 +951,7 @@ function IndustriesFAQ() {
                   onClick={() => toggle(idx)}
                   className="flex w-full items-center justify-between gap-4 py-5 text-left"
                 >
-                  <span className={`text-[15px] font-semibold leading-snug transition-colors duration-200 ${isOpen ? "text-[#072448]" : "text-[#0a1628]"}`}>
+                  <span className={`type-body font-semibold leading-snug transition-colors duration-200 ${isOpen ? "text-[#072448]" : "text-[#0a1628]"}`}>
                     {item.question}
                   </span>
                   <ChevronDown
@@ -1003,7 +962,7 @@ function IndustriesFAQ() {
                   ref={(el) => { if (el) answersRef.current.set(idx, el) }}
                   style={{ height: isOpen ? "auto" : 0, overflow: "hidden", opacity: isOpen ? 1 : 0 }}
                 >
-                  <p className="pb-5 text-[14px] leading-[1.75] text-[#4b5a72]">
+                  <p className="pb-5 type-body text-[#4b5a72]">
                     {item.answer}
                   </p>
                 </div>
@@ -1021,6 +980,7 @@ function IndustriesFAQ() {
 // ─────────────────────────────────────────────────────────────────
 
 function IndustriesCTA() {
+  const { openProposalModal } = useProposalModal()
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -1037,35 +997,23 @@ function IndustriesCTA() {
   }, [])
 
   return (
-    <section ref={ref} className="bg-[#072348] py-20 lg:py-28 ">
-      <div className="mx-auto max-w-[1300px] px-6 lg:px-12 text-center">
-        {/* <span className="cta-el label-chip inline-block rounded-full border border-white/15 bg-white/8 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-white/60" style={{ opacity: 0 }}>
-          Get Started
-        </span> */}
-        <h2 className="cta-el mx-auto mt-5 max-w-7xl text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl" style={{ opacity: 0 }}>
-          Ready to Transform Your Industry Operations?
-        </h2>
-        <p className="cta-el mx-auto mt-5 max-w-5xl text-base leading-relaxed text-white/60" style={{ opacity: 0 }}>
-          Partner with Beno Support to modernize operations, deploy scalable digital platforms, and accelerate
-AI-powered transformation tailored to your industry's unique challenges.
-        </p>
-       <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button
-            size="lg"
-            className="bg-button p-6 text-button-foreground hover:bg-button-hover"
-          >
-            Request A Proposal
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-primary-foreground/40 p-6 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
-          >
-            Schedule A Consultation
-          </Button>
-        </div>
+    <PageCTASection ref={ref}>
+      <h2 className="cta-el type-heading mx-auto max-w-5xl text-white" style={{ opacity: 0 }}>
+        Ready to Transform Your Industry Operations?
+      </h2>
+      <p className="cta-el type-body mx-auto mt-5 max-w-4xl text-[#b8c9e0]" style={{ opacity: 0 }}>
+        Partner with Beno Support to modernize operations, deploy scalable digital platforms, and accelerate
+        AI-powered transformation tailored to your industry&apos;s unique challenges.
+      </p>
+      <div className="cta-el mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row" style={{ opacity: 0 }}>
+        <PageCTAPrimaryButton onClick={openProposalModal}>
+          Request a Proposal
+        </PageCTAPrimaryButton>
+        <PageCTAOutlineButton onClick={openProposalModal}>
+          Schedule a Consultation
+        </PageCTAOutlineButton>
       </div>
-    </section>
+    </PageCTASection>
   )
 }
 

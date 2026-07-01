@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, type ReactElement } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
@@ -13,7 +13,7 @@ const certs = [
   { label: "Agile Delivery Frameworks",     icon: "refresh" },
 ]
 
-const icons: Record<string, JSX.Element> = {
+const icons: Record<string, ReactElement> = {
   shield: (
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
       <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -62,10 +62,10 @@ export default function Certifications() {
   return (
     <section ref={ref} className="bg-[#072448] py-20 lg:py-24">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-12 text-center">
-        <span data-fade className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#3b67ff]">
+        <span data-fade className="type-label text-[#3b67ff]">
           Certifications &amp; Standards
         </span>
-        <h2 data-fade className="mt-3 text-3xl font-extrabold text-white lg:text-[36px] mb-12">
+        <h2 data-fade className="type-heading mt-3 mb-12 text-white">
           Enterprise Certifications &amp; Standards
         </h2>
 

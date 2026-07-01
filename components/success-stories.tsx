@@ -21,10 +21,10 @@ export function SuccessStories() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-accent">
+            <span className="type-label font-semibold text-accent">
               Case Studies
             </span>
-            <h2 className="mt-2 text-balance text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+            <h2 className="mt-2 text-balance type-heading font-bold text-primary">
               Success Stories
             </h2>
             <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-secondary">
@@ -55,15 +55,12 @@ export function SuccessStories() {
                 <h3 className="text-lg font-semibold text-primary">
                   {story.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-secondary">
+                <p className="type-body text-secondary">
                   {story.description}
                 </p>
-                <a
-                  href="#"
-                  className="mt-2 w-fit text-sm font-medium text-button hover:text-button-hover"
-                >
+                <span className="mt-2 w-fit text-sm font-medium text-button">
                   Read Case Study →
-                </a>
+                </span>
               </div>
             </article>
           ))}

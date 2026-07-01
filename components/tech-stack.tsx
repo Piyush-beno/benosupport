@@ -116,14 +116,14 @@ export function TechStack() {
               />
               <circle cx="9" cy="9" r="2.2" fill="#3b67ff" />
             </svg>
-            <span className="text-xs font-semibold uppercase tracking-widest text-accent">
+            <span className="type-label font-semibold tracking-widest text-accent">
               Technology Stack
             </span>
           </div>
-          <h2 className="mt-1 text-balance text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+          <h2 className="mt-1 text-balance type-heading font-bold text-primary">
             Our Technology &amp; Tool Stack
           </h2>
-          <p className="mt-3 max-w-2xl text-pretty text-sm sm:text-base leading-relaxed text-secondary">
+          <p className="mt-3 max-w-2xl text-pretty type-body leading-relaxed text-secondary">
             Industry-leading platforms driving innovation, performance, and long-term security.
           </p>
         </div>

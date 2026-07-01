@@ -9,8 +9,12 @@ export type CapabilityCard = {
 export type ServiceUseCase = {
   tabLabel: string
   tabSub: string
+  logoSrc?: string
   projectTitle: string
+  subtitle?: string
+  visualimg?: string
   visualSrc?: string
+  siteUrl?: string
   description: string
   bullets: string[]
   stats: { value: string; label: string }[]
@@ -21,11 +25,13 @@ export type ServiceData = {
   meta: {
     title: string
     description: string
-    canonicalUrl:string
+    canonicalUrl?: string
   }
   hero: {
+    image?: string
     tagline: string
     tagline2?: string
+    tagline3?: string
     description: string
     ctaButtons?: string[]
   }
@@ -72,9 +78,10 @@ export const servicesData: Record<string, ServiceData> = {
       canonicalUrl: "/services/software-development-company/",
     },
     hero: {
-      image:"/assets/services/hero/1.svg",
-      tagline: "Engineered for Scale.",
-      tagline2: "Built for Innovation.",
+      image: "/assets/services/core-engineering.png",
+      tagline: "Engineered",
+      tagline2: "for Scale.",
+      tagline3: "Built for Innovation.",
       description:
         "We engineer resilient SaaS platforms, cloud-native architectures, and enterprise applications that power modern business growth.",
       ctaButtons: ["Request a Proposal", "Talk to Our Experts"],
@@ -83,7 +90,9 @@ export const servicesData: Record<string, ServiceData> = {
       sectionLabel: "Intro",
       title: "BEYOND CODE: HIGH-PERFORMANCE SOFTWARE ENGINEERING",
       paragraphs: [
-        "Modern businesses require more than software development — they require scalable engineering systems built for performance, security, and continuous innovation ."," At Beno Support, we help organizations develop cloud-native applications, SaaS platforms, mobile experiences, and API-driven ecosystems that support digital transformation and long-term business growth. "," Our engineering teams combine architecture expertise, agile delivery, DevOps practices, and product-focused execution to deliver high-performance digital solutions.",
+        "Modern businesses require more than software development — they require scalable engineering systems built for performance, security, and continuous innovation .",
+        " At Beno Support, we help organizations develop cloud-native applications, SaaS platforms, mobile experiences, and API-driven ecosystems that support digital transformation and long-term business growth. ",
+        " Our engineering teams combine architecture expertise, agile delivery, DevOps practices, and product-focused execution to deliver high-performance digital solutions.",
       ],
     },
     capabilities: {
@@ -314,7 +323,11 @@ export const servicesData: Record<string, ServiceData> = {
       title: "Ready to Build Scalable Digital Products?",
       content:
         "Partner with Beno Support to modernize applications, develop scalable software platforms, and accelerate digital innovation with engineering-led solutions.",
-      buttons: ["Request a Proposal", "Schedule a Consultation", "Talk to Our Experts"],
+      buttons: [
+        "Request a Proposal",
+        "Schedule a Consultation",
+        "Talk to Our Experts",
+      ],
     },
     faq: [
       {
@@ -353,7 +366,7 @@ export const servicesData: Record<string, ServiceData> = {
       canonicalUrl: "/services/cybersecurity-services/",
     },
     hero: {
-      image:"/assets/services/hero/2.svg",
+      image: "/assets/services/cyber_reseliance.png",
       tagline: "Strengthen Digital Security with",
       tagline2: "Proactive Cyber Resilience",
       description:
@@ -509,7 +522,8 @@ export const servicesData: Record<string, ServiceData> = {
         {
           tabLabel: "FINVANTAGE LABS",
           tabSub: "Cloud & API Security Hardening",
-          projectTitle: "Penetration Testing & Core Infrastructure Vulnerability Remediation",
+          projectTitle:
+            "Penetration Testing & Core Infrastructure Vulnerability Remediation",
           description:
             "Auditing and fixing critical access points inside a high-volume payment processing pipeline to stop unauthorized API exploits.",
           bullets: [
@@ -519,16 +533,23 @@ export const servicesData: Record<string, ServiceData> = {
           ],
           stats: [
             { value: "0", label: "Critical data breaches or bypass leaks" },
-            { value: "100%", label: "Compliance score across regulatory audits" },
-            { value: "4x", label: "Faster identification of live system exploits" },
+            {
+              value: "100%",
+              label: "Compliance score across regulatory audits",
+            },
+            {
+              value: "4x",
+              label: "Faster identification of live system exploits",
+            },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "NEURALHEALTH AI",
           tabSub: "Enterprise AI Guardrail Deployment",
-          projectTitle: "Large Language Model Security Validation & Data Isolation",
+          projectTitle:
+            "Large Language Model Security Validation & Data Isolation",
           description:
             "Embedding continuous filtering layers around an enterprise healthcare LLM to prevent data leaking and adversarial attacks.",
           bullets: [
@@ -539,15 +560,19 @@ export const servicesData: Record<string, ServiceData> = {
           stats: [
             { value: "<50ms", label: "Guardrail check processing latency" },
             { value: "0", label: "Sensitive data exposure incidents" },
-            { value: "99.9%", label: "Mitigation of adversarial prompt injection variants" },
+            {
+              value: "99.9%",
+              label: "Mitigation of adversarial prompt injection variants",
+            },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "RETAILMAX GLOBAL",
           tabSub: "Managed SOC & Incident Response",
-          projectTitle: "24/7 Threat Intelligence & Active Ransomware Containment",
+          projectTitle:
+            "24/7 Threat Intelligence & Active Ransomware Containment",
           description:
             "Deploying an enterprise security monitoring hub to neutralize incoming digital threats across distributed commerce servers.",
           bullets: [
@@ -556,12 +581,21 @@ export const servicesData: Record<string, ServiceData> = {
             "Consolidating system events into a single live portal for rapid visibility across all infrastructure zones",
           ],
           stats: [
-            { value: "12 min", label: "Average containment time for active threats" },
-            { value: "0", label: "Point-of-sale system operational downtime minutes" },
-            { value: "10M+", label: "Daily security logs tracked and scrubbed live" },
+            {
+              value: "12 min",
+              label: "Average containment time for active threats",
+            },
+            {
+              value: "0",
+              label: "Point-of-sale system operational downtime minutes",
+            },
+            {
+              value: "10M+",
+              label: "Daily security logs tracked and scrubbed live",
+            },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
       ],
     },
@@ -569,7 +603,11 @@ export const servicesData: Record<string, ServiceData> = {
       title: "Ready to Strengthen Cyber Resilience?",
       content:
         "Partner with Beno Support to secure digital infrastructure, protect enterprise systems, and improve cybersecurity readiness with proactive threat intelligence solutions.",
-      buttons: ["Schedule Security Consultation", "Request Vulnerability Assessment", "Talk to Cybersecurity Experts"],
+      buttons: [
+        "Schedule Security Consultation",
+        "Request Vulnerability Assessment",
+        "Talk to Cybersecurity Experts",
+      ],
     },
     faq: [
       {
@@ -607,7 +645,7 @@ export const servicesData: Record<string, ServiceData> = {
         "Beno Support builds AI agents, LLM integrations, RAG pipelines, and intelligent automation systems that transform how enterprises operate and make decisions.",
     },
     hero: {
-      image:"/assets/services/hero/2.svg",
+      image: "/assets/services/agentic_ai.png",
       tagline: "Deploy AI-Powered Automation for",
       tagline2: "Smarter Business Operations",
       description:
@@ -776,7 +814,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "35%", label: "Increase in arena slot utilization" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "AAROHAN DIGITAL",
@@ -795,7 +833,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "80%", label: "Fewer technical website errors" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "FINVEX SOLUTIONS",
@@ -814,7 +852,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "0", label: "Manual payout processing delays" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
       ],
     },
@@ -822,7 +860,11 @@ export const servicesData: Record<string, ServiceData> = {
       title: "Ready to Scale with Intelligent Automation?",
       content:
         "Partner with Beno Support to deploy AI agents, automate workflows, and build enterprise-ready AI ecosystems that accelerate operational efficiency.",
-      buttons: ["Request a Proposal", "Schedule a Consultation", "Talk to Our Experts"],
+      buttons: [
+        "Request a Proposal",
+        "Schedule a Consultation",
+        "Talk to Our Experts",
+      ],
     },
     faq: [
       {
@@ -860,9 +902,9 @@ export const servicesData: Record<string, ServiceData> = {
         "Beno Support designs and engineers digital products with world-class UX, high-performance frontends, and conversion-optimised experiences that drive business growth.",
     },
     hero: {
-      image:"/assets/services/hero/4.svg",
-      tagline: "Create Digital Experiences That Drive Engagement & Growth",
-  
+      image: "/assets/services/digital_product.png",
+      tagline: "Create Digital Experiences ",
+      tagline2: "That Drive Engagement & Growth",
       description:
         "Beno Support helps startups, SMBs, and enterprises design user-focused digital products, optimize customer journeys, and build scalable digital experiences that improve engagement and conversions",
     },
@@ -886,7 +928,7 @@ export const servicesData: Record<string, ServiceData> = {
           title: "UX Research & Design Strategy",
           description:
             "Understand customer behaviour and build data-driven user experiences through research-focused design strategies.",
-            features: [
+          features: [
             "User journey mapping",
             "UX research & testing",
             "Product experience strategy",
@@ -896,12 +938,12 @@ export const servicesData: Record<string, ServiceData> = {
           ],
           highlighted: false,
         },
-                {
+        {
           iconName: "Layers",
           title: "UI Design & Prototyping",
           description:
             "Create modern and responsive interfaces optimized for usability and digital engagement.",
-           features: [
+          features: [
             "Responsive UI design",
             "Interactive prototyping",
             "Design systems",
@@ -932,7 +974,7 @@ export const servicesData: Record<string, ServiceData> = {
           title: "Website Transformation & Localisation",
           description:
             "Modernize websites for global accessibility, localization, and scalable digital experiences.",
-            features: [
+          features: [
             "Website modernization",
             "Localization support",
             "Multilingual experiences",
@@ -947,7 +989,7 @@ export const servicesData: Record<string, ServiceData> = {
           title: "Virtual Experience Design",
           description:
             "Build immersive and interactive digital experiences for customer engagement and enterprise communication.",
-            features: [
+          features: [
             "Interactive digital experiences",
             "Virtual engagement systems",
             "Experience-driven design",
@@ -962,7 +1004,7 @@ export const servicesData: Record<string, ServiceData> = {
           title: "Martech & Analytics Engineering",
           description:
             "Integrated marketing and analytics systems powering customer insights and performance tracking.",
-            features: [
+          features: [
             "Martech stack integration",
             "CRM & CDP implementation",
             "Analytics engineering",
@@ -1045,7 +1087,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "2.1s", label: "Average page load time" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "FINDASH",
@@ -1064,7 +1106,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "30%", label: "WCAG compliance achieved" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "EDULEARN",
@@ -1083,16 +1125,19 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "3x", label: "Mobile engagement increase" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
       ],
-      
     },
-        cta: {
+    cta: {
       title: "Ready to Build Better Digital Experiences?",
       content:
         "Partner with Beno Support to create scalable digital products, optimize customer journeys, and improve user engagement through modern product engineering solutions.",
-      buttons: ["Request a Proposal", "Schedule a Consultation", "Talk to Our Experts"],
+      buttons: [
+        "Request a Proposal",
+        "Schedule a Consultation",
+        "Talk to Our Experts",
+      ],
     },
     faq: [
       {
@@ -1116,12 +1161,12 @@ export const servicesData: Record<string, ServiceData> = {
           "Yes. Our conversion optimization services help improve engagement, lead generation, and digital performance.",
       },
       {
-        question: "Do you support multilingual and localized website experiences?",
+        question:
+          "Do you support multilingual and localized website experiences?",
         answer:
           "Yes. We provide localization and accessibility solutions for global digital experiences.",
       },
     ],
-
   },
 
   "enterprise-startup-tech-strategy": {
@@ -1132,7 +1177,7 @@ export const servicesData: Record<string, ServiceData> = {
       canonicalUrl: "/services/enterprise-tech-strategy-consulting/",
     },
     hero: {
-      image:"/assets/services/hero/5.svg",
+      image: "/assets/services/enterprise_strategy.png",
       tagline: "Turn Business Vision into a Scalable Digital Enterprise",
       description:
         " Helping enterprises accelerate innovation, improve operational efficiency, and maximize technology investments with a strategy-first approach.",
@@ -1286,7 +1331,8 @@ export const servicesData: Record<string, ServiceData> = {
         {
           tabLabel: "VANGUARD LOGISTICS",
           tabSub: "Legacy Core Migration",
-          projectTitle: "Legacy Modernization & Cloud Transition for Supply Chains",
+          projectTitle:
+            "Legacy Modernization & Cloud Transition for Supply Chains",
           description:
             "Modernizing a 15-year-old on-premise ERP into a scalable, cloud-native routing architecture.",
           bullets: [
@@ -1300,7 +1346,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "5x", label: "Faster route optimization processing" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "NEXUS HEALTH",
@@ -1319,12 +1365,13 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "70%", label: "Faster data retrieval for medical staff" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "ELEVATE INSURETECH",
           tabSub: "CTO Advisory & Platform Scaling",
-          projectTitle: "Digital Transformation & Microservices for High-Volume Claims",
+          projectTitle:
+            "Digital Transformation & Microservices for High-Volume Claims",
           description:
             "Upgrading a sluggish monolithic insurance platform into a rapid, multi-tenant digital hub.",
           bullets: [
@@ -1338,7 +1385,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "45%", label: "Faster claim approval pipeline speed" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
       ],
     },
@@ -1346,7 +1393,11 @@ export const servicesData: Record<string, ServiceData> = {
       title: "Ready to Modernize Your Technology Ecosystem?",
       content:
         "Partner with Beno Support to build scalable technology strategies, modernize infrastructure, and accelerate digital transformation initiatives.",
-      buttons: ["Talk to Our Consultants", "Request a Consultation", "Schedule a Strategy Session"],
+      buttons: [
+        "Talk to Our Consultants",
+        "Request a Consultation",
+        "Schedule a Strategy Session",
+      ],
     },
     faq: [
       {
@@ -1384,8 +1435,9 @@ export const servicesData: Record<string, ServiceData> = {
         "Beno Support provides 24/7 managed IT operations, ITIL-aligned service management, infrastructure management, and IT governance frameworks for enterprises worldwide.",
     },
     hero: {
-      image:"/assets/services/hero/6.svg",
-      tagline: "Strengthen IT Operations with Governance-Driven Managed Services",
+      image: "/assets/services/it_governance.png",
+      tagline:
+        "Strengthen IT Operations with Governance-Driven Managed Services",
       description:
         "Beno Support helps startups, SMBs, and enterprises improve operational continuity, optimize IT infrastructure, and reduce technology risks through proactive managed services and governance consulting.",
     },
@@ -1409,7 +1461,7 @@ export const servicesData: Record<string, ServiceData> = {
           title: "vCIO Advisory",
           description:
             "Access strategic technology leadership and executive-level IT guidance without the need for a full-time CIO.",
-            features: [
+          features: [
             "IT strategy planning",
             "Technology roadmap development",
             "Digital transformation advisory",
@@ -1424,7 +1476,7 @@ export const servicesData: Record<string, ServiceData> = {
           title: "Managed IT Support (24/7 NOC)",
           description:
             "Ensure operational continuity with proactive infrastructure monitoring and round-the-clock technical support services.",
-            features: [
+          features: [
             "24/7 monitoring & support",
             "Incident response management",
             "Network operations support",
@@ -1439,7 +1491,7 @@ export const servicesData: Record<string, ServiceData> = {
           title: "Infrastructure Management",
           description:
             "Manage cloud, hybrid, and enterprise IT infrastructure environments with scalable operational support.",
-           features: [
+          features: [
             "Server & infrastructure management",
             "Cloud infrastructure support",
             "Hybrid environment management",
@@ -1454,7 +1506,7 @@ export const servicesData: Record<string, ServiceData> = {
           title: "IT Helpdesk & Support",
           description:
             "Provide reliable IT assistance and technical issue resolution for employees, teams, and enterprise users.",
-             features: [
+          features: [
             "End-user technical support",
             "Ticket management systems",
             "Device & software support",
@@ -1484,7 +1536,7 @@ export const servicesData: Record<string, ServiceData> = {
           title: "Network Infrastructure & Security Management",
           description:
             "Enterprise network infrastructure secured with continuous monitoring and access control.",
-            features: [
+          features: [
             "Enterprise network architecture",
             "Firewall & intrusion management",
             "SD-WAN & VPN implementation",
@@ -1494,7 +1546,6 @@ export const servicesData: Record<string, ServiceData> = {
           ],
           highlighted: false,
         },
-        
       ],
     },
     scale: {
@@ -1568,7 +1619,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "99.96%", label: "Uptime achieved" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "HEALTHNET",
@@ -1587,7 +1638,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "45", label: "Custom workflows deployed" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "BANKFIRST",
@@ -1606,11 +1657,10 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "0", label: "Major incidents in 18 months" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
       ],
     },
-    
   },
 
   "cloud-platform-engineering": {
@@ -1620,7 +1670,7 @@ export const servicesData: Record<string, ServiceData> = {
         "Beno Support helps businesses build scalable cloud ecosystems, automate infrastructure, and accelerate deployment through modern cloud engineering services.",
     },
     hero: {
-      image:"/assets/services/hero/6.svg",
+      image: "/assets/services/cloud_and_platform.png",
       tagline: "Modernize Infrastructure with Cloud-Native Engineering",
       description:
         "Beno Support helps businesses build scalable cloud ecosystems, automate infrastructure, and accelerate deployment through modern cloud engineering services.",
@@ -1630,7 +1680,6 @@ export const servicesData: Record<string, ServiceData> = {
       title: "Cloud Infrastructure & DevOps Engineering Services",
       paragraphs: [
         "Cloud transformation is essential for scalability, agility, and operational efficiency. Beno Support helps startups, SMBs, and enterprises modernize infrastructure, optimize cloud operations, and accelerate deployment using Kubernetes, DevOps, and cloud-native engineering solutions.",
-
       ],
     },
     capabilities: {
@@ -1644,7 +1693,7 @@ export const servicesData: Record<string, ServiceData> = {
           title: "Multi-Cloud Architecture (AWS / Azure / GCP)",
           description:
             "Lift-and-shift, re-platform, and re-architect migration strategies with zero-downtime cutover planning across AWS, Azure, and GCP.",
-            features: [
+          features: [
             "Cloud migration strategy",
             "Hybrid cloud deployment",
             "Infrastructure optimization",
@@ -1659,7 +1708,7 @@ export const servicesData: Record<string, ServiceData> = {
           title: "Kubernetes & Container Orchestration",
           description:
             "Deploy scalable containerized applications with Kubernetes and modern orchestration frameworks.",
-           features: [
+          features: [
             "Kubernetes deployment",
             "Docker containerization",
             "Service orchestration",
@@ -1667,14 +1716,14 @@ export const servicesData: Record<string, ServiceData> = {
             "Cloud-native scalability",
             "Container security",
           ],
-            highlighted: true,
+          highlighted: true,
         },
         {
           iconName: "Zap",
           title: "DevOps & CI/CD Pipelines",
           description:
             "Accelerate software delivery through automated deployment workflows and DevOps practices.",
-           features: [
+          features: [
             "Automated deployments",
             "CI/CD implementation",
             "Infrastructure as Code",
@@ -1682,14 +1731,14 @@ export const servicesData: Record<string, ServiceData> = {
             "Monitoring & observability",
             "Release automation",
           ],
-            highlighted: false,
+          highlighted: false,
         },
         {
           iconName: "Globe",
           title: "FinOps & Cloud Cost Optimisation",
           description:
             "Improve cloud efficiency and reduce infrastructure costs through strategic optimization practices.",
-           features: [
+          features: [
             "Cloud cost monitoring",
             "Resource optimization",
             "Cloud governance",
@@ -1697,7 +1746,7 @@ export const servicesData: Record<string, ServiceData> = {
             "Budget optimization",
             "FinOps automation",
           ],
-            highlighted: false,
+          highlighted: false,
         },
         {
           iconName: "GitMerge",
@@ -1712,11 +1761,9 @@ export const servicesData: Record<string, ServiceData> = {
             "Data governance",
             "Analytics infrastructure",
           ],
-            highlighted: false,
+          highlighted: false,
         },
-       
       ],
-
     },
     scale: {
       sectionLabel: "How We Guarantee Scale",
@@ -1789,7 +1836,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "0", label: "Downtime during migration" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "FINTECH STARTUP",
@@ -1808,7 +1855,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "SOC 2", label: "Type II certified" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "MEDIA CO",
@@ -1827,43 +1874,47 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "10x", label: "Volume increase handled" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
       ],
     },
-      cta: {
+    cta: {
       title: "Ready to Modernize Your Cloud Infrastructure?",
       content:
         "Partner with Beno Support to optimize cloud operations, automate infrastructure, and accelerate cloud-native transformation.",
-      buttons: ["Schedule Cloud Consultation", "Talk to Platform Engineers", "Request a Proposal"],
+      buttons: [
+        "Schedule Cloud Consultation",
+        "Talk to Platform Engineers",
+        "Request a Proposal",
+      ],
     },
     faq: [
-  {
-    question: "Which cloud platforms do you support?",
-    answer:
-      "We support AWS, Microsoft Azure, Google Cloud Platform, and hybrid cloud environments.",
-  },
-  {
-    question: "Do you provide cloud migration services?",
-    answer:
-      "Yes. We help businesses migrate applications and infrastructure to cloud-native environments.",
-  },
-  {
-    question: "Can you optimize cloud costs?",
-    answer:
-      "Absolutely. Our FinOps services improve cloud efficiency and reduce unnecessary operational spending.",
-  },
-  {
-    question: "Do you provide Kubernetes consulting?",
-    answer:
-      "Yes. We provide Kubernetes deployment, orchestration, automation, and container management services.",
-  },
-  {
-    question: "Can startups use your cloud engineering services?",
-    answer:
-      "Yes. We help startups build scalable cloud infrastructure designed for rapid growth and operational flexibility.",
-  },
-],
+      {
+        question: "Which cloud platforms do you support?",
+        answer:
+          "We support AWS, Microsoft Azure, Google Cloud Platform, and hybrid cloud environments.",
+      },
+      {
+        question: "Do you provide cloud migration services?",
+        answer:
+          "Yes. We help businesses migrate applications and infrastructure to cloud-native environments.",
+      },
+      {
+        question: "Can you optimize cloud costs?",
+        answer:
+          "Absolutely. Our FinOps services improve cloud efficiency and reduce unnecessary operational spending.",
+      },
+      {
+        question: "Do you provide Kubernetes consulting?",
+        answer:
+          "Yes. We provide Kubernetes deployment, orchestration, automation, and container management services.",
+      },
+      {
+        question: "Can startups use your cloud engineering services?",
+        answer:
+          "Yes. We help startups build scalable cloud infrastructure designed for rapid growth and operational flexibility.",
+      },
+    ],
   },
 
   "workforce-technology-human-capital-advisory": {
@@ -1873,9 +1924,9 @@ export const servicesData: Record<string, ServiceData> = {
         "Beno Support implements HRMS platforms, workforce analytics, learning management systems, and digital adoption programs that transform how enterprises manage and develop their people.",
     },
     hero: {
-      image:"/assets/services/hero/7.svg",
+      image: "/assets/services/workforce_tech.png",
       tagline: "Modernize Workforce Operations with Intelligent HR Technology ",
-  
+
       description:
         "Beno Support helps startups, SMBs, and enterprises streamline workforce operations, modernize HR systems, and improve employee experiences through AI-powered workforce technology solutions.",
     },
@@ -1900,157 +1951,157 @@ export const servicesData: Record<string, ServiceData> = {
           description:
             "Implement and optimize enterprise HR platforms that improve workforce operations, employee engagement, and digital HR transformation.",
           features: [
-  "HR platform implementation",
-  "Workforce system integration",
-  "Employee lifecycle automation",
-  "HR analytics & reporting",
-  "Payroll & attendance integration",
-  "Enterprise HR modernization",
-],
-            highlighted: false,
+            "HR platform implementation",
+            "Workforce system integration",
+            "Employee lifecycle automation",
+            "HR analytics & reporting",
+            "Payroll & attendance integration",
+            "Enterprise HR modernization",
+          ],
+          highlighted: false,
         },
         {
-  iconName: "Users",
-  title: "Workday",
-  description:
-    "Streamline HR, finance, and workforce operations using Workday’s cloud-based enterprise platform designed for modern digital organizations.",
-  features: [
-    "Workday implementation",
-    "Human capital management",
-    "Payroll & workforce",
-    "Employee experience",
-    "HR analytics",
-    "Cloud-based HR",
-  ],
-  highlighted: false,
-},
-       {
-  iconName: "Users",
-  title: "SAP Success Factors",
-  description:
-    "Modernize workforce operations and talent management with SAP SuccessFactors solutions that improve employee engagement, performance, and organizational agility.",
-  features: [
-    "SAP implementation",
-    "Talent management",
-    "Performance management",
-    "Employee experience",
-    "Learning & development integration",
-    "Workforce analytics",
-  ],
-  highlighted: false,
-},
+          iconName: "Users",
+          title: "Workday",
+          description:
+            "Streamline HR, finance, and workforce operations using Workday’s cloud-based enterprise platform designed for modern digital organizations.",
+          features: [
+            "Workday implementation",
+            "Human capital management",
+            "Payroll & workforce",
+            "Employee experience",
+            "HR analytics",
+            "Cloud-based HR",
+          ],
+          highlighted: false,
+        },
         {
-  iconName: "Users",
-  title: "Darwinbox",
-  description:
-    "Empower organizations with an agile HR platform that simplifies workforce management, employee engagement, and operational efficiency.",
-  features: [
-    "Darwinbox implementation",
-    "Employee lifecycle management",
-    "Payroll & HRMS integration",
-    "Workforce engagement solutions",
-    "HR workflow automation",
-    "Mobile-first employee experience",
-  ],
-  highlighted: false,
-},
-{
-  iconName: "Brain",
-  title: "AI Workforce Upskilling Programs",
-  description:
-    "Prepare teams for AI-driven transformation through workforce enablement and digital upskilling initiatives.",
-  features: [
-    "AI readiness training",
-    "Workforce AI adoption programs",
-    "Digital transformation workshops",
-    "AI productivity enablement",
-    "Leadership upskilling sessions",
-    "Enterprise learning strategies",
-  ],
-  highlighted: false,
-},
-{
-  iconName: "Briefcase",
-  title: "Talent Technology Consulting",
-  description:
-    "Optimize recruitment, workforce planning, and talent management systems through technology-driven consulting.",
-  features: [
-    "Talent acquisition optimization",
-    "Recruitment technology consulting",
-    "Workforce planning systems",
-    "Employee engagement tools",
-    "HR workflow optimization",
-    "Talent analytics solutions",
-  ],
-  highlighted: false,
-},
-{
-  iconName: "Workflow",
-  title: "HR Process Automation",
-  description:
-    "Automate repetitive HR operations and workforce management tasks using intelligent automation solutions.",
-  features: [
-    "Employee onboarding automation",
-    "Leave & attendance workflows",
-    "HR approval automation",
-    "AI-driven HR operations",
-    "Document workflow automation",
-    "Workforce productivity optimization",
-  ],
-  highlighted: false,
-},
+          iconName: "Users",
+          title: "SAP Success Factors",
+          description:
+            "Modernize workforce operations and talent management with SAP SuccessFactors solutions that improve employee engagement, performance, and organizational agility.",
+          features: [
+            "SAP implementation",
+            "Talent management",
+            "Performance management",
+            "Employee experience",
+            "Learning & development integration",
+            "Workforce analytics",
+          ],
+          highlighted: false,
+        },
+        {
+          iconName: "Users",
+          title: "Darwinbox",
+          description:
+            "Empower organizations with an agile HR platform that simplifies workforce management, employee engagement, and operational efficiency.",
+          features: [
+            "Darwinbox implementation",
+            "Employee lifecycle management",
+            "Payroll & HRMS integration",
+            "Workforce engagement solutions",
+            "HR workflow automation",
+            "Mobile-first employee experience",
+          ],
+          highlighted: false,
+        },
+        {
+          iconName: "Brain",
+          title: "AI Workforce Upskilling Programs",
+          description:
+            "Prepare teams for AI-driven transformation through workforce enablement and digital upskilling initiatives.",
+          features: [
+            "AI readiness training",
+            "Workforce AI adoption programs",
+            "Digital transformation workshops",
+            "AI productivity enablement",
+            "Leadership upskilling sessions",
+            "Enterprise learning strategies",
+          ],
+          highlighted: false,
+        },
+        {
+          iconName: "Briefcase",
+          title: "Talent Technology Consulting",
+          description:
+            "Optimize recruitment, workforce planning, and talent management systems through technology-driven consulting.",
+          features: [
+            "Talent acquisition optimization",
+            "Recruitment technology consulting",
+            "Workforce planning systems",
+            "Employee engagement tools",
+            "HR workflow optimization",
+            "Talent analytics solutions",
+          ],
+          highlighted: false,
+        },
+        {
+          iconName: "Workflow",
+          title: "HR Process Automation",
+          description:
+            "Automate repetitive HR operations and workforce management tasks using intelligent automation solutions.",
+          features: [
+            "Employee onboarding automation",
+            "Leave & attendance workflows",
+            "HR approval automation",
+            "AI-driven HR operations",
+            "Document workflow automation",
+            "Workforce productivity optimization",
+          ],
+          highlighted: false,
+        },
       ],
     },
-   scale: {
-  sectionLabel: "How We Guarantee Scale",
-  title: "Workforce Engineering & Platform Assurance",
-  subtitle:
-    "Building reliable, compliant, and highly automated workforce platforms with enterprise precision.",
-  cards: [
-    {
-      iconName: "Database",
-      title: "Core HR\nArchitecture Alignment",
-      description:
-        "Migrate complex legacy data smoothly to Workday, SuccessFactors, or Darwinbox without operational risk or data loss.",
-      highlighted: false,
+    scale: {
+      sectionLabel: "How We Guarantee Scale",
+      title: "Workforce Engineering & Platform Assurance",
+      subtitle:
+        "Building reliable, compliant, and highly automated workforce platforms with enterprise precision.",
+      cards: [
+        {
+          iconName: "Database",
+          title: "Core HR\nArchitecture Alignment",
+          description:
+            "Migrate complex legacy data smoothly to Workday, SuccessFactors, or Darwinbox without operational risk or data loss.",
+          highlighted: false,
+        },
+        {
+          iconName: "Search",
+          title: "Empirical\nProcess Mining",
+          description:
+            "Run detailed workplace discovery workshops to isolate and fix operational bottlenecks before engineering automations.",
+          highlighted: true,
+        },
+        {
+          iconName: "MessageSquare",
+          title: "Continuous\nFeedback Loops",
+          description:
+            "Embed pulse data capturing directly into daily communication tools to mitigate early attrition risks.",
+          highlighted: false,
+        },
+        {
+          iconName: "ShieldCheck",
+          title: "Compliant Global\nArchitecture",
+          description:
+            "Apply automated regulatory checklists and international compliance standards to safeguard remote operations.",
+          highlighted: false,
+        },
+        {
+          iconName: "GraduationCap",
+          title: "High-Fidelity\nTraining Modules",
+          description:
+            "Deliver interactive learning modules and post-training benchmarks to ensure fast platform adoption.",
+          highlighted: false,
+        },
+        {
+          iconName: "BarChart3",
+          title: "Unified Workforce\nAnalytics",
+          description:
+            "Clean data schemas to monitor headcount metrics, software utilization, and output on one single glass pane.",
+          highlighted: false,
+        },
+      ],
     },
-    {
-      iconName: "Search",
-      title: "Empirical\nProcess Mining",
-      description:
-        "Run detailed workplace discovery workshops to isolate and fix operational bottlenecks before engineering automations.",
-      highlighted: true,
-    },
-    {
-      iconName: "MessageSquare",
-      title: "Continuous\nFeedback Loops",
-      description:
-        "Embed pulse data capturing directly into daily communication tools to mitigate early attrition risks.",
-      highlighted: false,
-    },
-    {
-      iconName: "ShieldCheck",
-      title: "Compliant Global\nArchitecture",
-      description:
-        "Apply automated regulatory checklists and international compliance standards to safeguard remote operations.",
-      highlighted: false,
-    },
-    {
-      iconName: "GraduationCap",
-      title: "High-Fidelity\nTraining Modules",
-      description:
-        "Deliver interactive learning modules and post-training benchmarks to ensure fast platform adoption.",
-      highlighted: false,
-    },
-    {
-      iconName: "BarChart3",
-      title: "Unified Workforce\nAnalytics",
-      description:
-        "Clean data schemas to monitor headcount metrics, software utilization, and output on one single glass pane.",
-      highlighted: false,
-    },
-  ],
-},
     useCases: {
       sectionLabel: "Case Studies",
       title: "STRATEGIC USE CASES",
@@ -2072,7 +2123,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "40%", label: "HR admin cost reduction" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "TECHSTART",
@@ -2091,7 +2142,7 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "22%", label: "Increase in engagement scores" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
         {
           tabLabel: "RETAILCO",
@@ -2110,47 +2161,48 @@ export const servicesData: Record<string, ServiceData> = {
             { value: "£800K", label: "Training cost savings annually" },
           ],
           ctaLabel: "View Case Study",
-           visualimg: "/assets/services/servicemain.svg",
+          visualimg: "/assets/services/servicemain.svg",
         },
       ],
     },
- cta: {
-  title: "Ready to Transform Workforce Operations?",
-  content:
-    "Partner with Beno Support to modernize HR systems, automate workforce processes, and build intelligent workforce technology ecosystems that improve operational efficiency.",
-  buttons: [
-    "Request Workforce Consultation",
-    "Schedule a Discovery Session",
-    "Talk to HR Technology Experts",
-  ],
-},
+    cta: {
+      title: "Ready to Transform Workforce Operations?",
+      content:
+        "Partner with Beno Support to modernize HR systems, automate workforce processes, and build intelligent workforce technology ecosystems that improve operational efficiency.",
+      buttons: [
+        "Request Workforce Consultation",
+        "Schedule a Discovery Session",
+        "Talk to HR Technology Experts",
+      ],
+    },
 
-faq: [
-  {
-    question: "Which HR platforms does Beno Support support?",
-    answer:
-      "We support Workday, SAP SuccessFactors, Darwinbox, and enterprise HR technology ecosystems.",
+    faq: [
+      {
+        question: "Which HR platforms does Beno Support support?",
+        answer:
+          "We support Workday, SAP SuccessFactors, Darwinbox, and enterprise HR technology ecosystems.",
+      },
+      {
+        question: "Do you provide AI workforce transformation consulting?",
+        answer:
+          "Yes. We help businesses implement AI-driven workforce modernization and employee productivity solutions.",
+      },
+      {
+        question: "Can you automate HR workflows?",
+        answer:
+          "Absolutely. We automate onboarding, approvals, attendance, employee operations, and HR process management workflows.",
+      },
+      {
+        question: "Do you provide workforce upskilling programs?",
+        answer:
+          "Yes. We offer AI readiness programs, digital transformation workshops, and workforce enablement training initiatives.",
+      },
+      {
+        question:
+          "Can startups and SMBs use your workforce technology services?",
+        answer:
+          "Yes. We provide scalable HR technology and workforce automation solutions tailored for startups, SMBs, and enterprises.",
+      },
+    ],
   },
-  {
-    question: "Do you provide AI workforce transformation consulting?",
-    answer:
-      "Yes. We help businesses implement AI-driven workforce modernization and employee productivity solutions.",
-  },
-  {
-    question: "Can you automate HR workflows?",
-    answer:
-      "Absolutely. We automate onboarding, approvals, attendance, employee operations, and HR process management workflows.",
-  },
-  {
-    question: "Do you provide workforce upskilling programs?",
-    answer:
-      "Yes. We offer AI readiness programs, digital transformation workshops, and workforce enablement training initiatives.",
-  },
-  {
-    question: "Can startups and SMBs use your workforce technology services?",
-    answer:
-      "Yes. We provide scalable HR technology and workforce automation solutions tailored for startups, SMBs, and enterprises.",
-  },
-],
-  },
-}
+};

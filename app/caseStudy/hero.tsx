@@ -2,9 +2,7 @@
 
 export default function CaseStudiesHero() {
   return (
-    <section
-      className="relative overflow-hidden bg-[#071f47] py-28"
-    >
+    <section className="relative flex h-dvh min-h-[640px] flex-col overflow-hidden bg-[#071f47]">
       {/* grid */}
       <div
         className="absolute inset-0 opacity-[0.06]"
@@ -18,9 +16,9 @@ export default function CaseStudiesHero() {
       {/* glow */}
       <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[130px]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
+      <div className="relative z-10 mx-auto flex max-w-6xl flex-1 flex-col justify-center px-6 pb-12 pt-[72px] text-center">
 
-        <span className="text-[12px] font-semibold uppercase tracking-[.3em] text-[#6ea2ff]">
+        <span className="type-label font-semibold text-[#6ea2ff]">
           Case Studies
         </span>
 
@@ -30,7 +28,7 @@ export default function CaseStudiesHero() {
           Challenges Through Technology
         </h1>
 
-        <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-[#9cb3d5]">
+        <p className="mx-auto mt-8 max-w-2xl type-body text-[#9cb3d5]">
           From modernising legacy platforms to deploying AI at scale,
           we help organisations streamline operations, improve customer
           experiences and accelerate growth.

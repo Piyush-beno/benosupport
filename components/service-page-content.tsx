@@ -17,8 +17,15 @@ import {
   ChevronUp,
 } from "lucide-react"
 import { gsap } from "@/lib/gsap"
-import type { CapabilityCard, ServiceData } from "@/lib/services-data"
+import type { CapabilityCard, ServiceData, ServiceUseCase } from "@/lib/services-data"
 import ServiceHero from "./servicehero"
+import {
+  PageCTAOutlineButton,
+  PageCTAPrimaryButton,
+  PageCTASection,
+} from "@/components/page-cta"
+import { useProposalModal } from "@/hooks/use-proposal-modal"
+import { getCtaButtonProps, CONTACT_GET_IN_TOUCH_HREF } from "@/lib/proposal-cta"
 
 const iconMap: Record<string, ComponentType<{ className?: string }>> = {
   Code2, Globe, Smartphone, Link2, Layers, GitBranch,
@@ -97,13 +104,13 @@ function ServiceIntro({ intro }: { intro: ServiceData["intro"] }) {
   return (
     <section ref={ref} className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        <span className="text-xs font-semibold uppercase tracking-wider text-[#072448]">
+        <span className="type-label font-semibold text-[#072448]">
           {intro.sectionLabel}
         </span>
-        <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#072348] sm:text-4xl lg:text-4xl " >
+        <h2 className="mt-4 type-heading font-bold text-[#072348] " >
           {intro.title}
         </h2>
-        <div className="mt-6 space-y-5 text-base leading-relaxed text-[#4b5a72]">
+        <div className="mt-6 space-y-5 type-body text-[#4b5a72]">
           {intro.paragraphs.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
@@ -314,7 +321,7 @@ const renderCard = (card: CapabilityCard, index: number) => {
         <IconComponent className="size-7" />
       </div>
       <h3 className="mb-3 text-xl font-bold text-white">{card.title}</h3>
-      <p className="text-sm leading-relaxed text-white/70">{card.description}</p>
+      <p className="type-body text-white/70">{card.description}</p>
       {card.features && (
         <>
           <h4 className="mt-6 text-base font-bold text-white">Key Features</h4>
@@ -337,14 +344,14 @@ const renderCard = (card: CapabilityCard, index: number) => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div ref={headingRef} className="max-w-6xl">
-          <span className="label-chip text-xs font-semibold uppercase tracking-wider text-[#9db4d4]">
+          <span className="label-chip type-label font-semibold text-[#9db4d4]">
             {data.sectionLabel}
           </span>
-          <h2 className="mt-4 text-7xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mt-4 type-heading font-bold text-white">
             {data.title}
           </h2>
           {data.subtitle && (
-            <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
+            <p className="mt-4 type-body text-white/70">
               {data.subtitle}
 
 
@@ -357,7 +364,7 @@ const renderCard = (card: CapabilityCard, index: number) => {
           ref={cardsRef}
           className="mt-12 grid grid-cols-1 overflow-hidden rounded-2xl border border-white/10 sm:grid-cols-3"
         >
-          {visibleCards.map((card, i) => renderCard(card, i, visibleCards.length))}
+          {visibleCards.map((card, i) => renderCard(card, i))}
         </div>
 
         {/* Extra cards — conditionally rendered */}
@@ -367,7 +374,7 @@ const renderCard = (card: CapabilityCard, index: number) => {
             className="mt-px grid grid-cols-1 overflow-hidden rounded-b-2xl border border-t-0 border-white/10 sm:grid-cols-3"
           >
             {hiddenCards.map((card, i) =>
-              renderCard(card, i + visibleCards.length, hiddenCards.length)
+              renderCard(card, i + visibleCards.length)
             )}
           </div>
         )}
@@ -450,10 +457,10 @@ function IndustriesGrid() {
     <section ref={ref} className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 max-w-3xl">
-          <span className="text-xs font-semibold uppercase tracking-wider text-[#072448]">
+          <span className="type-label font-semibold text-[#072448]">
             Industries
           </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#072348] sm:text-4xl lg:text-5xl">
+          <h2 className="mt-4 type-heading font-bold text-[#072348]">
             Industries We Engineer For
           </h2>
         </div>
@@ -480,24 +487,10 @@ function IndustriesGrid() {
 // Strategic Use Cases
 // ---------------------------------------------------------------------------
 
-
-type UseCase = {
-  tabLabel: string
-  tabSub: string
-  logoSrc?: string       // client logo image
-  projectTitle: string
-  subtitle?: string      // blue subtitle line under title
-  description?: string   // optional gray description
-  bullets: string[]
-  stats: { value: string; label: string }[]
-  ctaLabel: string
-  visualSrc?: string     // right panel image
-}
-
 type UseCasesData = {
   sectionLabel: string
   title: string
-  cases: UseCase[]
+  cases: ServiceUseCase[]
 }
 
 function ServiceUseCases({ useCases }: { useCases: UseCasesData }) {
@@ -557,7 +550,7 @@ function ServiceUseCases({ useCases }: { useCases: UseCasesData }) {
             {useCases.sectionLabel}
           </span>
         </div>
-        <h2 className="text-[28px] sm:text-[36px] lg:text-[42px] font-extrabold text-[#0a1628] leading-[1.1] tracking-[-0.5px] mb-8">
+        <h2 className="type-heading text-[#0a1628] mb-8">
           {useCases.title}
         </h2>
 
@@ -574,7 +567,7 @@ function ServiceUseCases({ useCases }: { useCases: UseCasesData }) {
               }`}
             >
               <div
-                className={`text-[11px] font-bold tracking-widest uppercase mb-1 ${
+                className={`type-label mb-1 ${
                   i === activeIdx ? "text-white" : "text-[#0a1628]"
                 }`}
               >
@@ -619,14 +612,14 @@ function ServiceUseCases({ useCases }: { useCases: UseCasesData }) {
 
             {/* Blue subtitle */}
             {active.subtitle && (
-              <p className="text-[#072448] font-bold text-[14px]  leading-[1.6] mb-5">
+              <p className="type-body font-bold text-[#072448] mb-5">
                 {active.subtitle}
               </p>
             )}
 
             {/* Optional gray description */}
             {active.description && (
-              <p className="text-[#4a5568] font-semibold text-[14px] leading-[1.7] mb-4">
+              <p className="type-body font-semibold text-[#4a5568] mb-4">
                 {active.description}
               </p>
             )}
@@ -636,7 +629,7 @@ function ServiceUseCases({ useCases }: { useCases: UseCasesData }) {
               {active.bullets.map((b, i) => (
                 <li key={i} className="flex items-start gap-2.5">
                   <span className="text-[#072448] text-[10px] mt-[5px] shrink-0">•</span>
-                  <span className="text-[#374151] text-[13px] leading-[1.6]">{b}</span>
+                  <span className="type-body text-[#374151]">{b}</span>
                 </li>
               ))}
             </ul>
@@ -712,71 +705,77 @@ function ServiceUseCases({ useCases }: { useCases: UseCasesData }) {
 // ---------------------------------------------------------------------------
 
 function ServiceCTASection({ cta }: { cta: NonNullable<ServiceData["cta"]> }) {
+  const { openProposalModal } = useProposalModal()
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(ref.current,
+      gsap.fromTo(
+        ref.current,
         { opacity: 0, y: 32 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
-          scrollTrigger: { trigger: ref.current, start: "top 80%" } }
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: { trigger: ref.current, start: "top 80%" },
+        }
       )
     }, ref)
     return () => ctx.revert()
   }, [])
 
   return (
-    <section ref={ref} className="bg-[#072348] py-20 lg:py-24 m-20 rounded-sm">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-2xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-          {cta.title}
-        </h2>
-        <p className="mt-6 text-base leading-relaxed text-white/70 sm:text-lg">
-          {cta.content}
-        </p>
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          {cta.buttons.map((button, index) => (
-            <button
-              key={index}
-              className={`rounded-lg px-6 py-3 text-sm font-semibold transition ${
-                index === 0
-                  ? "bg-[#0A3A73] text-white hover:bg-[#3b5b8a]"
-                  : "border border-white/30 text-white hover:border-white/60 hover:bg-white/5"
-              }`}
-            >
+    <PageCTASection ref={ref}>
+      <h2 className="type-heading mx-auto max-w-4xl font-bold text-white">
+        {cta.title}
+      </h2>
+      <p className="type-body mx-auto mt-6 max-w-3xl text-[#b8c9e0]">
+        {cta.content}
+      </p>
+      <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        {cta.buttons.map((button, index) => {
+          const buttonProps = getCtaButtonProps(button, openProposalModal)
+
+          return index === 0 ? (
+            <PageCTAPrimaryButton key={button} {...buttonProps}>
               {button}
-            </button>
-          ))}
-        </div>
+            </PageCTAPrimaryButton>
+          ) : (
+            <PageCTAOutlineButton key={button} {...buttonProps}>
+              {button}
+            </PageCTAOutlineButton>
+          )
+        })}
       </div>
-    </section>
+    </PageCTASection>
   )
 }
 
 function CTAFallbackSection() {
+  const { openProposalModal } = useProposalModal()
+
   return (
-    <section className="bg-[#072348] py-20 lg:py-24 m-20 rounded-sm">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-          Speak with our team and turn ambiguous goals into a concrete roadmap.
-        </h2>
-        <p className="mt-6 text-base leading-relaxed text-white/70 sm:text-lg">
-          We&apos;ll help you define sequencing, outcomes, and execution with clarity so your service strategy becomes a reliable advantage.
-        </p>
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <button className="rounded-lg bg-[#2d4971] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#3b5b8a]">
-            Request a Proposal
-          </button>
-          <button className="rounded-lg border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/60 hover:bg-white/5">
-            Schedule a Consultation
-          </button>
-          <button className="rounded-lg border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/60 hover:bg-white/5">
-            Talk to Our Experts
-          </button>
-          
-        </div>
+    <PageCTASection>
+      <h2 className="type-heading mx-auto max-w-4xl font-bold text-white">
+        Speak with our team and turn ambiguous goals into a concrete roadmap.
+      </h2>
+      <p className="type-body mx-auto mt-6 max-w-3xl text-[#b8c9e0]">
+        We&apos;ll help you define sequencing, outcomes, and execution with
+        clarity so your service strategy becomes a reliable advantage.
+      </p>
+      <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <PageCTAPrimaryButton onClick={openProposalModal}>
+          Request a Proposal
+        </PageCTAPrimaryButton>
+        <PageCTAOutlineButton onClick={openProposalModal}>
+          Schedule a Consultation
+        </PageCTAOutlineButton>
+        <PageCTAOutlineButton href={CONTACT_GET_IN_TOUCH_HREF}>
+          Talk to Our Experts
+        </PageCTAOutlineButton>
       </div>
-    </section>
+    </PageCTASection>
   )
 }
 
@@ -799,10 +798,10 @@ function ServiceFAQSection({ faq }: { faq: NonNullable<ServiceData["faq"]> }) {
     <section ref={ref} className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <span className="text-xs font-semibold uppercase tracking-wider text-[#072448]">
+          <span className="type-label font-semibold text-[#072448]">
             Frequently Asked Questions
           </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#072348] sm:text-4xl">
+          <h2 className="mt-4 type-heading font-bold text-[#072348]">
             Frequently Asked Questions
           </h2>
         </div>
@@ -818,7 +817,7 @@ function ServiceFAQSection({ faq }: { faq: NonNullable<ServiceData["faq"]> }) {
                 <ChevronDown className={`size-5 shrink-0 text-[#4b5a72] transition-transform duration-200 ${openIdx === index ? "rotate-180" : ""}`} />
               </button>
               {openIdx === index && (
-                <p className="mt-3 text-sm leading-relaxed text-[#4b5a72]">
+                <p className="mt-3 type-body text-[#4b5a72]">
                   {item.answer}
                 </p>
               )}

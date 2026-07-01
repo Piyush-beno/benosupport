@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { SOCIAL_LINKS } from "@/lib/social-links"
 
 if (typeof window !== "undefined") {
   try {
@@ -46,41 +47,11 @@ const YTIcon = () => (
 )
 
 const socials = [
-  {
-    icon: <XIcon />,
-    href: "https://twitter.com/benosupport",
-    label: "X (Twitter)",
-    hoverBg: "#000000",
-    hoverBorder: "#000000",
-  },
-  {
-    icon: <FBIcon />,
-    href: "https://www.facebook.com/benosupport",
-    label: "Facebook",
-    hoverBg: "#1877F2",
-    hoverBorder: "#1877F2",
-  },
-  {
-    icon: <IGIcon />,
-    href: "https://www.instagram.com/beno.support/",
-    label: "Instagram",
-    hoverBg: "#E1306C",
-    hoverBorder: "#E1306C",
-  },
-  {
-    icon: <LIIcon />,
-    href: "https://in.linkedin.com/company/bensupport-technologies",
-    label: "LinkedIn",
-    hoverBg: "#0A66C2",
-    hoverBorder: "#0A66C2",
-  },
-  {
-    icon: <YTIcon />,
-    href: "https://www.youtube.com/@BenoSupport",
-    label: "YouTube",
-    hoverBg: "#FF0000",
-    hoverBorder: "#FF0000",
-  },
+  { ...SOCIAL_LINKS[0], icon: <XIcon />, hoverBg: "#000000", hoverBorder: "#000000" },
+  { ...SOCIAL_LINKS[1], icon: <FBIcon />, hoverBg: "#1877F2", hoverBorder: "#1877F2" },
+  { ...SOCIAL_LINKS[2], icon: <IGIcon />, hoverBg: "#E1306C", hoverBorder: "#E1306C" },
+  { ...SOCIAL_LINKS[3], icon: <LIIcon />, hoverBg: "#0A66C2", hoverBorder: "#0A66C2" },
+  { ...SOCIAL_LINKS[4], icon: <YTIcon />, hoverBg: "#FF0000", hoverBorder: "#FF0000" },
 ]
 
 export default function SocialSidebar() {
@@ -107,6 +78,8 @@ export default function SocialSidebar() {
         <a
           key={i}
           href={s.href}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label={s.label}
           onMouseEnter={(e) => {
             gsap.to(e.currentTarget, {

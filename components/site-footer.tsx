@@ -1,34 +1,86 @@
+import Link from "next/link"
 import { Globe, Mail, Phone, MapPin } from "lucide-react"
+import { FOOTER_CONTACT_LINKS } from "@/lib/social-links"
 
-const columns = [
+const footerContactIcons = [Globe, Mail, Phone, MapPin] as const
+
+type FooterLink =
+  | { label: string; href: string }
+  | { label: string; disabled: true }
+
+const companyLinks: FooterLink[] = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Industries", href: "/industries" },
+  { label: "Company", href: "/company" },
+  { label: "Careers", disabled: true },
+  { label: "Sitemap", disabled: true },
+]
+
+const serviceLinks: FooterLink[] = [
   {
-    title: "Company",
-    links: ["Home", "Services", "Industries", "Company", "Careers", "Sitemap"],
+    label: "Core Engineering",
+    href: "/services/core-engineering-application-architecture",
   },
   {
-    title: "Services",
-    links: [
-      "Core Engineering",
-      "Agentic AI",
-      "Enterprise Strategy",
-      "Cloud & Platforms",
-      "CyberResilience",
-      "Digital Products",
-    ],
+    label: "Agentic AI",
+    href: "/services/agentic-ai-intelligent-automation",
   },
   {
-    title: "Industries",
-    links: [
-      "Fintech",
-      "Healthcare",
-      "Information Technology",
-      "EdTech",
-      "E-commerce",
-      "Telecom",
-    ],
+    label: "Enterprise Strategy",
+    href: "/services/enterprise-startup-tech-strategy",
+  },
+  {
+    label: "Cloud & Platforms",
+    href: "/services/cloud-platform-engineering",
+  },
+  {
+    label: "CyberResilience",
+    href: "/services/cyber-resilience-threat-intelligence",
+  },
+  {
+    label: "Digital Products",
+    href: "/services/digital-products-experience-engineering",
   },
 ]
 
+const industryLinks: FooterLink[] = [
+  "Fintech",
+  "Healthcare",
+  "Information Technology",
+  "EdTech",
+  "E-commerce",
+  "Telecom",
+].map((label) => ({ label, href: "/industries" }))
+
+const columns = [
+  { title: "Company", links: companyLinks },
+  { title: "Services", links: serviceLinks },
+  { title: "Industries", links: industryLinks },
+]
+
+function FooterLinkItem({ link }: { link: FooterLink }) {
+  if ("disabled" in link && link.disabled) {
+    return (
+      <span className="cursor-default text-sm text-primary-foreground/50">
+        {link.label}
+      </span>
+    )
+  }
+
+  if (!("href" in link)) {
+    return null
+  }
+
+  return (
+    <Link
+      href={link.href}
+      className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
+    >
+      {link.label}
+    </Link>
+  )
+}
 
 export function SiteFooter() {
   return (
@@ -37,23 +89,45 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-4">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
-              <img src="/assets/whitelogo.svg" />
+              <img src="/assets/whitelogo.svg" alt="Beno Support" />
             </div>
-            <p className="text-sm leading-relaxed text-primary-foreground/70">
+            <p className="type-body text-primary-foreground/70">
               Engineering Excellence in AI &amp; Technology. Transforming
               businesses since 2008.
             </p>
             <div className="flex gap-3">
-              {[Globe, Mail, Phone, MapPin].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="flex size-9 items-center justify-center rounded-md bg-primary-foreground/10 transition-colors hover:bg-button"
-                  aria-label="Social link"
-                >
-                  <Icon className="size-4" />
-                </a>
-              ))}
+              {FOOTER_CONTACT_LINKS.map((item, i) => {
+                const Icon = footerContactIcons[i]
+                const className =
+                  "flex size-9 items-center justify-center rounded-md bg-primary-foreground/10 transition-colors hover:bg-button"
+
+                if ("internal" in item && item.internal) {
+                  return (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      aria-label={item.label}
+                      className={className}
+                    >
+                      <Icon className="size-4" />
+                    </Link>
+                  )
+                }
+
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    {...("external" in item && item.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    aria-label={item.label}
+                    className={className}
+                  >
+                    <Icon className="size-4" />
+                  </a>
+                )
+              })}
             </div>
           </div>
 
@@ -64,13 +138,8 @@ export function SiteFooter() {
               </h3>
               <ul className="flex flex-col gap-2.5">
                 {col.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
-                    >
-                      {link}
-                    </a>
+                  <li key={link.label}>
+                    <FooterLinkItem link={link} />
                   </li>
                 ))}
               </ul>
@@ -81,12 +150,8 @@ export function SiteFooter() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-primary-foreground/15 pt-6 text-sm text-primary-foreground/60 sm:flex-row">
           <p>© 2026 Beno Support. All Rights Reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-primary-foreground">
-              Terms &amp; Conditions
-            </a>
-            <a href="#" className="hover:text-primary-foreground">
-              Privacy Policy
-            </a>
+            <span className="cursor-default">Terms &amp; Conditions</span>
+            <span className="cursor-default">Privacy Policy</span>
           </div>
         </div>
       </div>
