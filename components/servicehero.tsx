@@ -114,7 +114,7 @@ function ServiceHero({ hero }: { hero: ServiceData["hero"]; slug: string }) {
         />
 
         <div className="relative max-w-[600px]">
-          <h1 className="mb-6 text-[2.35rem] font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]">
+          <h1 className="mb-6 text-[2.35rem] font-extrabold leading-[1.22] tracking-tight text-white sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]">
             <span
               ref={line1Ref}
               data-split-text={hero.tagline}

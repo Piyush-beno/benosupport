@@ -23,7 +23,7 @@ export function prepareHeadingWordAnimation(heading: HTMLElement): Element[] {
   heading.innerHTML = words
     .map(
       (word) =>
-        `<span style="display:inline-block;overflow:hidden;vertical-align:bottom;margin-right:0.28em"><span class="wi" style="display:inline-block">${word}</span></span>`
+        `<span class="text-reveal-word"><span class="wi text-reveal-inner">${word}</span></span>`
     )
     .join("")
 

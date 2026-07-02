@@ -131,7 +131,7 @@ function splitWords(el: HTMLElement) {
   el.innerHTML = words
     .map(
       (w) =>
-        `<span class="word-wrap" style="display:inline-block;overflow:hidden;"><span class="word" style="display:inline-block;">${w}&nbsp;</span></span>`,
+        `<span class="text-reveal-word word-wrap"><span class="word text-reveal-inner">${w}&nbsp;</span></span>`,
     )
     .join("");
   return el.querySelectorAll<HTMLElement>(".word");
@@ -637,7 +637,7 @@ export default function ContactUsPage() {
         />
         <div className="relative mx-auto max-w-[1300px] px-6 lg:px-12">
           <div ref={officeHeadRef} className="text-center mb-10">
-            <span className="type-label text-[#7fa8e8]">
+            <span className="type-label section-label-dark">
               Our Offices
             </span>
             <h2 className="mt-2 type-heading text-white">
