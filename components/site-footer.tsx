@@ -14,7 +14,7 @@ const companyLinks: FooterLink[] = [
   { label: "Industries", href: "/industries" },
   { label: "Company", href: "/company" },
   { label: "Careers", disabled: true },
-  { label: "Sitemap", disabled: true },
+  { label: "Sitemap", href: "/sitemap" },
 ]
 
 const serviceLinks: FooterLink[] = [
