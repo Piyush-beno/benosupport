@@ -356,18 +356,17 @@ export function SiteHeader() {
               <button
                 onClick={() => router.push("/contact")}
                 className={`
-                  relative overflow-hidden px-6 py-2.5 text-[15px] font-semibold rounded-xl
-                  transition-all duration-300 group
+                  px-6 py-2.5 text-[15px] font-semibold rounded-xl
+                  transition-colors duration-300
                   ${isScrolled
-                    ? "bg-[#072448] text-white shadow-[0_4px_24px_rgba(59,103,255,0.40)]"
+                    ? "bg-[#072448] text-white hover:bg-[#0a2d5c]"
                     : "border border-white/40 text-white hover:bg-white/10"
                   }
                 `}
               >
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
-                <span className="relative flex items-center gap-2">
+                <span className="flex items-center gap-2">
                   Contact Us
-                  <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 14 14" fill="none">
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none">
                     <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
@@ -540,7 +539,7 @@ export function SiteHeader() {
             <div className="pt-4">
               <button
                 onClick={() => { router.push("/contact"); setIsMobileOpen(false) }}
-                className="w-full bg-[#072448] text-white font-semibold py-3 rounded-xl shadow-[0_4px_20px_rgba(59,103,255,0.35)]"
+                className="w-full bg-[#072448] text-white font-semibold py-3 rounded-xl hover:bg-[#0a2d5c] transition-colors"
               >
                 Contact Us
               </button>

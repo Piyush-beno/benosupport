@@ -78,7 +78,7 @@ export const servicesData: Record<string, ServiceData> = {
       canonicalUrl: "/services/software-development-company/",
     },
     hero: {
-      image: "/assets/services/core-engineering.png",
+      image: "/assets/services/core_engineering.svg",
       tagline: "Engineered",
       tagline2: "for Scale.",
       tagline3: "Built for Innovation.",
@@ -366,7 +366,7 @@ export const servicesData: Record<string, ServiceData> = {
       canonicalUrl: "/services/cybersecurity-services/",
     },
     hero: {
-      image: "/assets/services/cyber_reseliance.png",
+      image: "/assets/services/cyber_reseliance.svg",
       tagline: "Strengthen Digital Security with",
       tagline2: "Proactive Cyber Resilience",
       description:
@@ -645,7 +645,7 @@ export const servicesData: Record<string, ServiceData> = {
         "Beno Support builds AI agents, LLM integrations, RAG pipelines, and intelligent automation systems that transform how enterprises operate and make decisions.",
     },
     hero: {
-      image: "/assets/services/agentic_ai.png",
+      image: "/assets/services/agentic_ai.svg",
       tagline: "Deploy AI-Powered Automation for",
       tagline2: "Smarter Business Operations",
       description:
@@ -902,7 +902,7 @@ export const servicesData: Record<string, ServiceData> = {
         "Beno Support designs and engineers digital products with world-class UX, high-performance frontends, and conversion-optimised experiences that drive business growth.",
     },
     hero: {
-      image: "/assets/services/digital_product.png",
+      image: "/assets/services/digital_product.svg",
       tagline: "Create Digital Experiences ",
       tagline2: "That Drive Engagement & Growth",
       description:
@@ -1177,7 +1177,7 @@ export const servicesData: Record<string, ServiceData> = {
       canonicalUrl: "/services/enterprise-tech-strategy-consulting/",
     },
     hero: {
-      image: "/assets/services/enterprise_strategy.png",
+      image: "/assets/services/enterprise_strategy.svg",
       tagline: "Turn Business Vision into a Scalable Digital Enterprise",
       description:
         " Helping enterprises accelerate innovation, improve operational efficiency, and maximize technology investments with a strategy-first approach.",
@@ -1435,7 +1435,7 @@ export const servicesData: Record<string, ServiceData> = {
         "Beno Support provides 24/7 managed IT operations, ITIL-aligned service management, infrastructure management, and IT governance frameworks for enterprises worldwide.",
     },
     hero: {
-      image: "/assets/services/it_governance.png",
+      image: "/assets/services/it_governance.svg",
       tagline:
         "Strengthen IT Operations with Governance-Driven Managed Services",
       description:
@@ -1670,7 +1670,7 @@ export const servicesData: Record<string, ServiceData> = {
         "Beno Support helps businesses build scalable cloud ecosystems, automate infrastructure, and accelerate deployment through modern cloud engineering services.",
     },
     hero: {
-      image: "/assets/services/cloud_and_platform.png",
+      image: "/assets/services/cloud_and_platform.svg",
       tagline: "Modernize Infrastructure with Cloud-Native Engineering",
       description:
         "Beno Support helps businesses build scalable cloud ecosystems, automate infrastructure, and accelerate deployment through modern cloud engineering services.",
@@ -1924,7 +1924,7 @@ export const servicesData: Record<string, ServiceData> = {
         "Beno Support implements HRMS platforms, workforce analytics, learning management systems, and digital adoption programs that transform how enterprises manage and develop their people.",
     },
     hero: {
-      image: "/assets/services/workforce_tech.png",
+      image: "/assets/services/workforce_tech.svg",
       tagline: "Modernize Workforce Operations with Intelligent HR Technology ",
 
       description:
