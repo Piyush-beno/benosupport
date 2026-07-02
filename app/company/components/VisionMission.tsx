@@ -48,7 +48,7 @@ export default function VisionMission() {
         >
           {/* White inner card */}
           <div className="rounded-[24px] bg-white px-6 py-10 sm:px-10 lg:px-14 lg:py-12">
-            <span className="type-label mb-8 block text-[#8a96a8]">
+            <span className="type-label mb-8 block section-label-light">
               VISION &amp; MISSION
             </span>
 

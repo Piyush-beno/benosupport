@@ -94,7 +94,7 @@ const outcomesData = [
 ]
 
 const techStackData = {
-  sectionLabel: "Technology Partners",
+  sectionLabel: "Technology We Use",
   title: "Modern Technologies Powering Digital Transformation",
   filters: [
     "AI / Machine Learning",
@@ -108,7 +108,32 @@ const techStackData = {
     {
       name: "OpenAI",
       category: "AI / Machine Learning",
-      icon: "https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg",
+    },
+    {
+      name: "TensorFlow",
+      category: "AI / Machine Learning",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
+    },
+    {
+      name: "PyTorch",
+      category: "AI / Machine Learning",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",
+    },
+    {
+      name: "LangChain",
+      category: "AI / Machine Learning",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/langchain.svg",
+    },
+    {
+      name: "Hugging Face",
+      category: "AI / Machine Learning",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/huggingface.svg",
+    },
+    {
+      name: "Anthropic (Claude)",
+      category: "AI / Machine Learning",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/anthropic.svg",
     },
     {
       name: "AWS",
@@ -126,20 +151,50 @@ const techStackData = {
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
     },
     {
-      name: "TensorFlow",
-      category: "AI / Machine Learning",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
+      name: "Docker",
+      category: "Cloud & DevOps",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+    },
+    {
+      name: "Kubernetes",
+      category: "Cloud & DevOps",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+    },
+    {
+      name: "Terraform",
+      category: "Cloud & DevOps",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
     },
     {
       name: "Snowflake",
       category: "Data & Analytics",
-      icon: "https://www.vectorlogo.zone/logos/snowflake/snowflake-icon.svg",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/snowflake.svg",
     },
-    // {
-    //   name: "dbt",
-    //   category: "Data & Analytics",
-    //   icon: "https://www.vectorlogo.zone/logos/getdbt/getdbt-icon.svg",
-    // },
+    {
+      name: "PostgreSQL",
+      category: "Data & Analytics",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+    },
+    {
+      name: "MongoDB",
+      category: "Data & Analytics",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    },
+    {
+      name: "Apache Kafka",
+      category: "Data & Analytics",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg",
+    },
+    {
+      name: "Databricks",
+      category: "Data & Analytics",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/databricks.svg",
+    },
+    {
+      name: "Power BI",
+      category: "Data & Analytics",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/powerbi.svg",
+    },
     {
       name: "React Native",
       category: "Mobile & Frontend",
@@ -151,20 +206,85 @@ const techStackData = {
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
     },
     {
+      name: "React",
+      category: "Mobile & Frontend",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    },
+    {
+      name: "Next.js",
+      category: "Mobile & Frontend",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    },
+    {
+      name: "Swift",
+      category: "Mobile & Frontend",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
+    },
+    {
+      name: "Tailwind CSS",
+      category: "Mobile & Frontend",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tailwindcss.svg",
+    },
+    {
+      name: "Okta",
+      category: "Security",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/okta.svg",
+    },
+    {
+      name: "Auth0",
+      category: "Security",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/auth0.svg",
+    },
+    {
+      name: "Cloudflare",
+      category: "Security",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cloudflare.svg",
+    },
+    {
+      name: "HashiCorp Vault",
+      category: "Security",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vault.svg",
+    },
+    {
+      name: "AWS IAM",
+      category: "Security",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+    },
+    {
+      name: "OWASP",
+      category: "Security",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/owasp.svg",
+    },
+    {
       name: "Prisma",
       category: "Integration",
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg",
     },
     {
-      name: "Terraform",
-      category: "Cloud & DevOps",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
+      name: "Zapier",
+      category: "Integration",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/zapier.svg",
     },
-    // {
-    //   name: "CrowdStrike",
-    //   category: "Security",
-    //   icon: "https://www.vectorlogo.zone/logos/crowdstrike/crowdstrike-icon.svg",
-    // },
+    {
+      name: "Postman",
+      category: "Integration",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
+    },
+    {
+      name: "GraphQL",
+      category: "Integration",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
+    },
+    {
+      name: "Twilio",
+      category: "Integration",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/twilio.svg",
+    },
+    {
+      name: "Stripe",
+      category: "Integration",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/stripe.svg",
+    },
   ],
 };
 
@@ -286,7 +406,7 @@ function ChallengesSection() {
     <section ref={ref} className="bg-[#f7f9fc] py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="mb-12 max-w-7xl">
-          <span className="label-chip type-label font-semibold text-[#072448]">
+          <span className="label-chip type-label font-semibold section-label-light">
             {challengesData.sectionLabel}
           </span>
           <h2 className="mt-4 type-heading font-bold text-[#0a1628]">
@@ -380,7 +500,7 @@ function SolutionsSection() {
     <section className="bg-[#072348] py-20 lg:py-28">
       <div ref={sectionRef} className="mx-auto max-w-[1300px] px-6 lg:px-12">
         <div ref={headingRef} className="mb-12 max-w-7xl">
-          <span className="label-chip type-label font-semibold text-[#9db4d4]">
+          <span className="label-chip type-label font-semibold section-label-dark">
             {solutionsData.sectionLabel}
           </span>
           <h2 className="mt-4 type-heading font-bold text-white">
@@ -448,7 +568,7 @@ function IndustriesGrid() {
     <section ref={ref} className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
         <div className="mb-10 max-w-3xl">
-          <span className="label-chip type-label font-semibold text-[#072448]">Industries</span>
+          <span className="label-chip type-label font-semibold section-label-light">Industries</span>
           <h2 className="mt-4 type-heading font-bold text-[#0a1628]">
             Industries We Serve
           </h2>
@@ -506,7 +626,7 @@ function IndustriesGrid() {
 //     <section ref={ref} className="bg-[#f7f9fc] py-20 lg:py-28">
 //       <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
 //         <div className="mb-10 max-w-2xl">
-//           <span className="label-chip type-label font-semibold text-[#072448]">Case Studies</span>
+//           <span className="label-chip type-label font-semibold section-label-light">Case Studies</span>
 //           <h2 className="mt-4 type-heading font-bold text-[#0a1628]">
 //             Real-World Use Cases Across Industries
 //           </h2>
@@ -598,7 +718,7 @@ function OutcomeMetrics() {
     <section ref={ref} className="bg-[#072348] py-20 lg:py-28">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
         <div className="mb-12 text-center max-w-2xl mx-auto">
-          <span className="label-chip type-label font-semibold text-[#9db4d4]">Business Success</span>
+          <span className="label-chip type-label font-semibold section-label-dark">Business Success</span>
           <h2 className="mt-4 type-heading font-bold text-white">
             Measurable Business Impact
           </h2>
@@ -657,18 +777,15 @@ function OutcomeMetrics() {
 // ─────────────────────────────────────────────────────────────────
 
 function TechStackSection() {
-  const [activeFilter, setActiveFilter] = useState("All")
+  const [activeFilter, setActiveFilter] = useState(techStackData.filters[0])
   const ref = useRef<HTMLElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
 
   useSectionEntrance(ref)
 
-  const allFilters = ["All", ...techStackData.filters]
-
-  const filtered =
-    activeFilter === "All"
-      ? techStackData.stacks
-      : techStackData.stacks.filter((s) => s.category === activeFilter)
+  const filtered = techStackData.stacks.filter(
+    (s) => s.category === activeFilter
+  )
 
   useEffect(() => {
     const cards = gridRef.current?.querySelectorAll<HTMLElement>(".tech-card")
@@ -720,7 +837,7 @@ function TechStackSection() {
     <section ref={ref} className="bg-[#072448] py-20 lg:py-28">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
         <div className="mx-auto mb-10 max-w-2xl text-center">
-          <span className="label-chip type-label font-semibold text-white">
+          <span className="label-chip type-label font-semibold section-label-dark">
             {techStackData.sectionLabel}
           </span>
 
@@ -731,7 +848,7 @@ function TechStackSection() {
 
         {/* Filters */}
         <div className="mb-10 flex flex-wrap justify-center gap-2">
-          {allFilters.map((f) => (
+          {techStackData.filters.map((f) => (
             <button
               key={f}
               onClick={() => setActiveFilter(f)}
@@ -837,7 +954,7 @@ function WhyChooseSection() {
     <section className="bg-[#072348] py-20 lg:py-28">
       <div ref={sectionRef} className="mx-auto max-w-[1300px] px-6 lg:px-12">
         <div ref={headingRef} className="mb-12 max-w-6xl">
-          <span className="label-chip type-label font-semibold text-[#9db4d4]">
+          <span className="label-chip type-label font-semibold section-label-dark">
             {whyData.sectionLabel}
           </span>
           <h2 className="mt-4 type-heading font-bold text-white">
@@ -931,7 +1048,7 @@ function IndustriesFAQ() {
     <section ref={ref} className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-3xl px-6 lg:px-12">
         <div className="text-center mb-12">
-          <span className="label-chip type-label font-semibold text-[#072448]">
+          <span className="label-chip type-label font-semibold section-label-light">
             FAQ
           </span>
           <h2 className="mt-4 type-heading font-bold text-[#0a1628]">

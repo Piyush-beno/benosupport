@@ -28,7 +28,7 @@ export function InsightsSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <span className="type-label font-semibold text-accent">
+            <span className="type-label font-semibold section-label-light">
               Blog &amp; Resources
             </span>
             <h2 className="mt-2 text-balance type-heading font-bold text-primary">

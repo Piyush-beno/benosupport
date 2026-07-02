@@ -21,7 +21,7 @@ export function TechPartners() {
   return (
     <section className="bg-primary py-16 text-primary-foreground lg:py-24">
       <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-        <span className="type-label font-semibold text-primary-foreground/60">
+        <span className="type-label font-semibold section-label-dark">
           Tech Alliances
         </span>
         <h2 className="mt-2 text-balance type-heading font-bold">

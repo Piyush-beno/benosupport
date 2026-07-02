@@ -62,7 +62,7 @@ export default function Certifications() {
   return (
     <section ref={ref} className="bg-[#072448] py-20 lg:py-24">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-12 text-center">
-        <span data-fade className="type-label text-[#3b67ff]">
+        <span data-fade className="type-label section-label-dark">
           Certifications &amp; Standards
         </span>
         <h2 data-fade className="type-heading mt-3 mb-12 text-white">

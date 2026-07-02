@@ -104,7 +104,7 @@ function ServiceIntro({ intro }: { intro: ServiceData["intro"] }) {
   return (
     <section ref={ref} className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        <span className="type-label font-semibold text-[#072448]">
+        <span className="type-label font-semibold section-label-light">
           {intro.sectionLabel}
         </span>
         <h2 className="mt-4 type-heading font-bold text-[#072348] " >
@@ -172,7 +172,7 @@ function ServiceCapabilitiesGrid({
         heading.innerHTML = words
           .map(
             (w) =>
-              `<span class="word-span" style="display:inline-block;overflow:hidden;vertical-align:bottom"><span style="display:inline-block">${w}</span></span>`
+              `<span class="text-reveal-word word-span"><span class="text-reveal-inner">${w}</span></span>`
           )
           .join(" ")
         tl.fromTo(
@@ -344,7 +344,7 @@ const renderCard = (card: CapabilityCard, index: number) => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div ref={headingRef} className="max-w-6xl">
-          <span className="label-chip type-label font-semibold text-[#9db4d4]">
+          <span className="label-chip type-label font-semibold section-label-dark">
             {data.sectionLabel}
           </span>
           <h2 className="mt-4 type-heading font-bold text-white">
@@ -457,7 +457,7 @@ function IndustriesGrid() {
     <section ref={ref} className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 max-w-3xl">
-          <span className="type-label font-semibold text-[#072448]">
+          <span className="type-label font-semibold section-label-light">
             Industries
           </span>
           <h2 className="mt-4 type-heading font-bold text-[#072348]">
@@ -544,12 +544,9 @@ function ServiceUseCases({ useCases }: { useCases: UseCasesData }) {
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
 
         {/* Header */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-[#072448] text-[12px]">⬡</span>
-          <span className="text-[#072448] text-[12px] font-semibold tracking-widest uppercase">
-            {useCases.sectionLabel}
-          </span>
-        </div>
+        <span className="type-label font-semibold section-label-light mb-3 block">
+          {useCases.sectionLabel}
+        </span>
         <h2 className="type-heading text-[#0a1628] mb-8">
           {useCases.title}
         </h2>
@@ -798,7 +795,7 @@ function ServiceFAQSection({ faq }: { faq: NonNullable<ServiceData["faq"]> }) {
     <section ref={ref} className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <span className="type-label font-semibold text-[#072448]">
+          <span className="type-label font-semibold section-label-light">
             Frequently Asked Questions
           </span>
           <h2 className="mt-4 type-heading font-bold text-[#072348]">

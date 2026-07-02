@@ -3,8 +3,6 @@
 import { useEffect, useRef } from "react"
 import { gsap, ScrollTrigger } from "@/lib/gsap"
 
-import { Settings } from "lucide-react"
-
 const steps = [
   {
     title: "CLIENT\nONBOARDING",
@@ -140,12 +138,9 @@ export function ProcessSection() {
 
         {/* ── SECTION HEADER ── */}
         <div ref={headingRef} className="mb-12 lg:mb-20">
-          <div className="flex items-center gap-2 mb-3">
-             <Settings className="w-4 h-4 text-black/60" />
-            <span className="text-[#3b67ff] type-label font-semibold">
-              Our Process
-            </span>
-          </div>
+          <span className="type-label font-semibold section-label-light mb-3 block">
+            Our Process
+          </span>
 
           <h2 className="type-heading mb-4 text-[#0d1e3c]">
             HOW WE MAKE IT HAPPEN

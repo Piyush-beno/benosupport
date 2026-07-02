@@ -145,7 +145,7 @@ export function WhyChoose({
         heading.innerHTML = words
           .map(
             (w) =>
-              `<span class="word-span" style="display:inline-block;overflow:hidden;vertical-align:bottom"><span style="display:inline-block">${w}</span></span>`
+              `<span class="text-reveal-word word-span"><span class="text-reveal-inner">${w}</span></span>`
           )
           .join(" ")
         tl.fromTo(
@@ -262,7 +262,7 @@ export function WhyChoose({
 
         {/* Heading */}
         <div ref={headingRef} className="max-w-3xl">
-          <span className="label-chip type-label font-semibold text-[#9db4d4]">
+          <span className="label-chip type-label font-semibold section-label-dark">
             {sectionLabel}
           </span>
           <h2 className="mt-4 type-heading font-bold text-white">

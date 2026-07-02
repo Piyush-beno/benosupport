@@ -45,7 +45,7 @@ export function FaqSection() {
     <section className="bg-background py-16 lg:py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center">
-          <span className="type-label font-semibold text-accent">
+          <span className="type-label font-semibold section-label-light">
             Frequently Asked Questions
           </span>
           <h2 className="mt-2 text-balance type-heading font-bold text-primary">

@@ -85,7 +85,7 @@ export default function ParallaxImageBreak({
       {label && (
         <span
           data-fade
-          className="type-label mb-4 text-[#3b67ff]"
+          className="type-label mb-4 section-label-light"
         >
           {label}
         </span>

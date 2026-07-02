@@ -10,7 +10,7 @@ import { CONTACT_GET_IN_TOUCH_HREF } from "@/lib/proposal-cta"
 export default function CaseStudiesCTA() {
   return (
     <PageCTASection>
-      <span className="type-label font-normal normal-case text-[#6ea2ff]">
+      <span className="type-label font-normal normal-case section-label-dark">
         Work With Us
       </span>
 

@@ -151,7 +151,7 @@ export default function IndustriesHero() {
         <h1
           ref={h1Ref}
           data-text={heroData.title}
-          className="mx-auto mt-8 max-w-7xl text-[3rem] font-extrabold leading-[1.05] tracking-[-2px] text-white sm:text-[4rem] lg:text-[4rem]"
+          className="mx-auto mt-8 max-w-7xl text-[3rem] font-extrabold leading-[1.22] tracking-[-2px] text-white sm:text-[4rem] lg:text-[4rem]"
         >
           {heroData.title}
         </h1>

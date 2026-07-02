@@ -31,7 +31,7 @@ export default function BusinessOutcomes() {
     <section className="m-auto max-w-7xl bg-white px-6 py-24">
       <div className="mx-auto max-w-screen-2xl">
         <div className="mb-12" data-aos="fade-up">
-          <span className="label-chip type-label font-semibold text-[#072448]">
+          <span className="label-chip type-label font-semibold section-label-light">
             Business outcomes
           </span>
 

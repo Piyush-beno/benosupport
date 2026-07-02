@@ -122,7 +122,7 @@ export default function UseCasesSection() {
 
         {/* Header */}
         <div className="mb-8 max-w-3xl">
-          <span className="type-label text-[#1a3a6e]">
+          <span className="type-label section-label-light">
             Industry Use Cases
           </span>
           <h2 className="mt-2 type-heading text-[#0a1628]">

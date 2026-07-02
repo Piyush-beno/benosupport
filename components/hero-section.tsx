@@ -8,11 +8,11 @@ import { useProposalModal } from "@/hooks/use-proposal-modal"
 import { CONTACT_GET_IN_TOUCH_HREF } from "@/lib/proposal-cta"
 import Link from "next/link"
 
-// Pre-defined headline lines for clean stagger reveal
+// Pre-defined headline lines for clean stagger reveal (balanced length per line)
 const HEADLINE_LINES = [
   "Innovating Tomorrow,",
-  "Empowering Today— 15 Years of",
-  "Depth. Now AI-Native.",
+  "Empowering Today— 15 Years",
+  "of Depth. Now AI-Native.",
 ]
 
 export function HeroSection() {
@@ -212,12 +212,12 @@ export function HeroSection() {
           {/* ─── LEFT ─── */}
           <div className="flex flex-col justify-center">
             {/* Headline: each line wrapped in overflow-hidden clip container */}
-            <h1 className="text-white font-extrabold leading-[1.08] tracking-[-2px] text-[38px] sm:text-[52px] md:text-[47px] lg:text-[52px] xl:text-[62px]">
+            <h1 className="text-white font-extrabold leading-[1.22] tracking-[-2px] text-[38px] sm:text-[52px] md:text-[47px] lg:text-[52px] xl:text-[62px]">
               {HEADLINE_LINES.map((line, i) => (
-                <span key={i} className="block overflow-hidden pb-[0.06em]">
+                <span key={i} className="text-reveal-line">
                   <span
                     ref={(el) => { lineRefs.current[i] = el }}
-                    className="block will-change-transform"
+                    className="text-reveal-inner-block"
                   >
                     {line}
                   </span>

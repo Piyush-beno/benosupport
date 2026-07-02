@@ -31,7 +31,7 @@ export default function OurStory() {
 
           {/* Text — LEFT */}
           <div>
-            <span data-fade className="type-label text-[#3b67ff]">
+            <span data-fade className="type-label section-label-dark">
               Our Story
             </span>
             <h2 data-fade className="type-heading mb-6 mt-4 text-white">

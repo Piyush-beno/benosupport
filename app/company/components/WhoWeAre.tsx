@@ -47,7 +47,7 @@ export default function WhoWeAre() {
 
           {/* Text — RIGHT */}
           <div className="flex flex-col justify-center">
-            <span data-fade className="type-label mb-4 text-[#3b67ff]">
+            <span data-fade className="type-label mb-4 section-label-light">
               About Us
             </span>
             <h2 data-fade className="type-heading mb-6 text-[#0a1628]">

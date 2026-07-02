@@ -94,7 +94,7 @@ export default function ServicePillars() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div>
-            <span className="type-label text-[#3b67ff]">
+            <span className="type-label section-label-light">
               Our Services
             </span>
 

@@ -208,7 +208,7 @@ export default function OurJourney() {
     <section ref={sectionRef} className="bg-white pt-16 pb-12 lg:pt-20 lg:pb-14">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
         <div ref={headingRef} className="mb-12 lg:mb-16">
-          <p className="type-label mb-3 text-[#0B2345]">OUR JOURNEY TIMELINE</p>
+          <p className="type-label mb-3 section-label-light">OUR JOURNEY TIMELINE</p>
           <h2 className="type-heading text-[#0B2345]">Our Journey</h2>
         </div>
 
