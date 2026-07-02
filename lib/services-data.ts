@@ -72,7 +72,7 @@ export type ServiceData = {
 export const servicesData: Record<string, ServiceData> = {
   "core-engineering-application-architecture": {
     meta: {
-      title: "Custom Software Development & SaaS Engineering Services ",
+      title: "Core Engineering & Application Architecture",
       description:
         "Beno Support delivers scalable custom software development, SaaS engineering, API architecture, and microservices solutions for startups, SMBs, and enterprises.",
       canonicalUrl: "/services/software-development-company/",
@@ -360,7 +360,7 @@ export const servicesData: Record<string, ServiceData> = {
 
   "cyber-resilience-threat-intelligence": {
     meta: {
-      title: "Cybersecurity Services & Threat Intelligence Solutions",
+      title: "Cyber Resilience & Threat Intelligence",
       description:
         "Protect digital infrastructure with cybersecurity consulting, SOC services, threat intelligence, compliance frameworks, and AI security solutions.",
       canonicalUrl: "/services/cybersecurity-services/",
@@ -640,7 +640,7 @@ export const servicesData: Record<string, ServiceData> = {
 
   "agentic-ai-intelligent-automation": {
     meta: {
-      title: "Agentic AI & Intelligent Automation ",
+      title: "Agentic AI & Intelligent Automation",
       description:
         "Beno Support builds AI agents, LLM integrations, RAG pipelines, and intelligent automation systems that transform how enterprises operate and make decisions.",
     },
@@ -1171,7 +1171,7 @@ export const servicesData: Record<string, ServiceData> = {
 
   "enterprise-startup-tech-strategy": {
     meta: {
-      title: "Digital Transformation & Enterprise Technology Consulting ",
+      title: "Enterprise & Startup Tech Strategy",
       description:
         "Modernize infrastructure, optimize technology ecosystems, and accelerate digital transformation with Beno Support's consulting services.",
       canonicalUrl: "/services/enterprise-tech-strategy-consulting/",
@@ -1665,7 +1665,7 @@ export const servicesData: Record<string, ServiceData> = {
 
   "cloud-platform-engineering": {
     meta: {
-      title: "Cloud & Platform Engineering ",
+      title: "Cloud & Platform Engineering",
       description:
         "Beno Support helps businesses build scalable cloud ecosystems, automate infrastructure, and accelerate deployment through modern cloud engineering services.",
     },
@@ -1919,7 +1919,7 @@ export const servicesData: Record<string, ServiceData> = {
 
   "workforce-technology-human-capital-advisory": {
     meta: {
-      title: "Workforce Technology & Human Capital Advisory ",
+      title: "Workforce Technology & Human Capital Advisory",
       description:
         "Beno Support implements HRMS platforms, workforce analytics, learning management systems, and digital adoption programs that transform how enterprises manage and develop their people.",
     },

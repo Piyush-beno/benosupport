@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { gsap } from "@/lib/gsap"
 import { Menu, X, ChevronDown, Globe } from "lucide-react"
-import { servicesData } from "@/lib/services-data"
+import { SERVICE_NAV_ITEMS } from "@/lib/site-navigation"
 import { useRouter } from "next/navigation"
 
 import { usePathname } from "next/navigation"
@@ -15,27 +15,11 @@ const navLinks = [
   { label: "Company",    href: "/company" },
 ]
 
-// Resources dropdown — hidden until ready
-// const resourceItems = [
-//   {
-//     label: "Blogs",
-//     href: "/blogs",
-//     icon: PenLine,
-//     description: "Insights and trends shaping customer experience.",
-//   },
-//   {
-//     label: "Case Studies",
-//     href: "/caseStudy",
-//     icon: BookOpenCheck,
-//     description: "Real-world success stories showcasing CX impact.",
-//   },
-// ]
-
-// ── Services from data ─────────────────────────────────────────────────────
-const serviceItems = Object.entries(servicesData).map(([slug, service]) => ({
-  slug,
-  label: service.meta.title,
-  href: `/services/${slug}`,
+// ── Services from shared navigation labels ─────────────────────────────────
+const serviceItems = SERVICE_NAV_ITEMS.map((item) => ({
+  slug: item.href.replace("/services/", ""),
+  label: item.label,
+  href: item.href,
 }))
 
 // ── Language config ────────────────────────────────────────────────────────
