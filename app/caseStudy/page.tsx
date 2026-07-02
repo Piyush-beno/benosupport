@@ -385,7 +385,7 @@ export default function CaseStudiesPage() {
           {/* Slide header */}
           <div ref={gridRef}>
             <div className="mb-6">
-              <span className="type-label text-[#3b67ff]">
+              <span className="type-label section-label-light">
                 {slide.sectionLabel}
               </span>
               <h2 className="mt-1.5 type-heading text-[#0a1628] leading-snug">

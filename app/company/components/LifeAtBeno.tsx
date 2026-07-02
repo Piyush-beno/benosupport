@@ -68,7 +68,7 @@ export default function LifeAtBeno() {
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left */}
           <div>
-            <span data-fade className="type-label text-[#3b67ff]">
+            <span data-fade className="type-label section-label-light">
               Culture &amp; People
             </span>
 

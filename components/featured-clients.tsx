@@ -233,13 +233,9 @@ export function FeaturedClients() {
 
         {/* Header */}
         <div ref={headingRef} className="mb-12 lg:mb-16">
-          <div className="flex items-center gap-2 mb-3">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M3 9h3M12 9h3M9 3v3M9 12v3" stroke="#3b67ff" strokeWidth="1.8" strokeLinecap="round"/>
-              <circle cx="9" cy="9" r="2.2" fill="#3b67ff"/>
-            </svg>
-            <span className="text-[#3b67ff] text-[13px] font-semibold tracking-widest uppercase">Our Clients</span>
-          </div>
+          <span className="type-label font-semibold section-label-light mb-3 block">
+            Our Clients
+          </span>
           <h2 className="text-[30px] sm:text-[38px] lg:text-[46px] font-extrabold text-[#0d1e3c] leading-[1.1] tracking-[-1px] mb-4">
             OUR FEATURED CLIENTS
           </h2>

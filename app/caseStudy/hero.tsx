@@ -18,7 +18,7 @@ export default function CaseStudiesHero() {
 
       <div className="relative z-10 mx-auto flex max-w-6xl flex-1 flex-col justify-center px-6 pb-12 pt-[72px] text-center">
 
-        <span className="type-label font-semibold text-[#6ea2ff]">
+        <span className="type-label font-semibold section-label-dark">
           Case Studies
         </span>
 
