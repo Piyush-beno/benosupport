@@ -135,6 +135,33 @@
   html {
     @apply font-sans;
   }
+
+  /* Google Translate — keep language switching, hide top banner & tooltips */
+  .goog-te-banner-frame.skiptranslate,
+  iframe.goog-te-banner-frame,
+  iframe.skiptranslate,
+  .skiptranslate iframe,
+  body > .skiptranslate {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+  }
+
+  body {
+    top: 0 !important;
+  }
+
+  #goog-gt-tt,
+  .goog-te-balloon-frame,
+  .goog-tooltip,
+  .goog-te-gadget-icon {
+    display: none !important;
+  }
+
+  #google_translate_element,
+  .goog-te-gadget {
+    display: none !important;
+  }
 }
 
 @layer components {
@@ -143,6 +170,14 @@
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+  }
+
+  .section-label-light {
+    color: #3b5b82;
+  }
+
+  .section-label-dark {
+    color: #f1f1f0;
   }
 
   .type-heading {
@@ -259,6 +294,41 @@
   .bitrix-form-theme .b24-form-state-description,
   .bitrix-form-theme .b24-form-success-text {
     color: #072448 !important;
+  }
+
+  /*
+   * GSAP text-reveal masks — extra vertical padding so Devanagari matras,
+   * Arabic diacritics, etc. are not clipped by overflow:hidden.
+   * Negative margins preserve layout spacing.
+   */
+  .text-reveal-line {
+    display: block;
+    overflow: hidden;
+    padding-top: 0.3em;
+    padding-bottom: 0.18em;
+    margin-top: -0.3em;
+    margin-bottom: -0.18em;
+  }
+
+  .text-reveal-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    margin-right: 0.28em;
+    padding-top: 0.3em;
+    padding-bottom: 0.18em;
+    margin-top: -0.3em;
+    margin-bottom: -0.18em;
+  }
+
+  .text-reveal-inner {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  .text-reveal-inner-block {
+    display: block;
+    will-change: transform;
   }
 }
 
