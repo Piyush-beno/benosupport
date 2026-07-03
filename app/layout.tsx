@@ -5,6 +5,7 @@ import './globals.css'
 import SocialSidebar from '@/components/social-sidebar'
 import WhatsAppFloat from '@/components/WhatsAppFloat'
 import { ProposalModalProvider } from '@/hooks/use-proposal-modal'
+import { SITE_URL } from '@/lib/site-url'
 
 const plexSans = IBM_Plex_Sans({
   variable: '--font-plex-sans',
@@ -18,9 +19,10 @@ const plexMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "AI Engineering & Cloud Solutions Company | Beno Support ",
+  metadataBase: new URL(SITE_URL),
+  title: "AI Engineering & Cloud Solutions Company | Beno Support",
   description:
-    "Beno Support delivers AI engineering, software development, cloud infrastructure, cybersecurity, and digital transformation services for startups, SMBs, and enterprises worldwide. ",
+    "Beno Support delivers AI engineering, software development, cloud infrastructure, cybersecurity, and digital transformation services for startups, SMBs, and enterprises worldwide.",
   generator: "beno",
   icons: {
     icon: [
