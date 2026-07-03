@@ -84,7 +84,7 @@ function ReasonCard({
         <Icon className="size-7" />
       </div>
       <h3 className="text-xl font-bold text-white leading-snug">{reason.title}</h3>
-      <p className="text-sm leading-relaxed text-white/70">{reason.description}</p>
+      <p className="type-body text-white/70">{reason.description}</p>
     </div>
   )
 }
@@ -145,7 +145,7 @@ export function WhyChoose({
         heading.innerHTML = words
           .map(
             (w) =>
-              `<span class="word-span" style="display:inline-block;overflow:hidden;vertical-align:bottom"><span style="display:inline-block">${w}</span></span>`
+              `<span class="text-reveal-word word-span"><span class="text-reveal-inner">${w}</span></span>`
           )
           .join(" ")
         tl.fromTo(
@@ -262,14 +262,14 @@ export function WhyChoose({
 
         {/* Heading */}
         <div ref={headingRef} className="max-w-3xl">
-          <span className="label-chip text-xs font-semibold uppercase tracking-wider text-[#9db4d4]">
+          <span className="label-chip type-label font-semibold section-label-dark">
             {sectionLabel}
           </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mt-4 type-heading font-bold text-white">
             {title}
           </h2>
           {subtitle && (
-            <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
+            <p className="type-body mt-4 text-white/70">
               {subtitle}
             </p>
           )}

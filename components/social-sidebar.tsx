@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { SOCIAL_LINKS } from "@/lib/social-links"
 
 if (typeof window !== "undefined") {
   try {
@@ -10,11 +11,12 @@ if (typeof window !== "undefined") {
   } catch (e) {}
 }
 
-const XIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
-  </svg>
-)
+// const XIcon = () => (
+//   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+//     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+//   </svg>
+// )
+// Twitter — hidden until ready
 const FBIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
@@ -46,41 +48,11 @@ const YTIcon = () => (
 )
 
 const socials = [
-  {
-    icon: <XIcon />,
-    href: "https://twitter.com/benosupport",
-    label: "X (Twitter)",
-    hoverBg: "#000000",
-    hoverBorder: "#000000",
-  },
-  {
-    icon: <FBIcon />,
-    href: "https://www.facebook.com/benosupport",
-    label: "Facebook",
-    hoverBg: "#1877F2",
-    hoverBorder: "#1877F2",
-  },
-  {
-    icon: <IGIcon />,
-    href: "https://www.instagram.com/beno.support/",
-    label: "Instagram",
-    hoverBg: "#E1306C",
-    hoverBorder: "#E1306C",
-  },
-  {
-    icon: <LIIcon />,
-    href: "https://in.linkedin.com/company/bensupport-technologies",
-    label: "LinkedIn",
-    hoverBg: "#0A66C2",
-    hoverBorder: "#0A66C2",
-  },
-  {
-    icon: <YTIcon />,
-    href: "https://www.youtube.com/@BenoSupport",
-    label: "YouTube",
-    hoverBg: "#FF0000",
-    hoverBorder: "#FF0000",
-  },
+  // { ...SOCIAL_LINKS[0], icon: <XIcon />, hoverBg: "#000000", hoverBorder: "#000000" },
+  { ...SOCIAL_LINKS[0], icon: <FBIcon />, hoverBg: "#1877F2", hoverBorder: "#1877F2" },
+  { ...SOCIAL_LINKS[1], icon: <IGIcon />, hoverBg: "#E1306C", hoverBorder: "#E1306C" },
+  { ...SOCIAL_LINKS[2], icon: <LIIcon />, hoverBg: "#0A66C2", hoverBorder: "#0A66C2" },
+  { ...SOCIAL_LINKS[3], icon: <YTIcon />, hoverBg: "#FF0000", hoverBorder: "#FF0000" },
 ]
 
 export default function SocialSidebar() {
@@ -107,6 +79,8 @@ export default function SocialSidebar() {
         <a
           key={i}
           href={s.href}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label={s.label}
           onMouseEnter={(e) => {
             gsap.to(e.currentTarget, {

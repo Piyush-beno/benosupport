@@ -33,10 +33,10 @@ export function IndustriesSection() {
     <section className="bg-background py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
-          <span className="text-xs font-semibold uppercase tracking-wider text-accent">
+          <span className="type-label font-semibold section-label-light">
             Industries We Serve
           </span>
-          <h2 className="mt-2 text-balance text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+          <h2 className="mt-2 text-balance type-heading font-bold text-primary">
             Industries We Empower Through Technology
           </h2>
           <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-secondary">

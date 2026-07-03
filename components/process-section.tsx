@@ -3,8 +3,6 @@
 import { useEffect, useRef } from "react"
 import { gsap, ScrollTrigger } from "@/lib/gsap"
 
-import { Settings } from "lucide-react"
-
 const steps = [
   {
     title: "CLIENT\nONBOARDING",
@@ -140,17 +138,14 @@ export function ProcessSection() {
 
         {/* ── SECTION HEADER ── */}
         <div ref={headingRef} className="mb-12 lg:mb-20">
-          <div className="flex items-center gap-2 mb-3">
-             <Settings className="w-4 h-4 text-black/60" />
-            <span className="text-[#3b67ff] text-[13px] font-semibold tracking-widest uppercase">
-              Our Process
-            </span>
-          </div>
+          <span className="type-label font-semibold section-label-light mb-3 block">
+            Our Process
+          </span>
 
-          <h2 className="text-[30px] sm:text-[38px] lg:text-[46px] font-extrabold text-[#0d1e3c] leading-[1.1] tracking-[-1px] mb-4">
+          <h2 className="type-heading mb-4 text-[#0d1e3c]">
             HOW WE MAKE IT HAPPEN
           </h2>
-          <p className="text-[#4b5a72] text-[15px] sm:text-[16px] leading-[1.8] max-w-[640px]">
+          <p className="type-body text-[#4b5a72] max-w-[640px]">
             A structured delivery lifecycle powered by industry-leading tools and validated by
             global credentials.
           </p>
@@ -270,7 +265,7 @@ export function ProcessSection() {
                 <div className="w-[130px] h-[130px] sm:w-[160px] sm:h-[160px] mb-4">
                   <ConcentricCircle title={step.title} index={i} />
                 </div>
-                <p className="text-[#4b5a72] text-[14px] leading-[1.78]">
+                <p className="type-body text-[#4b5a72]">
                   {step.description}
                 </p>
               </div>

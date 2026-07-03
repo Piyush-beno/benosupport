@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { gsap } from "@/lib/gsap"
-import { Menu, X, ChevronDown, Globe, PenLine, BookOpenCheck } from "lucide-react"
-import { servicesData } from "@/lib/services-data"
+import { Menu, X, ChevronDown, Globe } from "lucide-react"
+import { SERVICE_NAV_ITEMS } from "@/lib/site-navigation"
 import { useRouter } from "next/navigation"
 
 import { usePathname } from "next/navigation"
@@ -15,27 +15,11 @@ const navLinks = [
   { label: "Company",    href: "/company" },
 ]
 
-// ── Resources dropdown items ───────────────────────────────────────────────
-const resourceItems = [
-  {
-    label: "Blogs",
-    href: "/blogs",
-    icon: PenLine,
-    description: "Insights and trends shaping customer experience.",
-  },
-  {
-    label: "Case Studies",
-    href: "/caseStudy",
-    icon: BookOpenCheck,
-    description: "Real-world success stories showcasing CX impact.",
-  },
-]
-
-// ── Services from data ─────────────────────────────────────────────────────
-const serviceItems = Object.entries(servicesData).map(([slug, service]) => ({
-  slug,
-  label: service.meta.title,
-  href: `/services/${slug}`,
+// ── Services from shared navigation labels ─────────────────────────────────
+const serviceItems = SERVICE_NAV_ITEMS.map((item) => ({
+  slug: item.href.replace("/services/", ""),
+  label: item.label,
+  href: item.href,
 }))
 
 // ── Language config ────────────────────────────────────────────────────────
@@ -52,22 +36,22 @@ export function SiteHeader() {
   const [isScrolled,       setIsScrolled]       = useState(false)
   const [isMobileOpen,     setIsMobileOpen]     = useState(false)
   const [isServicesOpen,   setIsServicesOpen]   = useState(false)
-  const [isResourcesOpen,  setIsResourcesOpen]  = useState(false)
+  // const [isResourcesOpen,  setIsResourcesOpen]  = useState(false)
   const [isLangOpen,       setIsLangOpen]       = useState(false)
   const [activeLang,       setActiveLang]       = useState("EN")
   // mobile accordions
   const [mobileServices,   setMobileServices]   = useState(false)
-  const [mobileResources,  setMobileResources]  = useState(false)
+  // const [mobileResources,  setMobileResources]  = useState(false)
 
   const svcDropdownRef  = useRef<HTMLDivElement>(null)
   const svcChevronRef   = useRef<SVGSVGElement>(null)
   const svcItemRefs     = useRef<HTMLAnchorElement[]>([])
   const svcIsOpenRef    = useRef(false)
 
-  const resDropdownRef  = useRef<HTMLDivElement>(null)
-  const resChevronRef   = useRef<SVGSVGElement>(null)
-  const resItemRefs     = useRef<HTMLAnchorElement[]>([])
-  const resIsOpenRef    = useRef(false)
+  // const resDropdownRef  = useRef<HTMLDivElement>(null)
+  // const resChevronRef   = useRef<SVGSVGElement>(null)
+  // const resItemRefs     = useRef<HTMLAnchorElement[]>([])
+  // const resIsOpenRef    = useRef(false)
 
   const logoRef  = useRef<HTMLDivElement>(null)
   const langRef  = useRef<HTMLDivElement>(null)
@@ -140,8 +124,8 @@ export function SiteHeader() {
   // ── Generic dropdown helpers ──────────────────────────────────────────────
   const openDrop = (
     isOpenRef: React.MutableRefObject<boolean>,
-    dropRef: React.RefObject<HTMLDivElement>,
-    chevRef: React.RefObject<SVGSVGElement>,
+    dropRef: React.RefObject<HTMLDivElement | null>,
+    chevRef: React.RefObject<SVGSVGElement | null>,
     items: HTMLAnchorElement[],
     setter: (v: boolean) => void
   ) => {
@@ -165,8 +149,8 @@ export function SiteHeader() {
 
   const closeDrop = (
     isOpenRef: React.MutableRefObject<boolean>,
-    dropRef: React.RefObject<HTMLDivElement>,
-    chevRef: React.RefObject<SVGSVGElement>,
+    dropRef: React.RefObject<HTMLDivElement | null>,
+    chevRef: React.RefObject<SVGSVGElement | null>,
     setter: (v: boolean) => void
   ) => {
     if (!isOpenRef.current) return
@@ -188,25 +172,23 @@ export function SiteHeader() {
   const openSvc  = () => openDrop(svcIsOpenRef, svcDropdownRef, svcChevronRef, svcItemRefs.current, setIsServicesOpen)
   const closeSvc = () => closeDrop(svcIsOpenRef, svcDropdownRef, svcChevronRef, setIsServicesOpen)
 
-  // bound helpers for Resources
-  const openRes  = () => openDrop(resIsOpenRef, resDropdownRef, resChevronRef, resItemRefs.current, setIsResourcesOpen)
-  const closeRes = () => closeDrop(resIsOpenRef, resDropdownRef, resChevronRef, setIsResourcesOpen)
+  // const openRes  = () => openDrop(resIsOpenRef, resDropdownRef, resChevronRef, resItemRefs.current, setIsResourcesOpen)
+  // const closeRes = () => closeDrop(resIsOpenRef, resDropdownRef, resChevronRef, setIsResourcesOpen)
 
   // ── Style helpers ─────────────────────────────────────────────────────────
   const textCls      = isScrolled ? "text-[#0d1e3c]" : "text-white/90"
   const hoverCls     = isScrolled ? "hover:text-[#3b67ff]" : "hover:text-white"
 
-  console.log("pathname", pathname.startsWith("/services"))
   const activeSvcCls =
   pathname.startsWith("/services") || isServicesOpen
     ? "text-[#3b67ff]"
     : `${textCls} ${hoverCls}`
- const activeResCls =
-  pathname.startsWith("/blogs") ||
-  pathname.startsWith("/caseStudy") ||
-  isResourcesOpen
-    ? "text-[#3b67ff] font-semibold"
-    : `${textCls} ${hoverCls}`
+//  const activeResCls =
+//   pathname.startsWith("/blogs") ||
+//   pathname.startsWith("/caseStudy") ||
+//   isResourcesOpen
+//     ? "text-[#3b67ff] font-semibold"
+//     : `${textCls} ${hoverCls}`
 
 
     const isActive = (href: string) => {
@@ -228,7 +210,7 @@ export function SiteHeader() {
         onMouseLeave={() =>
           setTimeout(() => {
             if (!svcDropdownRef.current?.matches(":hover")) closeSvc()
-            if (!resDropdownRef.current?.matches(":hover")) closeRes()
+            // if (!resDropdownRef.current?.matches(":hover")) closeRes()
           }, 80)
         }
       >
@@ -294,7 +276,7 @@ export function SiteHeader() {
                 </Link>
               ))}
 
-              {/* Resources trigger */}
+              {/* Resources — hidden until ready
               <button
                 type="button"
                 onMouseEnter={openRes}
@@ -308,6 +290,7 @@ export function SiteHeader() {
                   style={{ transformOrigin: "50% 50%" }}
                 />
               </button>
+              */}
             </div>
 
             {/* ── Right: Lang + CTA ─────────────────────────────────────── */}
@@ -357,18 +340,17 @@ export function SiteHeader() {
               <button
                 onClick={() => router.push("/contact")}
                 className={`
-                  relative overflow-hidden px-6 py-2.5 text-[15px] font-semibold rounded-xl
-                  transition-all duration-300 group
+                  px-6 py-2.5 text-[15px] font-semibold rounded-xl
+                  transition-colors duration-300
                   ${isScrolled
-                    ? "bg-[#072448] text-white shadow-[0_4px_24px_rgba(59,103,255,0.40)]"
+                    ? "bg-[#072448] text-white hover:bg-[#0a2d5c]"
                     : "border border-white/40 text-white hover:bg-white/10"
                   }
                 `}
               >
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
-                <span className="relative flex items-center gap-2">
+                <span className="flex items-center gap-2">
                   Contact Us
-                  <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 14 14" fill="none">
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none">
                     <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
@@ -416,7 +398,7 @@ export function SiteHeader() {
           </div>
         </div>
 
-        {/* ── Resources mega dropdown ───────────────────────────────────── */}
+        {/* Resources mega dropdown — hidden until ready
         <div
           ref={resDropdownRef}
           style={{ pointerEvents: "none", display: "none" }}
@@ -436,12 +418,9 @@ export function SiteHeader() {
                     onClick={closeRes}
                     className="group flex items-start gap-4 rounded-2xl border border-transparent p-5 transition-all duration-300 hover:border-[#e8eefc] hover:bg-[#f7faff]"
                   >
-                    {/* Icon box */}
                     <div className="shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-[#f0f4ff] transition-colors duration-300 group-hover:bg-[#072448]">
                       <Icon className="w-5 h-5 text-[#072448] transition-colors duration-300 group-hover:text-white" />
                     </div>
-
-                    {/* Text */}
                     <div className="min-w-0">
                       <p className="text-[15px] font-semibold text-[#0f172a] group-hover:text-[#072448] transition-colors duration-300">
                         {item.label}
@@ -456,6 +435,7 @@ export function SiteHeader() {
             </div>
           </div>
         </div>
+        */}
       </header>
 
       {/* ── Mobile fullscreen menu ─────────────────────────────────────── */}
@@ -511,7 +491,7 @@ export function SiteHeader() {
               </Link>
             ))}
 
-            {/* Resources accordion */}
+            {/* Resources accordion — hidden until ready
             <button
               type="button"
               className="w-full flex items-center justify-between py-3 text-base font-medium text-[#0d1e3c]"
@@ -538,11 +518,12 @@ export function SiteHeader() {
                 })}
               </div>
             )}
+            */}
 
             <div className="pt-4">
               <button
                 onClick={() => { router.push("/contact"); setIsMobileOpen(false) }}
-                className="w-full bg-[#072448] text-white font-semibold py-3 rounded-xl shadow-[0_4px_20px_rgba(59,103,255,0.35)]"
+                className="w-full bg-[#072448] text-white font-semibold py-3 rounded-xl hover:bg-[#0a2d5c] transition-colors"
               >
                 Contact Us
               </button>

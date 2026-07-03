@@ -5,12 +5,13 @@ import { gsap } from "@/lib/gsap"
 
 // ── Per-logo config ────────────────────────────────────────────────────────
 // Tune w/h here for each logo individually until it looks right
-const LOGOS: { src: string; w: number; h: number }[] = [
+const LOGOS: { src: string; w: number; h: number; invert?: boolean }[] = [
   { src: "/assets/google.svg",  w: 120, h: 100  },
   { src: "/assets/ntt.svg",     w: 200,  h: 170  },
   { src: "/assets/netflix.svg", w: 210, h: 100  },
   { src: "/assets/army.svg",    w: 200,  h: 70  },
   { src: "/assets/ap.svg",      w: 200, h: 140  },
+  { src: "/assets/home/white_up_logo.png", w: 160, h: 80, invert: false },
 ]
 
 const ITEMS = [...LOGOS, ...LOGOS, ...LOGOS]
@@ -78,7 +79,7 @@ export function PartnerStrip() {
           className="flex items-center will-change-transform"
           style={{ width: "max-content", gap: "72px" }}
         >
-          {ITEMS.map(({ src, w, h }, i) => (
+          {ITEMS.map(({ src, w, h, invert = true }, i) => (
             <div
               key={i}
               className="shrink-0 flex items-center justify-center"
@@ -87,7 +88,9 @@ export function PartnerStrip() {
               <img
                 src={src}
                 alt={`Partner ${(i % LOGOS.length) + 1}`}
-                className="partner-logo object-contain brightness-0 invert opacity-85 select-none"
+                className={`partner-logo object-contain select-none ${
+                  invert ? "brightness-0 invert opacity-85" : "opacity-90"
+                }`}
                 draggable={false}
                 style={{ width: w, height: h }}
               />

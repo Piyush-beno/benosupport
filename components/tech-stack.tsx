@@ -2,10 +2,17 @@
 
 import { useEffect, useRef, useState } from "react"
 import { gsap } from "@/lib/gsap"
+import { cn } from "@/lib/utils"
 
 const tabs = ["Front-end", "Back-end", "Database", "Cloud-Hosting", "Testing", "Artificial Intelligence"]
 
-const techData: Record<string, { name: string; icon: string }[]> = {
+type TechItem = {
+  name: string
+  icon: string
+  invertIcon?: boolean
+}
+
+const techData: Record<string, TechItem[]> = {
   "Front-end": [
     { name: "React.js",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
     { name: "Angular",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
@@ -35,22 +42,25 @@ const techData: Record<string, { name: string; icon: string }[]> = {
     { name: "Firebase",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
   ],
   "Cloud-Hosting": [
-    { name: "AWS",          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
+    { name: "AWS",          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg", invertIcon: true },
     { name: "Azure",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
     { name: "Google Cloud", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
     { name: "Docker",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
     { name: "Kubernetes",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" },
   ],
   "Testing": [
-    { name: "Jest",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" },
-    { name: "Cypress",  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-original.svg" },
-    { name: "Selenium", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg" },
+    { name: "Jest",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" },
+    { name: "Cypress",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-original.svg" },
+    { name: "Selenium",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg" },
+    { name: "Playwright", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/playwright.svg", invertIcon: true },
+    { name: "Postman",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" },
   ],
   "Artificial Intelligence": [
-    { name: "TensorFlow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" },
-    { name: "PyTorch",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
-    { name: "OpenCV",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" },
-    // { name: "Pandas",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
+    { name: "OpenAI",       icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg", invertIcon: true },
+    { name: "TensorFlow",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" },
+    { name: "PyTorch",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
+    { name: "LangChain",    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/langchain.svg", invertIcon: true },
+    { name: "Hugging Face", icon: "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/huggingface.svg", invertIcon: true },
   ],
 }
 
@@ -106,24 +116,13 @@ export function TechStack() {
 
         {/* ── Header ──────────────────────────────────────────────────────── */}
         <div ref={headingRef} className="mb-10 lg:mb-14">
-          <div className="flex items-center gap-2 mb-3">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path
-                d="M3 9h3M12 9h3M9 3v3M9 12v3"
-                stroke="#3b67ff"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-              />
-              <circle cx="9" cy="9" r="2.2" fill="#3b67ff" />
-            </svg>
-            <span className="text-xs font-semibold uppercase tracking-widest text-accent">
-              Technology Stack
-            </span>
-          </div>
-          <h2 className="mt-1 text-balance text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+          <span className="type-label font-semibold section-label-light mb-3 block">
+            Technology Stack
+          </span>
+          <h2 className="mt-1 text-balance type-heading font-bold text-primary">
             Our Technology &amp; Tool Stack
           </h2>
-          <p className="mt-3 max-w-2xl text-pretty text-sm sm:text-base leading-relaxed text-secondary">
+          <p className="mt-3 max-w-2xl text-pretty type-body leading-relaxed text-secondary">
             Industry-leading platforms driving innovation, performance, and long-term security.
           </p>
         </div>
@@ -209,7 +208,10 @@ export function TechStack() {
                   alt={tech.name}
                   width={46}
                   height={46}
-                  className="relative w-[46px] h-[46px] sm:w-[50px] sm:h-[50px] object-contain"
+                  className={cn(
+                    "relative w-[46px] h-[46px] sm:w-[50px] sm:h-[50px] object-contain",
+                    tech.invertIcon && "brightness-0 invert"
+                  )}
                   
                   onError={(e) => {
                     ;(e.target as HTMLImageElement).style.opacity = "0"

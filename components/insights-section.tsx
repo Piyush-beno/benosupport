@@ -28,10 +28,10 @@ export function InsightsSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-accent">
+            <span className="type-label font-semibold section-label-light">
               Blog &amp; Resources
             </span>
-            <h2 className="mt-2 text-balance text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+            <h2 className="mt-2 text-balance type-heading font-bold text-primary">
               AI, Engineering &amp; Technology Insights
             </h2>
             <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-secondary">
@@ -58,15 +58,12 @@ export function InsightsSection() {
                 <h3 className="text-base font-semibold text-primary">
                   {article.title}
                 </h3>
-                <p className="flex-1 text-sm leading-relaxed text-secondary">
+                <p className="flex-1 type-body text-secondary">
                   {article.description}
                 </p>
-                <a
-                  href="#"
-                  className="mt-2 w-fit text-sm font-medium text-button hover:text-button-hover"
-                >
+                <span className="mt-2 w-fit text-sm font-medium text-button">
                   Read Article →
-                </a>
+                </span>
               </div>
             </article>
           ))}

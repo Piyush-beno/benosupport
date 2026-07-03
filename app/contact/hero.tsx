@@ -1,4 +1,10 @@
+"use client"
+
 import React from "react"
+import { useProposalModal } from "@/hooks/use-proposal-modal"
+import { CONTACT_GET_IN_TOUCH_HREF } from "@/lib/proposal-cta"
+import Link from "next/link"
+import { SOCIAL_LINKS } from "@/lib/social-links"
 
 interface HeroProps {
   heroRef: React.RefObject<HTMLElement | null>
@@ -17,11 +23,14 @@ export default function Hero({
   imageRef,
   socialRef,
 }: HeroProps) {
-  const XIcon = () => (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
-    </svg>
-  )
+  const { openProposalModal } = useProposalModal()
+
+  // const XIcon = () => (
+  //   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+  //     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+  //   </svg>
+  // )
+  // Twitter — hidden until ready
 
   const FBIcon = () => (
     <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
@@ -57,13 +66,21 @@ export default function Hero({
     </svg>
   )
 
+  const socialIcons = [
+    // <XIcon key="x" />,
+    <FBIcon key="fb" />,
+    <IGIcon key="ig" />,
+    <LIIcon key="li" />,
+    <YTIcon key="yt" />,
+  ]
+
   return (
     <section
       ref={heroRef}
-      className="relative flex h-[80vh] min-h-[650px] overflow-hidden bg-[#072448]"
+      className="relative flex h-dvh min-h-[640px] overflow-hidden bg-[#072448]"
     >
       {/* Left Content */}
-      <div className="relative z-10 flex w-full lg:w-[52%] flex-col justify-center px-8 lg:px-16">
+      <div className="relative z-10 flex h-full w-full flex-col justify-center px-8 pb-8 pt-[72px] lg:w-[55%] lg:px-20 xl:pl-24">
         <div
           className="absolute inset-0 opacity-[0.05] pointer-events-none"
           style={{
@@ -73,41 +90,38 @@ export default function Hero({
           }}
         />
 
-        <div className="relative max-w-[520px]">
-          <span className="mb-5 inline-block text-[11px] font-bold uppercase tracking-[0.16em] text-[#7fa8e8]">
-            Contact Us
-          </span>
-
+        <div className="relative max-w-[600px]">
           <h1
             ref={h1Ref}
-            className="mb-5 text-4xl font-extrabold leading-[1.1] tracking-tight text-white lg:text-[56px]"
+            className="mb-6 text-[2.35rem] font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]"
           >
-            Let's Build What's Next Together
+            Let&apos;s Build What&apos;s <br /> Next Together
           </h1>
 
           <p
             ref={subtitleRef}
-            className="mb-10 max-w-[450px] text-[15px] leading-relaxed text-[#8eaacc]"
+            className="type-body mb-10 max-w-[540px] text-white/85 lg:mb-12"
           >
-            Whether you're looking to modernize operations, accelerate digital
+            Whether you&apos;re looking to modernize operations, accelerate digital
             transformation, strengthen cybersecurity, scale your workforce, or
             explore AI-driven innovation, our experts are ready to help.
           </p>
 
-          <div ref={heroBtnsRef} className="flex flex-wrap gap-3">
-            <a
-              href="#contact-form"
-              className="rounded-lg bg-[#0A3A73] px-6 py-3 text-[13.5px] font-semibold text-white transition hover:bg-[#0A3A73]"
+          <div ref={heroBtnsRef} className="flex flex-wrap gap-4">
+            <button
+              type="button"
+              onClick={openProposalModal}
+              className="rounded-lg bg-[#0A3A73] px-7 py-3.5 text-[15px] font-semibold text-white transition hover:bg-[#124e96]"
             >
               Schedule a Consultation
-            </a>
+            </button>
 
-            <a
-              href="#contact-form"
-              className="rounded-lg border border-white/25 px-6 py-3 text-[13.5px] font-semibold text-white transition hover:bg-white/10"
+            <Link
+              href={CONTACT_GET_IN_TOUCH_HREF}
+              className="rounded-lg border border-white/30 px-7 py-3.5 text-[15px] font-semibold text-white transition hover:bg-white/10"
             >
               Talk to an Expert
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -130,7 +144,7 @@ export default function Hero({
         />
 
         <img
-          src="/assets/contact/heroimg.png"
+          src="/assets/contact/Contact_us.png"
           alt="Contact Hero"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
@@ -141,19 +155,16 @@ export default function Hero({
         ref={socialRef}
         className="fixed right-5 top-1/2 z-50 hidden -translate-y-1/2 flex-col gap-2.5 lg:flex"
       >
-        {[
-          <XIcon key="x" />,
-          <FBIcon key="fb" />,
-          <IGIcon key="ig" />,
-          <LIIcon key="li" />,
-          <YTIcon key="yt" />,
-        ].map((icon, i) => (
+        {SOCIAL_LINKS.map((social, i) => (
           <a
-            key={i}
-            href="#"
+            key={social.label}
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.label}
             className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-[#0d2550] text-[#7fa8e8] transition-all hover:border-[#3b67ff] hover:bg-[#3b67ff] hover:text-white"
           >
-            {icon}
+            {socialIcons[i]}
           </a>
         ))}
       </div>

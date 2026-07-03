@@ -94,15 +94,15 @@ export default function ServicePillars() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div>
-            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#3b67ff]">
+            <span className="type-label section-label-light">
               Our Services
             </span>
 
-            <h2 className="mt-3 text-4xl font-bold text-[#0a1628]">
+            <h2 className="type-heading mt-3 text-[#0a1628]">
               Our Core Service Pillars
             </h2>
 
-            <p className="mt-4 max-w-3xl text-slate-600">
+            <p className="type-body mt-4 max-w-3xl text-slate-600">
               Explore our technology capabilities across engineering,
               AI, cloud, cybersecurity, digital transformation and
               managed services.
@@ -147,7 +147,7 @@ export default function ServicePillars() {
                         {pillar.title}
                       </h3>
 
-                      <p className="mt-3 text-slate-600 text-sm leading-7">
+                      <p className="type-body mt-3 text-slate-600">
                         {pillar.description}
                       </p>
 

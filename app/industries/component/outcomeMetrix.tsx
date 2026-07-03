@@ -1,7 +1,10 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import { Check } from "lucide-react";
+import { useEffect } from "react"
+import Image from "next/image"
+import { Check } from "lucide-react"
+import AOS from "aos"
+import "aos/dist/aos.css"
 
 const outcomes = [
   "Reduce Manual Effort by Up to 60%",
@@ -12,52 +15,64 @@ const outcomes = [
   "Reduce Infrastructure Costs",
   "Improve Business Agility",
   "Accelerate Time-to-Market",
-];
+]
 
 export default function BusinessOutcomes() {
-  return (
-    <section className="max-w-7xl m-auto bg-white py-24 px-6">
-      <div className="max-w-screen-2xl mx-auto">
+  useEffect(() => {
+    AOS.init({
+      duration: 650,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 80,
+    })
+  }, [])
 
-        {/* FULL-WIDTH HEADER */}
-        <div className="mb-12">
-          <span className="label-chip text-xs font-semibold uppercase tracking-wider text-[#072448]">Business outcomes</span>
+  return (
+    <section className="m-auto max-w-7xl bg-white px-6 py-24">
+      <div className="mx-auto max-w-screen-2xl">
+        <div className="mb-12" data-aos="fade-up">
+          <span className="label-chip type-label font-semibold section-label-light">
+            Business outcomes
+          </span>
 
           <h2
-            className="text-5xl font-bold leading-tight mb-5"
+            className="mb-5 text-5xl font-bold leading-tight"
             style={{ color: "#0B2B5B" }}
           >
             Measurable Business Impact
           </h2>
 
-          <p className="text-base text-gray-500 leading-relaxed">
+          <p className="text-base leading-relaxed text-gray-500">
             Our solutions are designed to deliver measurable results that directly
             support business growth and operational excellence.
           </p>
         </div>
 
-        {/* TWO-COLUMN: metrics left, image right — desktop */}
-        {/* On mobile: metrics first, image below */}
-        <div className="flex flex-col lg:flex-row gap-16 items-start">
-
-          {/* LEFT: Outcome Metrics */}
-          <div className="w-full lg:w-[45%] flex flex-col flex-shrink-0">
+        <div className="flex flex-col items-start gap-16 lg:flex-row">
+          <div className="flex w-full flex-shrink-0 flex-col lg:w-[45%]">
             <h3
-              className="text-3xl font-bold mb-8"
+              className="type-heading mb-8"
               style={{ color: "#0B2B5B" }}
+              data-aos="fade-up"
+              data-aos-delay="100"
             >
               Outcome Metrics
             </h3>
 
             <div className="flex flex-col">
               {outcomes.map((outcome, index) => {
-                const isLast = index === outcomes.length - 1;
+                const isLast = index === outcomes.length - 1
+
                 return (
-                  <div key={outcome} className="flex items-start gap-5">
-                    {/* Icon + connector */}
-                    <div className="flex flex-col items-center flex-shrink-0">
+                  <div
+                    key={outcome}
+                    className="flex items-start gap-5"
+                    data-aos="fade-up"
+                    data-aos-delay={150 + index * 100}
+                  >
+                    <div className="flex flex-shrink-0 flex-col items-center">
                       <div
-                        className="rounded-full flex items-center justify-center flex-shrink-0 ring-2 ring-white shadow-md"
+                        className="flex flex-shrink-0 items-center justify-center rounded-full shadow-md ring-2 ring-white"
                         style={{
                           width: "40px",
                           height: "40px",
@@ -75,7 +90,6 @@ export default function BusinessOutcomes() {
                       )}
                     </div>
 
-                    {/* Text */}
                     <p
                       className="text-xl font-bold leading-tight"
                       style={{
@@ -87,13 +101,16 @@ export default function BusinessOutcomes() {
                       {outcome}
                     </p>
                   </div>
-                );
+                )
               })}
             </div>
           </div>
 
-          {/* RIGHT: Image — desktop side, mobile bottom */}
-          <div className="w-full lg:w-[55%]">
+          <div
+            className="w-full lg:w-[55%]"
+            data-aos="fade-left"
+            data-aos-delay="200"
+          >
             <div
               className="relative w-full overflow-hidden shadow-2xl"
               style={{
@@ -114,9 +131,8 @@ export default function BusinessOutcomes() {
               />
             </div>
           </div>
-
         </div>
       </div>
     </section>
-  );
+  )
 }

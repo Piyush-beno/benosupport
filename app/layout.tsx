@@ -3,6 +3,9 @@ import type { Metadata } from 'next'
 import { IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 import SocialSidebar from '@/components/social-sidebar'
+import WhatsAppFloat from '@/components/WhatsAppFloat'
+import { ProposalModalProvider } from '@/hooks/use-proposal-modal'
+import { SITE_URL } from '@/lib/site-url'
 
 const plexSans = IBM_Plex_Sans({
   variable: '--font-plex-sans',
@@ -16,28 +19,29 @@ const plexMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Beno Support — AI-Native Engineering & Technology',
+  metadataBase: new URL(SITE_URL),
+  title: "AI Engineering & Cloud Solutions Company | Beno Support",
   description:
-    'Beno Support helps startups, SMBs, and enterprises accelerate innovation, optimize operations, modernize infrastructure, and build scalable digital ecosystems.',
-  generator: 'beno',
+    "Beno Support delivers AI engineering, software development, cloud infrastructure, cybersecurity, and digital transformation services for startups, SMBs, and enterprises worldwide.",
+  generator: "beno",
   icons: {
     icon: [
       {
-        url: '/assets/logo.svg',
-        media: '(prefers-color-scheme: light)',
+        url: "/assets/logo.svg",
+        media: "(prefers-color-scheme: light)",
       },
       {
-        url: '/assets/logo.svg',
-        media: '(prefers-color-scheme: dark)',
+        url: "/assets/logo.svg",
+        media: "(prefers-color-scheme: dark)",
       },
       {
-        url: '/assets/logo.svg',
-        type: 'image/svg+xml',
+        url: "/assets/logo.svg",
+        type: "image/svg+xml",
       },
     ],
-    apple: '/apple-icon.png',
+    apple: "/apple-icon.png",
   },
-}
+};
 
 export default function RootLayout({
   children,
@@ -50,8 +54,11 @@ export default function RootLayout({
       className={`${plexSans.variable} ${plexMono.variable} bg-background`}
     >
       <body className="font-sans antialiased">
-        {children}
+        <ProposalModalProvider>
+          {children}
+        </ProposalModalProvider>
         <SocialSidebar />
+        <WhatsAppFloat />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

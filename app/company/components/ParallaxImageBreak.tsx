@@ -85,15 +85,15 @@ export default function ParallaxImageBreak({
       {label && (
         <span
           data-fade
-          className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#3b67ff] mb-3"
+          className="type-label mb-4 section-label-light"
         >
           {label}
         </span>
       )}
-      <h2 data-fade className="text-3xl font-extrabold text-[#0a1628] lg:text-[36px] leading-tight mb-5">
+      <h2 data-fade className="type-heading mb-6 text-[#0a1628]">
         {heading}
       </h2>
-      <div data-fade className="text-[14.5px] leading-[1.8] text-[#4b5a72] space-y-4">
+      <div data-fade className="type-body space-y-5 text-[#4b5a72]">
         {body}
       </div>
     </div>

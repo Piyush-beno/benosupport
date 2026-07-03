@@ -306,7 +306,7 @@ function CaseCard({ card }: { card: CaseCard }) {
 
       {/* Text */}
       <div className="flex flex-col flex-1 p-5">
-        <h3 className="text-[15px] font-extrabold text-[#0a1628] leading-snug mb-4">
+        <h3 className="type-body mb-4 font-extrabold leading-snug text-[#0a1628]">
           {card.title}
         </h3>
 
@@ -315,17 +315,14 @@ function CaseCard({ card }: { card: CaseCard }) {
           {card.stats.map((s) => (
             <div key={s.label}>
               <p className="text-[18px] font-extrabold text-[#0a1628] leading-none">{s.value}</p>
-              <p className="text-[11px] text-[#8896aa] mt-0.5">{s.label}</p>
+              <p className="type-label text-[#8896aa] mt-0.5 font-normal normal-case tracking-normal">{s.label}</p>
             </div>
           ))}
         </div>
 
-        <a
-          href="#"
-          className="mt-auto inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-[#1a3a6e] hover:text-[#3b67ff] transition-colors"
-        >
+        <span className="mt-auto inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-[#1a3a6e]">
           View Case Detail →
-        </a>
+        </span>
       </div>
     </div>
   )
@@ -388,13 +385,13 @@ export default function CaseStudiesPage() {
           {/* Slide header */}
           <div ref={gridRef}>
             <div className="mb-6">
-              <span className="text-[10.5px] font-bold uppercase tracking-[0.14em] text-[#3b67ff]">
+              <span className="type-label section-label-light">
                 {slide.sectionLabel}
               </span>
-              <h2 className="mt-1.5 text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight text-[#0a1628] leading-snug">
+              <h2 className="mt-1.5 type-heading text-[#0a1628] leading-snug">
                 {slide.heading}
               </h2>
-              <p className="mt-2 text-[14px] text-[#5a6a84] max-w-xl leading-relaxed">
+              <p className="mt-2 type-body text-[#5a6a84] max-w-xl">
                 {slide.subtext}
               </p>
             </div>

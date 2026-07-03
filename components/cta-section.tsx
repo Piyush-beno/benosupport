@@ -1,32 +1,32 @@
-import { Button } from "@/components/ui/button"
+"use client"
+
+import {
+  PageCTAOutlineButton,
+  PageCTAPrimaryButton,
+  PageCTASection,
+} from "@/components/page-cta"
+import { useProposalModal } from "@/hooks/use-proposal-modal"
 
 export function CtaSection() {
+  const { openProposalModal } = useProposalModal()
+
   return (
-    <section className="bg-primary py-16 text-primary-foreground lg:py-24 border-b-1 border-b-primary-foreground/10">
-      <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-          Ready to Accelerate Digital Innovation?
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-pretty leading-relaxed text-primary-foreground/80">
-          Join the ranks of global leaders who trust Beno Support for
-          engineering excellence and strategic growth.
-        </p>
-        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button
-            size="lg"
-            className="bg-button p-6 text-button-foreground hover:bg-button-hover"
-          >
-            Request A Proposal
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-primary-foreground/40 p-6 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
-          >
-            Schedule A Consultation
-          </Button>
-        </div>
+    <PageCTASection>
+      <h2 className="type-heading mx-auto max-w-3xl text-balance font-bold text-white">
+        Ready to Accelerate Digital Innovation?
+      </h2>
+      <p className="type-body mx-auto mt-4 max-w-2xl text-pretty leading-relaxed text-[#b8c9e0]">
+        Join the ranks of global leaders who trust Beno Support for
+        engineering excellence and strategic growth.
+      </p>
+      <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <PageCTAPrimaryButton onClick={openProposalModal}>
+          Request a Proposal
+        </PageCTAPrimaryButton>
+        <PageCTAOutlineButton onClick={openProposalModal}>
+          Schedule a Consultation
+        </PageCTAOutlineButton>
       </div>
-    </section>
+    </PageCTASection>
   )
 }

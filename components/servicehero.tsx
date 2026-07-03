@@ -1,126 +1,216 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import Link from "next/link"
 import gsap from "gsap"
 import type { ServiceData } from "@/lib/services-data"
+import { getCtaButtonProps } from "@/lib/proposal-cta"
+import { useProposalModal } from "@/hooks/use-proposal-modal"
+import { prepareHeadingWordAnimation } from "@/lib/prepare-heading-word-animation"
 
-function ServiceHero({ hero ,slug}: { hero: ServiceData["hero"]; slug: string }) {
+function ServiceHero({ hero }: { hero: ServiceData["hero"]; slug: string }) {
+  const { openProposalModal } = useProposalModal()
   const heroRef = useRef<HTMLElement>(null)
+  const line1Ref = useRef<HTMLSpanElement>(null)
+  const line2Ref = useRef<HTMLSpanElement>(null)
+  const line3Ref = useRef<HTMLSpanElement>(null)
+  const subtitleRef = useRef<HTMLParagraphElement>(null)
+  const heroBtnsRef = useRef<HTMLDivElement>(null)
+  const imageRef = useRef<HTMLDivElement>(null)
+
+  const primaryCtaLabel = hero.ctaButtons?.[0] ?? "Request A Proposal"
+  const secondaryCtaLabel = hero.ctaButtons?.[1] ?? "Talk To Our Experts"
+  const primaryCtaProps = getCtaButtonProps(primaryCtaLabel, openProposalModal)
+  const secondaryCtaProps = getCtaButtonProps(secondaryCtaLabel, openProposalModal)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
-      tl.fromTo(".sh-chip",     { opacity: 0, y: 12, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(2)" }, 0)
-        .fromTo(".sh-headline", { opacity: 0, y: 50 },               { opacity: 1, y: 0, duration: 0.9 }, 0.1)
-        .fromTo(".sh-desc",     { opacity: 0, y: 24 },               { opacity: 1, y: 0, duration: 0.7 }, 0.35)
-        .fromTo(".sh-cta",      { opacity: 0, y: 16 },               { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 }, 0.52)
-        .fromTo(".sh-image",    { opacity: 0, scale: 1.04 },         { opacity: 1, scale: 1, duration: 1.1, ease: "power2.out" }, 0.15)
+      const animateLine = (lineEl: HTMLElement | null, delay: number) => {
+        if (!lineEl) return
+        const wordEls = prepareHeadingWordAnimation(lineEl)
+        if (!wordEls.length) return
+        gsap.fromTo(
+          wordEls,
+          { y: "110%", opacity: 0 },
+          {
+            y: "0%",
+            opacity: 1,
+            duration: 0.9,
+            ease: "expo.out",
+            stagger: 0.06,
+            delay,
+          }
+        )
+      }
+
+      animateLine(line1Ref.current, 0.2)
+      animateLine(line2Ref.current, 0.38)
+      if (hero.tagline3) animateLine(line3Ref.current, 0.56)
+
+      if (subtitleRef.current) {
+        gsap.fromTo(
+          subtitleRef.current,
+          { opacity: 0, filter: "blur(8px)", y: 16 },
+          {
+            opacity: 1,
+            filter: "blur(0px)",
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.7,
+          }
+        )
+      }
+
+      if (heroBtnsRef.current) {
+        gsap.fromTo(
+          heroBtnsRef.current.children,
+          { opacity: 0, y: 20, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: "back.out(1.4)",
+            stagger: 0.12,
+            delay: 1.0,
+          }
+        )
+      }
+
+      if (imageRef.current) {
+        gsap.fromTo(
+          imageRef.current,
+          { opacity: 0, x: 60, scale: 0.97 },
+          {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 1.0,
+            ease: "expo.out",
+            delay: 0.3,
+          }
+        )
+      }
     }, heroRef)
+
     return () => ctx.revert()
-  }, [])
+  }, [hero.tagline3])
 
   return (
     <section
       ref={heroRef}
-      className="relative flex min-h-[80%]  overflow-hidden"
-      style={{ backgroundColor: "#072348" }}
+      className="relative flex h-dvh min-h-[640px] overflow-hidden bg-[#072448]"
     >
-      {/* ── LEFT: text panel ─────────────────────────────────── */}
-      <div className="relative z-10 flex w-full flex-col justify-center px-6 py-24 sm:px-10 lg:w-[55%] lg:px-16 xl:px-20 lg:py-32">
-
-        {/* decorative grid lines — subtle */}
+      {/* Left content */}
+      <div className="relative z-10 flex h-full w-full flex-col justify-center px-8 pb-8 pt-[72px] lg:w-[55%] lg:px-20 xl:pl-24">
         <div
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 opacity-[0.05]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+              "linear-gradient(rgba(59,103,255,0.6) 1px,transparent 1px),linear-gradient(90deg,rgba(59,103,255,0.6) 1px,transparent 1px)",
             backgroundSize: "48px 48px",
           }}
         />
 
-        {/* label chip */}
-        <span
-          className="sh-chip mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-[#3b67ff]/40 bg-[#3b67ff]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#7fa8e8] opacity-0"
-        >
-          <span className="size-1.5 rounded-full bg-[#0A3A73]" />
-           Services / {slug}
-        </span>
-
-        {/* headline */}
-        <h1
-          className="sh-headline text-4xl font-bold tracking-tight text-white sm:text-4xl lg:text-[3.25rem] xl:text-5xl leading-[1.12] opacity-0"
-        >
-          {hero.tagline} {hero.tagline2}
-         
-        </h1>
-
-        {/* divider accent */}
-        <div className="sh-desc mt-6 h-[2px] w-12 rounded-full bg-[#3b67ff] opacity-0" />
-
-        {/* description */}
-        <p className="sh-desc mt-5 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg opacity-0">
-          {hero.description}
-        </p>
-
-        {/* CTAs */}
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
-          <button
-            className="sh-cta group relative overflow-hidden rounded-xl bg-[#0A3A73] px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#3b67ff]/30 transition-all duration-300 hover:shadow-[#3b67ff]/50 hover:brightness-110 opacity-0"
-          >
-            <span className="relative z-10">{hero.ctaButtons?.[0] ?? "Request A Proposal"}</span>
-          </button>
-          <button
-            className="sh-cta rounded-xl border border-white/25 px-7 py-3.5 text-sm font-semibold text-white/90 backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/8 hover:text-white opacity-0"
-          >
-            {hero.ctaButtons?.[1] ?? "Talk To Our Experts"}
-          </button>
-        </div>
-
-        {/* trust strip */}
-        <div className="sh-cta mt-10 flex items-center gap-6 opacity-0">
-          {["ISO Certified", "500+ Projects", "24/7 Support"].map((tag) => (
-            <span key={tag} className="flex items-center gap-1.5 text-xs text-white/40">
-              <span className="size-1 rounded-full bg-[#3b67ff]" />
-              {tag}
+        <div className="relative max-w-[600px]">
+          <h1 className="mb-6 text-[2.35rem] font-extrabold leading-[1.22] tracking-tight text-white sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]">
+            <span
+              ref={line1Ref}
+              data-split-text={hero.tagline}
+              className="block"
+            >
+              {hero.tagline}
             </span>
-          ))}
+            {hero.tagline2 ? (
+              <span
+                ref={line2Ref}
+                data-split-text={hero.tagline2}
+                className="block"
+              >
+                {hero.tagline2}
+              </span>
+            ) : null}
+            {hero.tagline3 ? (
+              <span
+                ref={line3Ref}
+                data-split-text={hero.tagline3}
+                className="block"
+              >
+                {hero.tagline3}
+              </span>
+            ) : null}
+          </h1>
+
+          <p
+            ref={subtitleRef}
+            className="type-body mb-10 max-w-[540px] text-white/85 lg:mb-12"
+          >
+            {hero.description}
+          </p>
+
+          <div ref={heroBtnsRef} className="flex flex-wrap gap-4">
+            {primaryCtaProps.href ? (
+              <Link
+                href={primaryCtaProps.href}
+                className="rounded-lg bg-[#0A3A73] px-7 py-3.5 text-[15px] font-semibold text-white transition hover:bg-[#124e96]"
+              >
+                {primaryCtaLabel}
+              </Link>
+            ) : (
+              <button
+                type="button"
+                onClick={primaryCtaProps.onClick}
+                className="rounded-lg bg-[#0A3A73] px-7 py-3.5 text-[15px] font-semibold text-white transition hover:bg-[#124e96]"
+              >
+                {primaryCtaLabel}
+              </button>
+            )}
+            {secondaryCtaProps.href ? (
+              <Link
+                href={secondaryCtaProps.href}
+                className="rounded-lg border border-white/30 px-7 py-3.5 text-[15px] font-semibold text-white transition hover:bg-white/10"
+              >
+                {secondaryCtaLabel}
+              </Link>
+            ) : (
+              <button
+                type="button"
+                onClick={secondaryCtaProps.onClick}
+                className="rounded-lg border border-white/30 px-7 py-3.5 text-[15px] font-semibold text-white transition hover:bg-white/10"
+              >
+                {secondaryCtaLabel}
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* ── RIGHT: full-bleed image ───────────────────────────── */}
-      {/* ── RIGHT: full-bleed image ───────────────────────────── */}
-<div className="sh-image pointer-events-none absolute inset-y-0 right-0 hidden w-[55%] opacity-0 lg:block">
-  <div className="relative h-full w-full overflow-hidden">
-    <img
-      src={hero.image}
-      alt={hero.tagline}
-      className="h-full w-full object-cover object-center"
-    />
+      {/* Right image */}
+      {hero.image ? (
+        <div
+          ref={imageRef}
+          className="absolute right-0 top-0 hidden h-full w-[48%] lg:block"
+          style={{
+            clipPath: "polygon(8% 0%,100% 0%,100% 100%,0% 100%)",
+          }}
+        >
+          <div
+            className="absolute inset-0 z-10 opacity-[0.08]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, rgba(59,103,255,0.8) 1px, transparent 1px)",
+              backgroundSize: "22px 22px",
+            }}
+          />
 
-    {/* dark overlay */}
-    <div className="absolute inset-0 bg-[#072348]/25" />
-
-    {/* LEFT fade — strong, blends into navy panel */}
-    <div
-      className="absolute inset-y-0 left-0 w-[12%]"
-      style={{
-        background: "linear-gradient(to right, #072348 0%, #072348 30%, rgba(7,35,72,0.85) 60%, transparent 100%)",
-      }}
-    />
-
-    {/* TOP fade */}
-    <div
-      className="absolute inset-x-0 top-0 h-28"
-      style={{ background: "linear-gradient(to bottom, #072348, transparent)" }}
-    />
-
-    {/* BOTTOM fade */}
-    <div
-      className="absolute inset-x-0 bottom-0 h-28"
-      style={{ background: "linear-gradient(to top, #072348, transparent)" }}
-    />
-  </div>
-</div>
+          <img
+            src={hero.image}
+            alt={hero.imageAlt ?? ""}
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+        </div>
+      ) : null}
     </section>
   )
 }

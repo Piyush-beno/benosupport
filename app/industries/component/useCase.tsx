@@ -122,10 +122,10 @@ export default function UseCasesSection() {
 
         {/* Header */}
         <div className="mb-8 max-w-3xl">
-          <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#1a3a6e]">
+          <span className="type-label section-label-light">
             Industry Use Cases
           </span>
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-[#0a1628] sm:text-4xl lg:text-[40px]">
+          <h2 className="mt-2 type-heading text-[#0a1628]">
             Real-World Use Cases Across Industries
           </h2>
         </div>
@@ -190,15 +190,12 @@ export default function UseCasesSection() {
                     <h3 className="text-[16px] font-extrabold text-[#0a1628] leading-snug mb-2">
                       {card.title}
                     </h3>
-                    <p className="text-[13.5px] leading-relaxed text-[#5a6a84] flex-1">
+                    <p className="type-body text-[#5a6a84] flex-1">
                       {card.desc}
                     </p>
-                    <a
-                      href="#"
-                      className="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#1a3a6e] hover:text-[#3b67ff] transition-colors"
-                    >
+                    <span className="mt-5 inline-flex items-center gap-1.5 type-body font-semibold text-[#1a3a6e]">
                       Explore Use Cases →
-                    </a>
+                    </span>
                   </div>
                 </div>
               ))}
