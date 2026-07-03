@@ -206,7 +206,7 @@ function ServiceHero({ hero }: { hero: ServiceData["hero"]; slug: string }) {
 
           <img
             src={hero.image}
-            alt={hero.tagline}
+            alt={hero.imageAlt ?? ""}
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
         </div>
