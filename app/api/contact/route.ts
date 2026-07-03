@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { sendContactEmail } from "@/lib/contact-email"
+import { addBitrixLead } from "@/lib/bitrix24-crm"
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -28,14 +28,14 @@ export async function POST(request: Request) {
       )
     }
 
-    await sendContactEmail({
+    await addBitrixLead({
       name,
       email,
       company,
-      phone: phone || "—",
-      country: country || "—",
-      service: service || "—",
-      message: message || "—",
+      phone,
+      country,
+      service,
+      message,
     })
 
     return NextResponse.json({ success: true })

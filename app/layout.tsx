@@ -18,28 +18,28 @@ const plexMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Beno Support — AI-Native Engineering & Technology',
+  title: "AI Engineering & Cloud Solutions Company | Beno Support ",
   description:
-    'Beno Support helps startups, SMBs, and enterprises accelerate innovation, optimize operations, modernize infrastructure, and build scalable digital ecosystems.',
-  generator: 'beno',
+    "Beno Support delivers AI engineering, software development, cloud infrastructure, cybersecurity, and digital transformation services for startups, SMBs, and enterprises worldwide. ",
+  generator: "beno",
   icons: {
     icon: [
       {
-        url: '/assets/logo.svg',
-        media: '(prefers-color-scheme: light)',
+        url: "/assets/logo.svg",
+        media: "(prefers-color-scheme: light)",
       },
       {
-        url: '/assets/logo.svg',
-        media: '(prefers-color-scheme: dark)',
+        url: "/assets/logo.svg",
+        media: "(prefers-color-scheme: dark)",
       },
       {
-        url: '/assets/logo.svg',
-        type: 'image/svg+xml',
+        url: "/assets/logo.svg",
+        type: "image/svg+xml",
       },
     ],
-    apple: '/apple-icon.png',
+    apple: "/apple-icon.png",
   },
-}
+};
 
 export default function RootLayout({
   children,

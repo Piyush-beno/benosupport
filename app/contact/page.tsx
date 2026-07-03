@@ -11,6 +11,13 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+export const metadata = {
+  title: "Contact Beno Support | AI, IT & Business Solutions Company",
+  description:
+    "Get in touch with Beno Support for AI, enterprise software, cloud, cybersecurity, and digital transformation services tailored to your business needs ",
+  canonicalUrl: "/contact",
+};
+
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
 const HeadsetIcon = () => (

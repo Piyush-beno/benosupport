@@ -12,10 +12,11 @@ import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 
 export const metadata = {
-  title: "Company | Beno Support",
+  title: "About Beno Support | AI, Cloud & Software Engineering Company",
   description:
-    "Learn about Beno Support — a global technology consulting and engineering company helping startups, SMBs, and enterprises modernize operations through AI, cloud, and software engineering.",
-}
+    "Learn about Beno Support, a global AI engineering, cloud, cybersecurity, and software development company helping startups, SMBs, and enterprises accelerate digital transformation.",
+  canonicalUrl: "/company",
+};
 
 export default function CompanyPage() {
   return (

@@ -1,86 +1,87 @@
-export type CapabilityCard = {
-  iconName: string
-  title: string
-  description: string
-  highlighted?: boolean
-  features?: string[]
-}
+﻿export type CapabilityCard = {
+  iconName: string;
+  title: string;
+  description: string;
+  highlighted?: boolean;
+  features?: string[];
+};
 
 export type ServiceUseCase = {
-  tabLabel: string
-  tabSub: string
-  logoSrc?: string
-  projectTitle: string
-  subtitle?: string
-  visualimg?: string
-  visualSrc?: string
-  siteUrl?: string
-  description: string
-  bullets: string[]
-  stats: { value: string; label: string }[]
-  ctaLabel: string
-}
+  tabLabel: string;
+  tabSub: string;
+  logoSrc?: string;
+  projectTitle: string;
+  subtitle?: string;
+  visualimg?: string;
+  visualSrc?: string;
+  siteUrl?: string;
+  description: string;
+  bullets: string[];
+  stats: { value: string; label: string }[];
+  ctaLabel: string;
+};
 
 export type ServiceData = {
   meta: {
-    title: string
-    description: string
-    canonicalUrl?: string
-  }
+    title: string;
+    description: string;
+    canonicalUrl?: string;
+  };
   hero: {
-    image?: string
-    tagline: string
-    tagline2?: string
-    tagline3?: string
-    description: string
-    ctaButtons?: string[]
-  }
+    image?: string;
+    imageAlt?: string;
+    tagline: string;
+    tagline2?: string;
+    tagline3?: string;
+    description: string;
+    ctaButtons?: string[];
+  };
   intro: {
-    sectionLabel: string
-    title: string
-    paragraphs: string[]
-  }
+    sectionLabel: string;
+    title: string;
+    paragraphs: string[];
+  };
   capabilities: {
-    sectionLabel: string
-    title: string
-    subtitle: string
-    cards: CapabilityCard[]
-  }
+    sectionLabel: string;
+    title: string;
+    subtitle: string;
+    cards: CapabilityCard[];
+  };
   scale: {
-    sectionLabel: string
-    title: string
-    subtitle: string
-    cards: CapabilityCard[]
-  }
+    sectionLabel: string;
+    title: string;
+    subtitle: string;
+    cards: CapabilityCard[];
+  };
   useCases: {
-    sectionLabel: string
-    title: string
-    cases: ServiceUseCase[]
-  }
+    sectionLabel: string;
+    title: string;
+    cases: ServiceUseCase[];
+  };
   cta?: {
-    title: string
-    content: string
-    buttons: string[]
-  }
+    title: string;
+    content: string;
+    buttons: string[];
+  };
   faq?: {
-    question: string
-    answer: string
-  }[]
-}
-
+    question: string;
+    answer: string;
+  }[];
+};
 
 export const servicesData: Record<string, ServiceData> = {
   "core-engineering-application-architecture": {
     meta: {
-      title: "Core Engineering & Application Architecture",
+      title: "Custom Software Development & SaaS Engineering Services ",
       description:
         "Beno Support delivers scalable custom software development, SaaS engineering, API architecture, and microservices solutions for startups, SMBs, and enterprises.",
       canonicalUrl: "/services/software-development-company/",
     },
     hero: {
       image: "/assets/services/core_engineering.svg",
-      tagline: "Engineered",
-      tagline2: "for Scale.",
+      imageAlt: "Software development company",
+      tagline: "Engineered ",
+      tagline2: "for Scale. ",
       tagline3: "Built for Innovation.",
       description:
         "We engineer resilient SaaS platforms, cloud-native architectures, and enterprise applications that power modern business growth.",
@@ -90,7 +91,7 @@ export const servicesData: Record<string, ServiceData> = {
       sectionLabel: "Intro",
       title: "BEYOND CODE: HIGH-PERFORMANCE SOFTWARE ENGINEERING",
       paragraphs: [
-        "Modern businesses require more than software development — they require scalable engineering systems built for performance, security, and continuous innovation .",
+        "Modern businesses require more than software development â€” they require scalable engineering systems built for performance, security, and continuous innovation .",
         " At Beno Support, we help organizations develop cloud-native applications, SaaS platforms, mobile experiences, and API-driven ecosystems that support digital transformation and long-term business growth. ",
         " Our engineering teams combine architecture expertise, agile delivery, DevOps practices, and product-focused execution to deliver high-performance digital solutions.",
       ],
@@ -360,15 +361,16 @@ export const servicesData: Record<string, ServiceData> = {
 
   "cyber-resilience-threat-intelligence": {
     meta: {
-      title: "Cyber Resilience & Threat Intelligence",
+      title: "Cybersecurity Services & Threat Intelligence Solutions ",
       description:
         "Protect digital infrastructure with cybersecurity consulting, SOC services, threat intelligence, compliance frameworks, and AI security solutions.",
       canonicalUrl: "/services/cybersecurity-services/",
     },
     hero: {
       image: "/assets/services/cyber_reseliance.svg",
-      tagline: "Strengthen Digital Security with",
-      tagline2: "Proactive Cyber Resilience",
+      imageAlt: "Cybersecurity Services",
+      tagline: "Strengthen Digital Security with ",
+      tagline2: "Proactive Cyber Resilience. ",
       description:
         "Beno Support helps startups, SMBs, and enterprises secure applications, cloud infrastructure, AI systems, and enterprise environments through proactive cybersecurity and threat intelligence services.",
       ctaButtons: ["Request Security Assessment", "Talk to Security Experts"],
@@ -640,14 +642,16 @@ export const servicesData: Record<string, ServiceData> = {
 
   "agentic-ai-intelligent-automation": {
     meta: {
-      title: "Agentic AI & Intelligent Automation",
+      title: "Agentic AI Consulting & Intelligent Automation Services ",
       description:
-        "Beno Support builds AI agents, LLM integrations, RAG pipelines, and intelligent automation systems that transform how enterprises operate and make decisions.",
+        "Deploy enterprise AI agents, LLM integrations, process automation, and AI-powered workflows with Beno Supportâ€™s AI consulting services.",
+      canonicalUrl: "/services/agentic-ai-intelligent-automation",
     },
     hero: {
       image: "/assets/services/agentic_ai.svg",
-      tagline: "Deploy AI-Powered Automation for",
-      tagline2: "Smarter Business Operations",
+      imageAlt: "Agentic AI Consulting",
+      tagline: "Deploy AI-Powered Automation for ",
+      tagline2: "Smarter Business Operations ",
       description:
         "Beno Support helps startups, SMBs, and enterprises implement AI agents, intelligent workflows, and automation systems that improve operational efficiency, customer experience, and decision-making",
       ctaButtons: ["Request a Proposal", "Talk to Our Experts"],
@@ -897,14 +901,16 @@ export const servicesData: Record<string, ServiceData> = {
 
   "digital-products-experience-engineering": {
     meta: {
-      title: "Digital Products & Experience Engineering",
+      title: "UI UX Design & Digital Product Engineering Services ",
       description:
-        "Beno Support designs and engineers digital products with world-class UX, high-performance frontends, and conversion-optimised experiences that drive business growth.",
+        "Create scalable digital products with UX strategy, UI design, conversion optimization, and product engineering services from Beno Support.",
+      canonicalUrl: "/services/digital-products-experience-engineering",
     },
     hero: {
       image: "/assets/services/digital_product.svg",
+      imageAlt: "UI UX Design Services",
       tagline: "Create Digital Experiences ",
-      tagline2: "That Drive Engagement & Growth",
+      tagline2: "That Drive Engagement & Growth ",
       description:
         "Beno Support helps startups, SMBs, and enterprises design user-focused digital products, optimize customer journeys, and build scalable digital experiences that improve engagement and conversions",
     },
@@ -912,7 +918,7 @@ export const servicesData: Record<string, ServiceData> = {
       sectionLabel: "Intro",
       title: "Digital Product Engineering Services",
       paragraphs: [
-        "Modern digital products require more than attractive interfaces — they require seamless user experiences, scalable product design, and performance-focused engineering.",
+        "Modern digital products require more than attractive interfaces â€” they require seamless user experiences, scalable product design, and performance-focused engineering.",
         "Beno Support helps organizations create intuitive digital experiences through UX strategy, interface engineering, product design systems, and conversion-focused optimization that support business growth and customer engagement.",
         "Our product engineering teams combine UX research, UI design, frontend engineering, and digital optimization expertise to deliver scalable and user-centric digital products.",
       ],
@@ -1171,13 +1177,14 @@ export const servicesData: Record<string, ServiceData> = {
 
   "enterprise-startup-tech-strategy": {
     meta: {
-      title: "Enterprise & Startup Tech Strategy",
+      title: "Digital Transformation & Enterprise Technology Consulting",
       description:
-        "Modernize infrastructure, optimize technology ecosystems, and accelerate digital transformation with Beno Support's consulting services.",
+        "Modernize infrastructure, optimize technology ecosystems, and accelerate digital transformation with Beno Supportâ€™s consulting services.",
       canonicalUrl: "/services/enterprise-tech-strategy-consulting/",
     },
     hero: {
       image: "/assets/services/enterprise_strategy.svg",
+      imageAlt: "Digital Transformation",
       tagline: "Turn Business Vision into a Scalable Digital Enterprise",
       description:
         " Helping enterprises accelerate innovation, improve operational efficiency, and maximize technology investments with a strategy-first approach.",
@@ -1430,12 +1437,14 @@ export const servicesData: Record<string, ServiceData> = {
 
   "strategic-it-governance-managed-services": {
     meta: {
-      title: "Strategic IT Governance & Managed Services",
+      title: "Managed IT Services & IT Governance Consulting",
       description:
-        "Beno Support provides 24/7 managed IT operations, ITIL-aligned service management, infrastructure management, and IT governance frameworks for enterprises worldwide.",
+        "Optimize business operations with managed IT services, infrastructure management, governance consulting, and disaster recovery solutions from Beno Support.",
+      canonicalUrl: "/services/strategic-it-governance-managed-services",
     },
     hero: {
       image: "/assets/services/it_governance.svg",
+      imageAlt: "Managed IT Services",
       tagline:
         "Strengthen IT Operations with Governance-Driven Managed Services",
       description:
@@ -1454,7 +1463,7 @@ export const servicesData: Record<string, ServiceData> = {
       sectionLabel: "Managed Services Capabilities",
       title: "CORE MANAGED SERVICES CAPABILITIES",
       subtitle:
-        "End-to-end IT operations management across infrastructure, service desk, governance, and compliance — all under one contractual SLA commitment.",
+        "End-to-end IT operations management across infrastructure, service desk, governance, and compliance â€” all under one contractual SLA commitment.",
       cards: [
         {
           iconName: "Settings",
@@ -1665,12 +1674,14 @@ export const servicesData: Record<string, ServiceData> = {
 
   "cloud-platform-engineering": {
     meta: {
-      title: "Cloud & Platform Engineering",
+      title: "Cloud Infrastructure & Platform Engineering Services ",
       description:
-        "Beno Support helps businesses build scalable cloud ecosystems, automate infrastructure, and accelerate deployment through modern cloud engineering services.",
+        "Accelerate cloud transformation with Kubernetes, DevOps, cloud infrastructure, and platform engineering services.",
+      canonicalUrl: "/services/cloud-platform-engineering",
     },
     hero: {
       image: "/assets/services/cloud_and_platform.svg",
+      imageAlt: "Cloud and platform engineering services",
       tagline: "Modernize Infrastructure with Cloud-Native Engineering",
       description:
         "Beno Support helps businesses build scalable cloud ecosystems, automate infrastructure, and accelerate deployment through modern cloud engineering services.",
@@ -1919,12 +1930,14 @@ export const servicesData: Record<string, ServiceData> = {
 
   "workforce-technology-human-capital-advisory": {
     meta: {
-      title: "Workforce Technology & Human Capital Advisory",
+      title: "HR Technology Consulting & Workforce Automation Services ",
       description:
-        "Beno Support implements HRMS platforms, workforce analytics, learning management systems, and digital adoption programs that transform how enterprises manage and develop their people.",
+        "Modernize workforce operations with HR technology integration, AI workforce transformation, talent consulting, and HR automation services.",
+      canonicalUrl: "/services/services/workforce-technology-consulting",
     },
     hero: {
       image: "/assets/services/workforce_tech.svg",
+      imageAlt: "Workforce Automation Services",
       tagline: "Modernize Workforce Operations with Intelligent HR Technology ",
 
       description:
@@ -1964,7 +1977,7 @@ export const servicesData: Record<string, ServiceData> = {
           iconName: "Users",
           title: "Workday",
           description:
-            "Streamline HR, finance, and workforce operations using Workday’s cloud-based enterprise platform designed for modern digital organizations.",
+            "Streamline HR, finance, and workforce operations using Workdayâ€™s cloud-based enterprise platform designed for modern digital organizations.",
           features: [
             "Workday implementation",
             "Human capital management",
@@ -2158,7 +2171,7 @@ export const servicesData: Record<string, ServiceData> = {
           stats: [
             { value: "78%", label: "Monthly active learners" },
             { value: "45%", label: "Faster time-to-competency" },
-            { value: "£800K", label: "Training cost savings annually" },
+            { value: "Â£800K", label: "Training cost savings annually" },
           ],
           ctaLabel: "View Case Study",
           visualimg: "/assets/services/servicemain.svg",
