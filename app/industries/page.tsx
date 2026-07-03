@@ -30,13 +30,6 @@ gsap.registerPlugin(ScrollTrigger)
 // ─────────────────────────────────────────────────────────────────
 // DATA
 // ─────────────────────────────────────────────────────────────────
-export const metadata = {
-  title: "Industry-Focused AI, Cloud & Software Engineering Solutions",
-  description:
-    "Beno Support delivers AI, cloud, cybersecurity, and software engineering solutions for BFSI, healthcare, retail, SaaS, manufacturing, logistics, and more.",
-  canonicalUrl: "/industries",
-};
-
 
 const challengesData = {
   sectionLabel: "Industry Challenges",
