@@ -72,10 +72,10 @@ export type ServiceData = {
 export const servicesData: Record<string, ServiceData> = {
   "core-engineering-application-architecture": {
     meta: {
-      title: "Custom Software Development & SaaS Engineering Services ",
+      title: "Custom Software Development & SaaS Engineering Services",
       description:
         "Beno Support delivers scalable custom software development, SaaS engineering, API architecture, and microservices solutions for startups, SMBs, and enterprises.",
-      canonicalUrl: "/services/software-development-company/",
+      canonicalUrl: "/services/core-engineering-application-architecture",
     },
     hero: {
       image: "/assets/services/core_engineering.svg",
@@ -361,10 +361,10 @@ export const servicesData: Record<string, ServiceData> = {
 
   "cyber-resilience-threat-intelligence": {
     meta: {
-      title: "Cybersecurity Services & Threat Intelligence Solutions ",
+      title: "Cybersecurity Services & Threat Intelligence Solutions",
       description:
         "Protect digital infrastructure with cybersecurity consulting, SOC services, threat intelligence, compliance frameworks, and AI security solutions.",
-      canonicalUrl: "/services/cybersecurity-services/",
+      canonicalUrl: "/services/cyber-resilience-threat-intelligence",
     },
     hero: {
       image: "/assets/services/cyber_reseliance.svg",
@@ -642,9 +642,9 @@ export const servicesData: Record<string, ServiceData> = {
 
   "agentic-ai-intelligent-automation": {
     meta: {
-      title: "Agentic AI Consulting & Intelligent Automation Services ",
+      title: "Agentic AI Consulting & Intelligent Automation Services",
       description:
-        "Deploy enterprise AI agents, LLM integrations, process automation, and AI-powered workflows with Beno Supportâ€™s AI consulting services.",
+        "Deploy enterprise AI agents, LLM integrations, process automation, and AI-powered workflows with Beno Support's AI consulting services.",
       canonicalUrl: "/services/agentic-ai-intelligent-automation",
     },
     hero: {
@@ -901,7 +901,7 @@ export const servicesData: Record<string, ServiceData> = {
 
   "digital-products-experience-engineering": {
     meta: {
-      title: "UI UX Design & Digital Product Engineering Services ",
+      title: "UI UX Design & Digital Product Engineering Services",
       description:
         "Create scalable digital products with UX strategy, UI design, conversion optimization, and product engineering services from Beno Support.",
       canonicalUrl: "/services/digital-products-experience-engineering",
@@ -1179,8 +1179,8 @@ export const servicesData: Record<string, ServiceData> = {
     meta: {
       title: "Digital Transformation & Enterprise Technology Consulting",
       description:
-        "Modernize infrastructure, optimize technology ecosystems, and accelerate digital transformation with Beno Supportâ€™s consulting services.",
-      canonicalUrl: "/services/enterprise-tech-strategy-consulting/",
+        "Modernize infrastructure, optimize technology ecosystems, and accelerate digital transformation with Beno Support's consulting services.",
+      canonicalUrl: "/services/enterprise-startup-tech-strategy",
     },
     hero: {
       image: "/assets/services/enterprise_strategy.svg",
@@ -1674,7 +1674,7 @@ export const servicesData: Record<string, ServiceData> = {
 
   "cloud-platform-engineering": {
     meta: {
-      title: "Cloud Infrastructure & Platform Engineering Services ",
+      title: "Cloud Infrastructure & Platform Engineering Services",
       description:
         "Accelerate cloud transformation with Kubernetes, DevOps, cloud infrastructure, and platform engineering services.",
       canonicalUrl: "/services/cloud-platform-engineering",
@@ -1930,10 +1930,10 @@ export const servicesData: Record<string, ServiceData> = {
 
   "workforce-technology-human-capital-advisory": {
     meta: {
-      title: "HR Technology Consulting & Workforce Automation Services ",
+      title: "HR Technology Consulting & Workforce Automation Services",
       description:
         "Modernize workforce operations with HR technology integration, AI workforce transformation, talent consulting, and HR automation services.",
-      canonicalUrl: "/services/services/workforce-technology-consulting",
+      canonicalUrl: "/services/workforce-technology-human-capital-advisory",
     },
     hero: {
       image: "/assets/services/workforce_tech.svg",
