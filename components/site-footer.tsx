@@ -150,8 +150,18 @@ export function SiteFooter() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-primary-foreground/15 pt-6 text-sm text-primary-foreground/60 sm:flex-row">
           <p>© 2026 Beno Support. All Rights Reserved.</p>
           <div className="flex gap-6">
-            <span className="cursor-default">Terms &amp; Conditions</span>
-            <span className="cursor-default">Privacy Policy</span>
+            <Link
+              href="/terms"
+              className="transition-colors hover:text-primary-foreground"
+            >
+              Terms &amp; Conditions
+            </Link>
+            <Link
+              href="/privacy-policy"
+              className="transition-colors hover:text-primary-foreground"
+            >
+              Privacy Policy
+            </Link>
           </div>
         </div>
       </div>
