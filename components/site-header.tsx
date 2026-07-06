@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation"
 const navLinks = [
   { label: "Industries", href: "/industries" },
   { label: "Company",    href: "/company" },
+  // { label: "Blog",       href: "/blog" },
 ]
 
 // ── Services from shared navigation labels ─────────────────────────────────
