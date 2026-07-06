@@ -51,7 +51,7 @@ function SitemapCard({
 }
 
 export default function SitemapPage() {
-  const [home, company, services, industries, contact] = HTML_SITEMAP_SECTIONS
+  const [home, company, services, industries, blog, contact] = HTML_SITEMAP_SECTIONS
 
   return (
     <div className="min-h-screen bg-[#f8fafc]">
@@ -68,7 +68,7 @@ export default function SitemapPage() {
           </div>
 
           {/* Wireframe layout: 2x2 left blocks + tall services column on the right */}
-          <div className="grid gap-6 md:grid-cols-3 md:grid-rows-[repeat(2,minmax(320px,1fr))]">
+          <div className="grid gap-6 md:grid-cols-3 md:grid-rows-[repeat(3,minmax(280px,1fr))]">
             <SitemapCard
               title={home.title}
               links={home.links}
@@ -82,7 +82,7 @@ export default function SitemapPage() {
             <SitemapCard
               title={services.title}
               links={services.links}
-              className="order-5 md:col-start-3 md:row-start-1 md:row-span-2 md:min-h-[664px]"
+              className="order-7 md:col-start-3 md:row-start-1 md:row-span-3 md:min-h-[980px]"
             />
             <SitemapCard
               title={industries.title}
@@ -90,9 +90,14 @@ export default function SitemapPage() {
               className="order-3 md:col-start-1 md:row-start-2"
             />
             <SitemapCard
+              title={blog.title}
+              links={blog.links}
+              className="order-4 md:col-start-2 md:row-start-2"
+            />
+            <SitemapCard
               title={contact.title}
               links={contact.links}
-              className="order-4 md:col-start-2 md:row-start-2"
+              className="order-5 md:col-start-1 md:row-start-3 md:col-span-2"
             />
           </div>
         </div>
