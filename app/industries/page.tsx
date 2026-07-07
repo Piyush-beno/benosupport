@@ -7,14 +7,14 @@ import {
   ChevronDown,
   AlertTriangle, TrendingDown, ShieldAlert, Layers, BarChart2, Users2,
   Code2, Bot, ShieldCheck, Cloud, Database, Monitor, Boxes, Cpu,
-  Briefcase, Heart, Building2, ShoppingCart, GraduationCap, Plane,
-  Factory, Landmark, Globe, Truck, Zap, Film,
+  Globe,
   Star,
 } from "lucide-react"
 import UseCasesSection from "./component/useCase"
 import { SiteFooter } from "@/components/site-footer"
 import { prepareHeadingWordAnimation } from "@/lib/prepare-heading-word-animation"
 import { SiteHeader } from "@/components/site-header"
+import { INDUSTRY_GRID_ITEMS } from "@/lib/industries-grid-data"
 import IndustriesHero from "./component/hero"
 import BusinessOutcomes from "./component/outcomeMetrix"
 import {
@@ -62,21 +62,6 @@ const solutionsData = {
     { icon: Cpu,          title: "Agile Product Engineering",        desc: "End-to-end product squads — discovery, design, engineering, QA, and launch — in rapid sprints." },
   ],
 }
-
-const industriesData = [
-  { icon: Briefcase,   label: "Finance" },
-  { icon: Heart,       label: "Health" },
-  { icon: Building2,   label: "Real Estate" },
-  { icon: ShoppingCart,label: "E-commerce" },
-  { icon: GraduationCap,label:"Education" },
-  { icon: Plane,       label: "Aviation" },
-  { icon: Factory,     label: "Manufacturing" },
-  { icon: Landmark,    label: "Government" },
-  { icon: Globe,       label: "Hospitality" },
-  { icon: Truck,       label: "Logistics" },
-  { icon: Zap,         label: "Energy" },
-  { icon: Film,        label: "Media" },
-]
 
 const useCaseTabs = ["Fintech", "IT Services", "Healthcare", "EdTech", "Government"]
 
@@ -541,7 +526,7 @@ function SolutionsSection() {
 }
 
 // ─────────────────────────────────────────────────────────────────
-// SECTION 4 — INDUSTRIES GRID (existing pattern)
+// SECTION 4 — INDUSTRIES GRID
 // ─────────────────────────────────────────────────────────────────
 
 function IndustriesGrid() {
@@ -563,22 +548,24 @@ function IndustriesGrid() {
   }, [])
 
   return (
-    <section ref={ref} className="bg-white py-20 lg:py-28">
-      <div className="mx-auto max-w-[1300px] px-6 lg:px-12">
-        <div className="mb-10 max-w-3xl">
-          <span className="label-chip type-label font-semibold section-label-light">Industries</span>
-          <h2 className="mt-4 type-heading font-bold text-[#0a1628]">
+    <section ref={ref} className="bg-background py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 max-w-3xl">
+          <span className="type-label font-semibold section-label-light">Industries</span>
+          <h2 className="mt-2 type-heading font-bold text-primary">
             Industries We Serve
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-          {industriesData.map((item) => {
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          {INDUSTRY_GRID_ITEMS.map((item) => {
             const Icon = item.icon
             return (
-              <div key={item.label}
-                className="industry-card flex flex-col items-center gap-3 rounded-2xl border border-[#eceff3] bg-[#f7f9fc] px-4 py-8 text-center transition duration-300 hover:-translate-y-1 hover:border-[#072448]/30 hover:shadow-md cursor-default">
-                <Icon className="size-7 text-[#072348]" />
-                <span className="text-sm font-semibold text-[#072348]">{item.label}</span>
+              <div
+                key={item.label}
+                className="industry-card flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-6 text-center transition-colors hover:border-accent cursor-default"
+              >
+                <Icon className="size-7 text-accent" />
+                <span className="text-sm font-medium text-primary">{item.label}</span>
               </div>
             )
           })}

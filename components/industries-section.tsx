@@ -1,32 +1,4 @@
-import {
-  Landmark,
-  ShieldCheck,
-  HeartPulse,
-  GraduationCap,
-  Building2,
-  Plane,
-  Hotel,
-  ShoppingCart,
-  Radio,
-  LineChart,
-  Shield,
-  Gamepad2,
-} from "lucide-react"
-
-const industries = [
-  { icon: Landmark, label: "Fintech" },
-  { icon: ShieldCheck, label: "IT SaaS" },
-  { icon: HeartPulse, label: "Healthcare" },
-  { icon: GraduationCap, label: "EdTech" },
-  { icon: Building2, label: "Government" },
-  { icon: Plane, label: "Travel" },
-  { icon: Hotel, label: "Hospitality" },
-  { icon: ShoppingCart, label: "E-commerce" },
-  { icon: Radio, label: "Telecom" },
-  { icon: LineChart, label: "Aviation" },
-  { icon: Shield, label: "Insurance" },
-  { icon: Gamepad2, label: "Gaming" },
-]
+import { INDUSTRY_GRID_ITEMS } from "@/lib/industries-grid-data"
 
 export function IndustriesSection() {
   return (
@@ -47,7 +19,7 @@ export function IndustriesSection() {
         </div>
 
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {industries.map((industry) => (
+          {INDUSTRY_GRID_ITEMS.map((industry) => (
             <div
               key={industry.label}
               className="flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-6 text-center transition-colors hover:border-accent"
