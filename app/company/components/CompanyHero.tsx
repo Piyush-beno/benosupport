@@ -6,6 +6,8 @@ import gsap from "gsap"
 import SocialSidebar from "@/components/social-sidebar"
 import { CONTACT_GET_IN_TOUCH_HREF } from "@/lib/proposal-cta"
 import { AnimatedCounter } from "@/components/animated-counter"
+import { PageBreadcrumb } from "@/components/page-breadcrumb"
+import { withHome } from "@/lib/breadcrumbs"
 
 const stats = [
   { type: "counter" as const, value: 100, suffix: "+", label: "Global Clients" },
@@ -31,6 +33,11 @@ export default function CompanyHero() {
     <section ref={sectionRef} className="relative flex h-dvh min-h-[640px] flex-col overflow-hidden bg-[#072448]">
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pb-6 pt-[72px] text-center lg:px-12">
         <div className="mx-auto max-w-[980px]">
+          <PageBreadcrumb
+            items={withHome([{ label: "Company" }])}
+            variant="dark"
+            align="center"
+          />
           <h1
             data-anim
             className="mx-auto mb-6 max-w-[900px] text-[2.35rem] font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]"

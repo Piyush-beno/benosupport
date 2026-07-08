@@ -4,6 +4,8 @@ import { ArrowRight, CalendarDays } from 'lucide-react'
 
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { PageBreadcrumb } from '@/components/page-breadcrumb'
+import { withHome } from '@/lib/breadcrumbs'
 import { client } from '@/sanity/lib/client'
 import { urlFor } from '@/sanity/lib/image'
 import { ALL_POSTS_QUERY, type PostListItem } from '@/sanity/lib/queries'
@@ -35,6 +37,11 @@ export default async function BlogPage() {
       <main>
         <section className="bg-[#072448] pt-28 pb-16 text-white lg:pt-32 lg:pb-20">
           <div className="mx-auto max-w-6xl px-6 text-center lg:px-8">
+            <PageBreadcrumb
+              items={withHome([{ label: "Blog" }])}
+              variant="dark"
+              align="center"
+            />
             <p className="type-label font-semibold tracking-[0.18em] text-white/70">
               INSIGHTS
             </p>

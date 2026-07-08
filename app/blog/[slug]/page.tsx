@@ -1,12 +1,13 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, CalendarDays, UserRound } from 'lucide-react'
+import { CalendarDays, UserRound } from 'lucide-react'
 
 import { BlogPortableText } from '@/components/blog-portable-text'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { PageBreadcrumb } from '@/components/page-breadcrumb'
+import { withHome } from '@/lib/breadcrumbs'
 import { toAbsoluteUrl } from '@/lib/site-url'
 import { client } from '@/sanity/lib/client'
 import { urlFor } from '@/sanity/lib/image'
@@ -77,13 +78,12 @@ function BlogPostError() {
       <SiteHeader />
       <main className="pb-20 pt-28 lg:pt-32">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#072448] transition-colors hover:text-[#0a3a73]"
-          >
-            <ArrowLeft className="size-4" />
-            Back to Blog
-          </Link>
+          <PageBreadcrumb
+            items={withHome([
+              { label: "Blog", href: "/blog" },
+              { label: "Article" },
+            ])}
+          />
           <div className="mt-10 rounded-[20px] border border-[#fecaca] bg-white px-8 py-16 text-center shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
             <h1 className="text-2xl font-bold text-[#0a1628]">Unable to load article</h1>
             <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-[#64748b]">
@@ -124,15 +124,14 @@ export default async function BlogPostPage({
       <SiteHeader />
       <main className="pb-20 pt-28 lg:pt-32">
         <article className="mx-auto max-w-4xl px-6 lg:px-8">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#072448] transition-colors hover:text-[#0a3a73]"
-          >
-            <ArrowLeft className="size-4" />
-            Back to Blog
-          </Link>
+          <PageBreadcrumb
+            items={withHome([
+              { label: "Blog", href: "/blog" },
+              { label: post.title },
+            ])}
+          />
 
-          <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-[#64748b]">
+          <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-[#64748b]">
             {published ? (
               <div className="flex items-center gap-2">
                 <CalendarDays className="size-4" />
