@@ -5,6 +5,8 @@ import { useProposalModal } from "@/hooks/use-proposal-modal"
 import { CONTACT_GET_IN_TOUCH_HREF } from "@/lib/proposal-cta"
 import Link from "next/link"
 import { SOCIAL_LINKS } from "@/lib/social-links"
+import { PageBreadcrumb } from "@/components/page-breadcrumb"
+import { withHome } from "@/lib/breadcrumbs"
 
 interface HeroProps {
   heroRef: React.RefObject<HTMLElement | null>
@@ -91,6 +93,10 @@ export default function Hero({
         />
 
         <div className="relative max-w-[600px]">
+          <PageBreadcrumb
+            items={withHome([{ label: "Contact" }])}
+            variant="dark"
+          />
           <h1
             ref={h1Ref}
             className="mb-6 text-[2.35rem] font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]"

@@ -1,6 +1,8 @@
 import Link from "next/link"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { PageBreadcrumb } from "@/components/page-breadcrumb"
+import { withHome } from "@/lib/breadcrumbs"
 import { HTML_SITEMAP_SECTIONS } from "@/lib/site-navigation"
 import { cn } from "@/lib/utils"
 
@@ -59,6 +61,11 @@ export default function SitemapPage() {
       <main className="pb-20 pt-28 lg:pt-32">
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <div className="mb-14 text-center">
+            <PageBreadcrumb
+              items={withHome([{ label: "Sitemap" }])}
+              align="center"
+              className="mb-6"
+            />
             <p className="type-label font-semibold section-label-light">
               HTML SITEMAP
             </p>

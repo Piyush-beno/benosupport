@@ -7,8 +7,18 @@ import type { ServiceData } from "@/lib/services-data"
 import { getCtaButtonProps } from "@/lib/proposal-cta"
 import { useProposalModal } from "@/hooks/use-proposal-modal"
 import { prepareHeadingWordAnimation } from "@/lib/prepare-heading-word-animation"
+import { PageBreadcrumb } from "@/components/page-breadcrumb"
+import type { BreadcrumbItem } from "@/lib/breadcrumbs"
 
-function ServiceHero({ hero }: { hero: ServiceData["hero"]; slug: string }) {
+function ServiceHero({
+  hero,
+  slug,
+  breadcrumbItems,
+}: {
+  hero: ServiceData["hero"]
+  slug: string
+  breadcrumbItems: BreadcrumbItem[]
+}) {
   const { openProposalModal } = useProposalModal()
   const heroRef = useRef<HTMLElement>(null)
   const line1Ref = useRef<HTMLSpanElement>(null)
@@ -114,6 +124,7 @@ function ServiceHero({ hero }: { hero: ServiceData["hero"]; slug: string }) {
         />
 
         <div className="relative max-w-[600px]">
+          <PageBreadcrumb items={breadcrumbItems} variant="dark" />
           <h1 className="mb-6 text-[2.35rem] font-extrabold leading-[1.22] tracking-tight text-white sm:text-5xl lg:text-[3.5rem] xl:text-[4rem]">
             <span
               ref={line1Ref}
