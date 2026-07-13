@@ -38,7 +38,7 @@ export default async function BlogPage() {
         <section className="bg-[#072448] pt-28 pb-16 text-white lg:pt-32 lg:pb-20">
           <div className="mx-auto max-w-6xl px-6 text-center lg:px-8">
             <PageBreadcrumb
-              items={withHome([{ label: "Blog" }])}
+              items={withHome([{ label: "Insights" }])}
               variant="dark"
               align="center"
             />

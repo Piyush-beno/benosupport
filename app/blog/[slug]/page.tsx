@@ -80,7 +80,7 @@ function BlogPostError() {
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <PageBreadcrumb
             items={withHome([
-              { label: "Blog", href: "/blog" },
+              { label: "Insights", href: "/blog" },
               { label: "Article" },
             ])}
           />
@@ -126,7 +126,7 @@ export default async function BlogPostPage({
         <article className="mx-auto max-w-4xl px-6 lg:px-8">
           <PageBreadcrumb
             items={withHome([
-              { label: "Blog", href: "/blog" },
+              { label: "Insights", href: "/blog" },
               { label: post.title },
             ])}
           />
