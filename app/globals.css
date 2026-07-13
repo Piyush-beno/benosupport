@@ -296,6 +296,46 @@
     color: #072448 !important;
   }
 
+  /* Contact page Bitrix embed — outer wrapper only */
+  .bitrix-contact-form {
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .bitrix-contact-form .b24-form-wrapper,
+  .bitrix-contact-form .b24-form,
+  .bitrix-contact-form .b24-form > form,
+  .bitrix-contact-form .b24-form-inner,
+  .bitrix-contact-form .b24-form-scroll,
+  .bitrix-contact-form .b24-form-content {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  .bitrix-contact-form .b24-form-btn-block,
+  .bitrix-contact-form .b24-form-btn-container,
+  .bitrix-contact-form .b24-form-footer {
+    border: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+    box-shadow: none !important;
+  }
+
+  .bitrix-contact-form .b24-form-wrapper::before,
+  .bitrix-contact-form .b24-form-wrapper::after,
+  .bitrix-contact-form .b24-form::before,
+  .bitrix-contact-form .b24-form::after,
+  .bitrix-contact-form .b24-form-btn-block::before,
+  .bitrix-contact-form .b24-form-btn-block::after {
+    display: none !important;
+    content: none !important;
+    height: 0 !important;
+  }
+
   /*
    * GSAP text-reveal masks — extra vertical padding so Devanagari matras,
    * Arabic diacritics, etc. are not clipped by overflow:hidden.
