@@ -138,12 +138,6 @@ export default async function BlogPostPage({
                 <time dateTime={post.publishedAt}>{published}</time>
               </div>
             ) : null}
-            {post.author ? (
-              <div className="flex items-center gap-2">
-                <UserRound className="size-4" />
-                <span>{post.author}</span>
-              </div>
-            ) : null}
             {post.category ? (
               <span className="rounded-full bg-[#e8eefc] px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-[#072448]">
                 {post.category}
@@ -171,6 +165,29 @@ export default async function BlogPostPage({
             <div className="mt-10">
               <BlogPortableText value={post.body} />
             </div>
+          ) : null}
+
+          {post.author ? (
+            <footer className="mt-12 border-t border-[#e2e8f0] pt-8">
+              <div className="flex items-start gap-4 rounded-[20px] border border-[#e2e8f0] bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04)] sm:p-8">
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#e8eefc] text-[#072448]">
+                  <UserRound className="size-6" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#64748b]">
+                    Written by
+                  </p>
+                  <p className="mt-1 text-lg font-bold text-[#0a1628]">
+                    {post.author}
+                  </p>
+                  {post.authorBio ? (
+                    <p className="mt-3 text-[15px] leading-7 text-[#475569]">
+                      {post.authorBio}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+            </footer>
           ) : null}
         </article>
       </main>

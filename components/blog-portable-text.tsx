@@ -71,6 +71,39 @@ const components: PortableTextComponents = {
         </figure>
       )
     },
+    table: ({ value }) => {
+      const rows = value?.rows
+      if (!rows?.length) return null
+
+      return (
+        <div className="my-6 overflow-x-auto">
+          <table className="min-w-full border-collapse border border-[#cbd5e1]">
+            <tbody>
+              {rows.map(
+                (
+                  row: { cells?: string[]; _key?: string },
+                  rowIndex: number,
+                ) => (
+                  <tr
+                    key={row._key ?? rowIndex}
+                    className={rowIndex === 0 ? 'bg-[#f1f5f9] font-bold' : ''}
+                  >
+                    {row.cells?.map((cell: string, cellIndex: number) => (
+                      <td
+                        key={`${row._key ?? rowIndex}-${cellIndex}`}
+                        className="border border-[#cbd5e1] px-4 py-2 text-sm text-[#334155]"
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ),
+              )}
+            </tbody>
+          </table>
+        </div>
+      )
+    },
   },
 }
 

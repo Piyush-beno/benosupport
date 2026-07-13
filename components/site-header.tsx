@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { gsap } from "@/lib/gsap"
-import { Menu, X, ChevronDown, Globe } from "lucide-react"
+import { Menu, X, ChevronDown, Globe, BookOpen } from "lucide-react"
 import { SERVICE_NAV_ITEMS } from "@/lib/site-navigation"
 import { useRouter } from "next/navigation"
 
@@ -13,7 +13,6 @@ import { usePathname } from "next/navigation"
 const navLinks = [
   { label: "Industries", href: "/industries" },
   { label: "Company",    href: "/company" },
-  // { label: "Blog",       href: "/blog" },
 ]
 
 // ── Services from shared navigation labels ─────────────────────────────────
@@ -23,6 +22,14 @@ const serviceItems = SERVICE_NAV_ITEMS.map((item) => ({
   href: item.href,
 }))
 
+const resourceItems = [
+  {
+    label: "Insights",
+    href: "/blog",
+    description: "Insights on AI, software, and digital transformation",
+    icon: BookOpen,
+  },
+]
 // ── Language config ────────────────────────────────────────────────────────
 const LANGUAGES = [
   { code: "en", label: "English",   flag: "🇬🇧", short: "EN" },
@@ -37,23 +44,22 @@ export function SiteHeader() {
   const [isScrolled,       setIsScrolled]       = useState(false)
   const [isMobileOpen,     setIsMobileOpen]     = useState(false)
   const [isServicesOpen,   setIsServicesOpen]   = useState(false)
-  // const [isResourcesOpen,  setIsResourcesOpen]  = useState(false)
+  const [isResourcesOpen,  setIsResourcesOpen]  = useState(false)
   const [isLangOpen,       setIsLangOpen]       = useState(false)
   const [activeLang,       setActiveLang]       = useState("EN")
   // mobile accordions
   const [mobileServices,   setMobileServices]   = useState(false)
-  // const [mobileResources,  setMobileResources]  = useState(false)
+  const [mobileResources,  setMobileResources]  = useState(false)
 
   const svcDropdownRef  = useRef<HTMLDivElement>(null)
   const svcChevronRef   = useRef<SVGSVGElement>(null)
   const svcItemRefs     = useRef<HTMLAnchorElement[]>([])
   const svcIsOpenRef    = useRef(false)
 
-  // const resDropdownRef  = useRef<HTMLDivElement>(null)
-  // const resChevronRef   = useRef<SVGSVGElement>(null)
-  // const resItemRefs     = useRef<HTMLAnchorElement[]>([])
-  // const resIsOpenRef    = useRef(false)
-
+  const resDropdownRef  = useRef<HTMLDivElement>(null)
+  const resChevronRef   = useRef<SVGSVGElement>(null)
+  const resItemRefs     = useRef<HTMLAnchorElement[]>([])
+  const resIsOpenRef    = useRef(false)
   const logoRef  = useRef<HTMLDivElement>(null)
   const langRef  = useRef<HTMLDivElement>(null)
   const router   = useRouter()
@@ -173,8 +179,8 @@ export function SiteHeader() {
   const openSvc  = () => openDrop(svcIsOpenRef, svcDropdownRef, svcChevronRef, svcItemRefs.current, setIsServicesOpen)
   const closeSvc = () => closeDrop(svcIsOpenRef, svcDropdownRef, svcChevronRef, setIsServicesOpen)
 
-  // const openRes  = () => openDrop(resIsOpenRef, resDropdownRef, resChevronRef, resItemRefs.current, setIsResourcesOpen)
-  // const closeRes = () => closeDrop(resIsOpenRef, resDropdownRef, resChevronRef, setIsResourcesOpen)
+  const openRes  = () => openDrop(resIsOpenRef, resDropdownRef, resChevronRef, resItemRefs.current, setIsResourcesOpen)
+  const closeRes = () => closeDrop(resIsOpenRef, resDropdownRef, resChevronRef, setIsResourcesOpen)
 
   // ── Style helpers ─────────────────────────────────────────────────────────
   const textCls      = isScrolled ? "text-[#0d1e3c]" : "text-white/90"
@@ -184,12 +190,10 @@ export function SiteHeader() {
   pathname.startsWith("/services") || isServicesOpen
     ? "text-[#3b67ff]"
     : `${textCls} ${hoverCls}`
-//  const activeResCls =
-//   pathname.startsWith("/blogs") ||
-//   pathname.startsWith("/caseStudy") ||
-//   isResourcesOpen
-//     ? "text-[#3b67ff] font-semibold"
-//     : `${textCls} ${hoverCls}`
+  const activeResCls =
+   pathname.startsWith("/blog") || isResourcesOpen
+    ? "text-[#3b67ff]"
+    : `${textCls} ${hoverCls}`
 
 
     const isActive = (href: string) => {
@@ -211,7 +215,7 @@ export function SiteHeader() {
         onMouseLeave={() =>
           setTimeout(() => {
             if (!svcDropdownRef.current?.matches(":hover")) closeSvc()
-            // if (!resDropdownRef.current?.matches(":hover")) closeRes()
+            if (!resDropdownRef.current?.matches(":hover")) closeRes()
           }, 80)
         }
       >
@@ -249,7 +253,10 @@ export function SiteHeader() {
               {/* Services trigger */}
               <button
                 type="button"
-                onMouseEnter={openSvc}
+                onMouseEnter={() => {
+                  closeRes()
+                  openSvc()
+                }}
                 onClick={() => (svcIsOpenRef.current ? closeSvc() : openSvc())}
                 className={`flex items-center gap-1 text-[15px] font-medium transition-colors duration-200 ${activeSvcCls}`}
               >
@@ -266,7 +273,6 @@ export function SiteHeader() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  // className={`text-[15px] font-medium transition-colors duration-200 ${textCls} ${hoverCls}`}
                   className={`text-[15px] font-medium transition-colors duration-200 ${
   isActive(link.href)
     ? "text-[#3b67ff]"
@@ -277,10 +283,13 @@ export function SiteHeader() {
                 </Link>
               ))}
 
-              {/* Resources — hidden until ready
+              {/* Resources */}
               <button
                 type="button"
-                onMouseEnter={openRes}
+                onMouseEnter={() => {
+                  closeSvc()
+                  openRes()
+                }}
                 onClick={() => (resIsOpenRef.current ? closeRes() : openRes())}
                 className={`flex items-center gap-1 text-[15px] font-medium transition-colors duration-200 ${activeResCls}`}
               >
@@ -291,7 +300,6 @@ export function SiteHeader() {
                   style={{ transformOrigin: "50% 50%" }}
                 />
               </button>
-              */}
             </div>
 
             {/* ── Right: Lang + CTA ─────────────────────────────────────── */}
@@ -399,16 +407,16 @@ export function SiteHeader() {
           </div>
         </div>
 
-        {/* Resources mega dropdown — hidden until ready
+        {/* ── Resources dropdown ────────────────────────────────────────── */}
         <div
           ref={resDropdownRef}
           style={{ pointerEvents: "none", display: "none" }}
-          className="absolute top-full left-1/2 -translate-x-1/2 z-40 w-[50%] max-w-[640px] pt-5"
+          className="absolute top-full left-1/2 -translate-x-1/2 z-40 w-[50%] max-w-[420px] pt-5"
           onMouseEnter={openRes}
           onMouseLeave={closeRes}
         >
           <div className="rounded-[30px] border border-slate-200 bg-white px-8 py-8 shadow-[0_25px_80px_rgba(15,23,42,.08)]">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               {resourceItems.map((item, i) => {
                 const Icon = item.icon
                 return (
@@ -436,7 +444,6 @@ export function SiteHeader() {
             </div>
           </div>
         </div>
-        */}
       </header>
 
       {/* ── Mobile fullscreen menu ─────────────────────────────────────── */}
@@ -482,17 +489,18 @@ export function SiteHeader() {
   <Link
     key={link.label}
     href={link.href}
-    className={`text-[15px] font-medium transition-colors duration-200 ${
+    onClick={() => setIsMobileOpen(false)}
+    className={`block py-3 text-base font-medium transition-colors duration-200 ${
       isActive(link.href)
         ? "text-[#3b67ff]"
-        : `${textCls} ${hoverCls}`
+        : "text-[#0d1e3c] hover:text-[#3b67ff]"
     }`}
   >
                 {link.label}
               </Link>
             ))}
 
-            {/* Resources accordion — hidden until ready
+            {/* Resources accordion */}
             <button
               type="button"
               className="w-full flex items-center justify-between py-3 text-base font-medium text-[#0d1e3c]"
@@ -519,7 +527,6 @@ export function SiteHeader() {
                 })}
               </div>
             )}
-            */}
 
             <div className="pt-4">
               <button

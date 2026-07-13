@@ -14,6 +14,7 @@ export type PostDetail = PostListItem & {
   seoTitle?: string
   seoDescription?: string
   author?: string
+  authorBio?: string
   category?: string
 }
 
@@ -35,6 +36,7 @@ export const SINGLE_POST_QUERY = `*[_type == "post" && slug.current == $slug][0]
   seoDescription,
   excerpt,
   author,
+  authorBio,
   category
 }`
 

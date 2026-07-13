@@ -69,6 +69,13 @@ export const postType = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'authorBio',
+      title: 'Author Bio',
+      type: 'text',
+      rows: 4,
+      description: 'Short bio shown at the bottom of the blog post',
+    }),
+    defineField({
       name: 'category',
       title: 'Category',
       type: 'string',
