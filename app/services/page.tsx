@@ -2,6 +2,8 @@ import Link from "next/link"
 import { servicesData } from "@/lib/services-data"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { PageBreadcrumb } from "@/components/page-breadcrumb"
+import { withHome } from "@/lib/breadcrumbs"
 
 const items = Object.entries(servicesData).map(([slug, service]) => ({ slug, title: service.meta.title, description: service.meta.description }))
 
@@ -12,6 +14,11 @@ export default function ServicesPage() {
       <main className="py-20">
         <section className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="mb-14 text-center">
+            <PageBreadcrumb
+              items={withHome([{ label: "Services" }])}
+              align="center"
+              className="mb-6"
+            />
             <p className="type-label font-semibold section-label-light">Our Services</p>
             <h1 className="mt-4 text-4xl sm:text-5xl font-extrabold text-[#0d1e3c]">Solutions for service-led businesses</h1>
             <p className="mt-4 type-body text-[#475569] max-w-2xl mx-auto">Explore our service offerings and select the solution that best fits your business goals.</p>

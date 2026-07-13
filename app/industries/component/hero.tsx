@@ -6,6 +6,8 @@ import { useProposalModal } from '@/hooks/use-proposal-modal'
 import { CONTACT_GET_IN_TOUCH_HREF } from '@/lib/proposal-cta'
 import { prepareHeadingWordAnimation } from '@/lib/prepare-heading-word-animation'
 import Link from 'next/link'
+import { PageBreadcrumb } from '@/components/page-breadcrumb'
+import { withHome } from '@/lib/breadcrumbs'
 
 export default function IndustriesHero() {
   const { openProposalModal } = useProposalModal()
@@ -142,10 +144,11 @@ export default function IndustriesHero() {
       className="relative flex h-dvh min-h-[640px] flex-col overflow-hidden bg-[#072448]"
     >
       <div className="relative z-10 mx-auto flex max-w-[1300px] flex-1 flex-col justify-center px-6 pb-12 pt-[72px] text-center lg:px-12">
-        {/* Eyebrow */}
-        {/* <span className="inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-white/70 backdrop-blur-md">
-          {heroData.eyebrow}
-        </span> */}
+        <PageBreadcrumb
+          items={withHome([{ label: "Industries" }])}
+          variant="dark"
+          align="center"
+        />
 
         {/* Title */}
         <h1

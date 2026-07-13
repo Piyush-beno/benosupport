@@ -26,6 +26,7 @@ import {
 } from "@/components/page-cta"
 import { useProposalModal } from "@/hooks/use-proposal-modal"
 import { getCtaButtonProps, CONTACT_GET_IN_TOUCH_HREF } from "@/lib/proposal-cta"
+import { getServiceBreadcrumbLabel, withHome } from "@/lib/breadcrumbs"
 
 const iconMap: Record<string, ComponentType<{ className?: string }>> = {
   Code2, Globe, Smartphone, Link2, Layers, GitBranch,
@@ -833,7 +834,14 @@ function ServiceFAQSection({ faq }: { faq: NonNullable<ServiceData["faq"]> }) {
 export function ServicePageContent({ service, slug }: { service: ServiceData; slug: string }) {
   return (
     <div>
-      <ServiceHero hero={service.hero} slug={slug} />
+      <ServiceHero
+        hero={service.hero}
+        slug={slug}
+        breadcrumbItems={withHome([
+          { label: "Services", href: "/services" },
+          { label: getServiceBreadcrumbLabel(slug) },
+        ])}
+      />
       <ServiceIntro intro={service.intro} />
       <ServiceCapabilitiesGrid  data={service.capabilities} id="capabilities" moreLabel="Explore More Services" />
       <IndustriesGrid />

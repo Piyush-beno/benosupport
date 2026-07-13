@@ -1,5 +1,8 @@
 "use client";
 
+import { PageBreadcrumb } from "@/components/page-breadcrumb"
+import { withHome } from "@/lib/breadcrumbs"
+
 export default function CaseStudiesHero() {
   return (
     <section className="relative flex h-dvh min-h-[640px] flex-col overflow-hidden bg-[#071f47]">
@@ -18,11 +21,13 @@ export default function CaseStudiesHero() {
 
       <div className="relative z-10 mx-auto flex max-w-6xl flex-1 flex-col justify-center px-6 pb-12 pt-[72px] text-center">
 
-        <span className="type-label font-semibold section-label-dark">
-          Case Studies
-        </span>
+        <PageBreadcrumb
+          items={withHome([{ label: "Case Studies" }])}
+          variant="dark"
+          align="center"
+        />
 
-        <h1 className="mx-auto mt-6 max-w-4xl text-5xl font-bold leading-tight text-white lg:text-6xl">
+        <h1 className="mx-auto max-w-4xl text-5xl font-bold leading-tight text-white lg:text-6xl">
           Solving Complex Business
           
           Challenges Through Technology

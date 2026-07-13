@@ -1,5 +1,7 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { PageBreadcrumb } from "@/components/page-breadcrumb"
+import { withHome } from "@/lib/breadcrumbs"
 
 export type LegalSection = {
   title: string
@@ -26,6 +28,7 @@ export function LegalPage({
       <SiteHeader />
       <main className="pb-20 pt-28 lg:pt-32">
         <article className="mx-auto max-w-3xl px-6 lg:px-8">
+          <PageBreadcrumb items={withHome([{ label: title }])} />
           <p className="type-label font-semibold section-label-light">
             Beno Support
           </p>
