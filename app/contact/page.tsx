@@ -5,11 +5,21 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import {
+  applyBitrixContactFormShell,
+  applyBitrixFormSuccessTheme,
+  injectBitrixContactFormShellStyles,
+  injectBitrixFormThemeOverrides,
+} from "@/lib/bitrix-form-theme-overrides";
 import Hero from "./hero";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
+
+const BITRIX_CONTACT_FORM_ID = "inline/16/i1wvj1";
+const BITRIX_CONTACT_LOADER_URL =
+  "https://cdn.bitrix24.in/b16910457/crm/form/loader_16.js";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -76,18 +86,6 @@ const MapPinIcon = () => (
   </svg>
 );
 
-const ChevronDown = () => (
-  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-    <path
-      d="M3 5l4 4 4-4"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
 // ─── Map background ───────────────────────────────────────────────────────────
 
 const MAP_BG_STYLE: React.CSSProperties = {
@@ -127,15 +125,28 @@ function DarkPanel({
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function splitWords(el: HTMLElement) {
-  const words = el.innerText.split(" ");
+  const text = (el.innerText ?? el.textContent ?? "").trim();
+  if (!text) return [] as HTMLElement[];
+
+  const words = text.split(/\s+/);
   el.innerHTML = words
     .map(
       (w) =>
         `<span class="text-reveal-word word-wrap"><span class="word text-reveal-inner">${w}&nbsp;</span></span>`,
     )
     .join("");
-  return el.querySelectorAll<HTMLElement>(".word");
+  return Array.from(el.querySelectorAll<HTMLElement>(".word"));
 }
+
+function injectBitrixContactForm(container: HTMLElement) {
+  const script = document.createElement("script");
+  script.setAttribute("data-b24-form", BITRIX_CONTACT_FORM_ID);
+  script.setAttribute("data-skip-moving", "true");
+  script.textContent = `(function(w,d,u){var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);var h=d.getElementsByTagName('script')[0];if(h&&h.parentNode){h.parentNode.insertBefore(s,h);}else{(d.head||d.documentElement).appendChild(s);}})(window,document,'${BITRIX_CONTACT_LOADER_URL}');`;
+  container.appendChild(script);
+}
+
+const BITRIX_SUCCESS_VISIBLE_MS = 3500;
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -150,7 +161,14 @@ export default function ContactUsPage() {
   const formSectionRef = useRef<HTMLElement>(null);
   const formHeadRef = useRef<HTMLDivElement>(null);
   const formBoxRef = useRef<HTMLDivElement>(null);
+  const bitrixFormContainerRef = useRef<HTMLDivElement>(null);
+  const bitrixScriptInjectedRef = useRef(false);
+  const bitrixFormThemeAppliedRef = useRef(false);
+  const bitrixSuccessResetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
   const infoCardsRef = useRef<HTMLDivElement>(null);
+  const [isBitrixFormReady, setIsBitrixFormReady] = useState(false);
 
   const officesRef = useRef<HTMLElement>(null);
   const officeHeadRef = useRef<HTMLDivElement>(null);
@@ -159,74 +177,167 @@ export default function ContactUsPage() {
   const ctaRef = useRef<HTMLElement>(null);
   const ctaCardsRef = useRef<HTMLDivElement>(null);
 
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    country: "",
-    service: "",
-    message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const reloadBitrixForm = () => {
+    const container = bitrixFormContainerRef.current;
+    if (!container) return;
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitError(null);
+    container.innerHTML = "";
+    bitrixScriptInjectedRef.current = false;
+    bitrixFormThemeAppliedRef.current = false;
+    setIsBitrixFormReady(false);
+    injectBitrixContactForm(container);
+    bitrixScriptInjectedRef.current = true;
+  };
 
-    if (!formState.name.trim() || !formState.email.trim() || !formState.company.trim()) {
-      setSubmitError("Please fill in all required fields.");
-      return;
-    }
+  useEffect(() => {
+    const container = bitrixFormContainerRef.current;
+    if (!container) return;
 
-    setIsSubmitting(true);
+    const alreadyInjected =
+      bitrixScriptInjectedRef.current ||
+      container.querySelector(`script[data-b24-form="${BITRIX_CONTACT_FORM_ID}"]`);
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formState),
-      });
+    if (alreadyInjected) return;
 
-      const data = await response.json().catch(() => ({}));
+    injectBitrixContactForm(container);
+    bitrixScriptInjectedRef.current = true;
 
-      if (!response.ok) {
-        setSubmitError(
-          typeof data.error === "string"
-            ? data.error
-            : "Failed to send message. Please try again."
-        );
-        return;
+    return () => {
+      if (bitrixSuccessResetTimerRef.current) {
+        clearTimeout(bitrixSuccessResetTimerRef.current);
+        bitrixSuccessResetTimerRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const markFormReady = () => setIsBitrixFormReady(true);
+
+    const applyFormShell = () => {
+      injectBitrixContactFormShellStyles();
+      const container = bitrixFormContainerRef.current;
+      if (container) applyBitrixContactFormShell(container);
+    };
+
+    const applyFormThemeOnce = () => {
+      if (bitrixFormThemeAppliedRef.current) return;
+      bitrixFormThemeAppliedRef.current = true;
+      injectBitrixFormThemeOverrides();
+      applyFormShell();
+    };
+
+    const applySuccessTheme = () => {
+      injectBitrixFormThemeOverrides();
+      applyFormShell();
+      const container = bitrixFormContainerRef.current;
+      if (container) {
+        requestAnimationFrame(() => applyBitrixFormSuccessTheme(container));
+      }
+    };
+
+    const onFormInit = (event: Event) => {
+      try {
+        const detail = (event as CustomEvent<{ form?: { id?: string | number } }>)
+          .detail;
+        const formId = detail?.form?.id;
+        if (formId != null && String(formId) !== "16") return;
+      } catch {
+        // Bitrix event shapes vary — still proceed if our container has a form.
       }
 
-      setSubmitted(true);
-    } catch {
-      setSubmitError(
-        "Network error. Please try again or email info@benosupport.com directly."
-      );
-    } finally {
-      setIsSubmitting(false);
+      const container = bitrixFormContainerRef.current;
+      if (container && !container.querySelector(".b24-form")) return;
+
+      markFormReady();
+      applyFormThemeOnce();
+      // Bitrix often paints borders one tick later — re-apply shell.
+      requestAnimationFrame(applyFormShell);
+      setTimeout(applyFormShell, 100);
+      setTimeout(applyFormShell, 500);
+    };
+
+    const onFormSuccess = () => {
+      const container = bitrixFormContainerRef.current;
+      if (!container) return;
+
+      // Wait a frame so Bitrix can paint the thank-you state inside our embed.
+      requestAnimationFrame(() => {
+        const hasSuccess = Boolean(
+          container.querySelector(
+            ".b24-form-state.b24-form-success, .b24-form-success",
+          ),
+        );
+        if (!hasSuccess) return;
+
+        applySuccessTheme();
+
+        if (bitrixSuccessResetTimerRef.current) {
+          clearTimeout(bitrixSuccessResetTimerRef.current);
+        }
+        bitrixSuccessResetTimerRef.current = setTimeout(() => {
+          reloadBitrixForm();
+          bitrixSuccessResetTimerRef.current = null;
+        }, BITRIX_SUCCESS_VISIBLE_MS);
+      });
+    };
+
+    window.addEventListener("b24:form:init", onFormInit);
+    window.addEventListener("b24:form:send:success", onFormSuccess);
+
+    const container = bitrixFormContainerRef.current;
+    const checkFormMounted = () => {
+      if (!container) return;
+      if (container.querySelector(".b24-form")) {
+        markFormReady();
+        applyFormThemeOnce();
+        applyFormShell();
+      }
+    };
+
+    const observer =
+      container &&
+      new MutationObserver(() => {
+        checkFormMounted();
+      });
+
+    if (observer && container) {
+      observer.observe(container, { childList: true, subtree: true });
     }
-  };
+
+    checkFormMounted();
+    injectBitrixFormThemeOverrides();
+    injectBitrixContactFormShellStyles();
+
+    return () => {
+      window.removeEventListener("b24:form:init", onFormInit);
+      window.removeEventListener("b24:form:send:success", onFormSuccess);
+      observer?.disconnect();
+      if (bitrixSuccessResetTimerRef.current) {
+        clearTimeout(bitrixSuccessResetTimerRef.current);
+        bitrixSuccessResetTimerRef.current = null;
+      }
+    };
+  }, []);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Hero h1 word reveal
       if (h1Ref.current) {
         const words = splitWords(h1Ref.current);
-        gsap.fromTo(
-          words,
-          { y: "110%", opacity: 0 },
-          {
-            y: "0%",
-            opacity: 1,
-            duration: 0.9,
-            ease: "expo.out",
-            stagger: 0.06,
-            delay: 0.2,
-          },
-        );
+        if (words.length) {
+          gsap.fromTo(
+            words,
+            { y: "110%", opacity: 0 },
+            {
+              y: "0%",
+              opacity: 1,
+              duration: 0.9,
+              ease: "expo.out",
+              stagger: 0.06,
+              delay: 0.2,
+            },
+          );
+        }
       }
       // Hero subtitle blur
       if (subtitleRef.current) {
@@ -244,7 +355,7 @@ export default function ContactUsPage() {
         );
       }
       // Hero buttons
-      if (heroBtnsRef.current) {
+      if (heroBtnsRef.current?.children?.length) {
         gsap.fromTo(
           heroBtnsRef.current.children,
           { opacity: 0, y: 20, scale: 0.95 },
@@ -275,7 +386,7 @@ export default function ContactUsPage() {
         );
       }
       // Social icons pop
-      if (socialRef.current) {
+      if (socialRef.current?.children?.length) {
         gsap.fromTo(
           socialRef.current.children,
           { opacity: 0, scale: 0, rotate: -90 },
@@ -321,7 +432,7 @@ export default function ContactUsPage() {
         );
       }
       // Info cards stagger
-      if (infoCardsRef.current) {
+      if (infoCardsRef.current?.children?.length) {
         gsap.fromTo(
           infoCardsRef.current.children,
           { opacity: 0, y: 40, scale: 0.94 },
@@ -352,7 +463,7 @@ export default function ContactUsPage() {
         );
       }
       // Office cards stagger
-      if (officeCardsRef.current) {
+      if (officeCardsRef.current?.children?.length) {
         gsap.fromTo(
           officeCardsRef.current.children,
           { opacity: 0, y: 50, scale: 0.95 },
@@ -372,7 +483,7 @@ export default function ContactUsPage() {
       }
 
       // CTA cards
-      if (ctaCardsRef.current) {
+      if (ctaCardsRef.current?.children?.length) {
         gsap.fromTo(
           ctaCardsRef.current.children,
           { opacity: 0, y: 40, scale: 0.94 },
@@ -427,151 +538,30 @@ export default function ContactUsPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_300px] lg:items-stretch">
-            {/* ── Form box ── */}
-            <DarkPanel className="h-full">
-              <div ref={formBoxRef} className="p-7 lg:p-8">
-                {submitted ? (
-                  <div className="flex flex-col items-center justify-center gap-4 py-16">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/10">
-                      <svg
-                        width="28"
-                        height="28"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="white"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-white">
-                      Message Sent!
-                    </h3>
-                    <p className="max-w-xs text-center text-sm text-white/70">
-                      Thanks for reaching out. We'll get back to you within 24
-                      business hours.
-                    </p>
-                  </div>
-                ) : (
-                  <form
-                    onSubmit={handleSubmit}
-                    className="flex flex-col gap-4"
-                    noValidate
+            {/* ── Bitrix24 form ── */}
+            <DarkPanel className="h-full min-h-[480px]">
+              <div
+                ref={formBoxRef}
+                className="relative flex h-full min-h-[480px] flex-col p-7 lg:p-8"
+              >
+                {!isBitrixFormReady ? (
+                  <div
+                    className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 rounded-2xl bg-[#072448]"
+                    aria-live="polite"
+                    aria-busy="true"
                   >
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <input
-                        type="text"
-                        placeholder="Full Name*"
-                        required
-                        value={formState.name}
-                        onChange={(e) =>
-                          setFormState((s) => ({ ...s, name: e.target.value }))
-                        }
-                        className="w-full rounded-[10px] bg-white px-4 py-3.5 text-[13.5px] text-[#0a1628] placeholder:text-[#9aa5b4] focus:outline-none focus:ring-2 focus:ring-[#0A3A73]/25"
-                      />
-                      <input
-                        type="email"
-                        placeholder="Business Email*"
-                        required
-                        value={formState.email}
-                        onChange={(e) =>
-                          setFormState((s) => ({ ...s, email: e.target.value }))
-                        }
-                        className="w-full rounded-[10px] bg-white px-4 py-3.5 text-[13.5px] text-[#0a1628] placeholder:text-[#9aa5b4] focus:outline-none focus:ring-2 focus:ring-[#0A3A73]/25"
-                      />
-                    </div>
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <input
-                        type="text"
-                        placeholder="Company Name*"
-                        required
-                        value={formState.company}
-                        onChange={(e) =>
-                          setFormState((s) => ({
-                            ...s,
-                            company: e.target.value,
-                          }))
-                        }
-                        className="w-full rounded-[10px] bg-white px-4 py-3.5 text-[13.5px] text-[#0a1628] placeholder:text-[#9aa5b4] focus:outline-none focus:ring-2 focus:ring-[#0A3A73]/25"
-                      />
-                      <input
-                        type="tel"
-                        placeholder="Phone Number"
-                        value={formState.phone}
-                        onChange={(e) =>
-                          setFormState((s) => ({ ...s, phone: e.target.value }))
-                        }
-                        className="w-full rounded-[10px] bg-white px-4 py-3.5 text-[13.5px] text-[#0a1628] placeholder:text-[#9aa5b4] focus:outline-none focus:ring-2 focus:ring-[#0A3A73]/25"
-                      />
-                    </div>
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <input
-                        type="text"
-                        placeholder="Country"
-                        value={formState.country}
-                        onChange={(e) =>
-                          setFormState((s) => ({
-                            ...s,
-                            country: e.target.value,
-                          }))
-                        }
-                        className="w-full rounded-[10px] bg-white px-4 py-3.5 text-[13.5px] text-[#0a1628] placeholder:text-[#9aa5b4] focus:outline-none focus:ring-2 focus:ring-[#0A3A73]/25"
-                      />
-                      <div className="relative">
-                        <select
-                          value={formState.service}
-                          onChange={(e) =>
-                            setFormState((s) => ({
-                              ...s,
-                              service: e.target.value,
-                            }))
-                          }
-                          className={`w-full appearance-none rounded-[10px] bg-white px-4 py-3.5 pr-10 text-[13.5px] focus:outline-none focus:ring-2 focus:ring-[#0A3A73]/25 ${formState.service ? "text-[#0a1628]" : "text-[#9aa5b4]"}`}
-                        >
-                          <option value="" disabled>
-                            Service Interested In
-                          </option>
-                          <option>Core Engineering</option>
-                          <option>Agentic AI</option>
-                          <option>Enterprise Strategy</option>
-                          <option>Cloud & Platform</option>
-                          <option>Cyber Resilience</option>
-                          <option>Digital Product</option>
-                          <option>IT Governance</option>
-                          <option>Workforce Tech</option>
-                        </select>
-                        <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#9aa5b4]">
-                          <ChevronDown />
-                        </span>
-                      </div>
-                    </div>
-                    <textarea
-                      rows={5}
-                      placeholder="Your brief message..."
-                      value={formState.message}
-                      onChange={(e) =>
-                        setFormState((s) => ({ ...s, message: e.target.value }))
-                      }
-                      className="w-full resize-none rounded-[10px] bg-white px-4 py-3.5 text-[13.5px] text-[#0a1628] placeholder:text-[#9aa5b4] focus:outline-none focus:ring-2 focus:ring-[#0A3A73]/25"
+                    <span
+                      className="h-9 w-9 animate-spin rounded-full border-2 border-white/25 border-t-white"
+                      aria-hidden
                     />
-                    <div>
-                      {submitError ? (
-                        <p className="mb-3 text-sm text-red-300" role="alert">
-                          {submitError}
-                        </p>
-                      ) : null}
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="rounded-[10px] bg-[#0A3A73] px-8 py-3 text-[13.5px] font-semibold text-white transition-all duration-200 hover:bg-[#124e96] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
-                      >
-                        {isSubmitting ? "Sending..." : "Send Message"}
-                      </button>
-                    </div>
-                  </form>
-                )}
+                    <p className="text-sm text-white/70">Loading form…</p>
+                  </div>
+                ) : null}
+                <div
+                  ref={bitrixFormContainerRef}
+                  className="bitrix-form-theme bitrix-contact-form relative min-h-[420px] w-full flex-1 overflow-hidden rounded-2xl p-0"
+                  aria-label="Contact form"
+                />
               </div>
             </DarkPanel>
 
