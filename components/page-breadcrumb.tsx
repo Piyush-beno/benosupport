@@ -26,6 +26,9 @@ export function PageBreadcrumb({
   const currentClass =
     variant === "dark" ? "text-white/70" : "text-[#64748b]"
 
+  const plainClass =
+    variant === "dark" ? "text-[#78a9ff]" : "text-[#0f62fe]"
+
   return (
     <nav
       aria-label="Breadcrumb"
@@ -57,7 +60,7 @@ export function PageBreadcrumb({
                 </Link>
               ) : (
                 <span
-                  className={cn(isLast && currentClass)}
+                  className={cn(isLast ? currentClass : plainClass)}
                   aria-current={isLast ? "page" : undefined}
                   title={item.label}
                 >

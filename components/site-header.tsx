@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { gsap } from "@/lib/gsap"
-import { Menu, X, ChevronDown, Globe, BookOpen } from "lucide-react"
+import { Menu, X, ChevronDown, Globe, BookOpen, LayoutGrid } from "lucide-react"
 import { SERVICE_NAV_ITEMS } from "@/lib/site-navigation"
 import { useRouter } from "next/navigation"
 
@@ -28,6 +28,12 @@ const resourceItems = [
     href: "/blog",
     description: "Insights on AI, software, and digital transformation",
     icon: BookOpen,
+  },
+  {
+    label: "Use Cases",
+    href: "/use-cases",
+    description: "Real-world Agentic AI use cases for FinTech",
+    icon: LayoutGrid,
   },
 ]
 // ── Language config ────────────────────────────────────────────────────────
@@ -191,7 +197,9 @@ export function SiteHeader() {
     ? "text-[#3b67ff]"
     : `${textCls} ${hoverCls}`
   const activeResCls =
-   pathname.startsWith("/blog") || isResourcesOpen
+   pathname.startsWith("/blog") ||
+   pathname.startsWith("/use-cases") ||
+   isResourcesOpen
     ? "text-[#3b67ff]"
     : `${textCls} ${hoverCls}`
 

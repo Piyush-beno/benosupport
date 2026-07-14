@@ -57,8 +57,11 @@ export const HTML_SITEMAP_SECTIONS = [
     links: [{ label: "Industries Overview", href: "/industries" }],
   },
   {
-    title: "BLOG",
-    links: [{ label: "Blog", href: "/blog" }],
+    title: "RESOURCES",
+    links: [
+      { label: "Insights", href: "/blog" },
+      { label: "Use Cases", href: "/use-cases" },
+    ],
   },
   {
     title: "CONTACT",
