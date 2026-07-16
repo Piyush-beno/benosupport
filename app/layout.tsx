@@ -27,6 +27,9 @@ export const metadata: Metadata = {
   description:
     "Beno Support delivers AI engineering, software development, cloud infrastructure, cybersecurity, and digital transformation services for startups, SMBs, and enterprises worldwide.",
   generator: "beno",
+  verification: {
+    google: "lE4vg7aW2w_QoKNrrz60oMipgr3CqCfQLElOgss2BgQ",
+  },
   icons: {
     icon: [
       {
