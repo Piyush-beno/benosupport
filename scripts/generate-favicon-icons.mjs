@@ -1,5 +1,6 @@
 import fs from "node:fs"
 import sharp from "sharp"
+import pngToIco from "png-to-ico"
 
 function extractPngFromSvg(svgPath) {
   const svg = fs.readFileSync(svgPath, "utf8")
@@ -28,6 +29,37 @@ async function makeSquareIcon(logoBuf, size, bg, outPath, pad = 0.14) {
     .png()
     .toFile(outPath)
 
+  console.log("wrote", outPath)
+}
+
+// Same layout as icon.svg: white card with the logo at ~84% width, centered.
+// Downscales straight from the 724x220 source so each frame stays sharp.
+async function makeSquareIconBuffer(logoBuf, size, bg) {
+  const logoW = Math.round(size * 0.84)
+  const resized = await sharp(logoBuf)
+    .resize(logoW, size, { fit: "inside", withoutEnlargement: false })
+    .png()
+    .toBuffer()
+
+  return sharp({
+    create: { width: size, height: size, channels: 4, background: bg },
+  })
+    .composite([{ input: resized, gravity: "center" }])
+    .png()
+    .toBuffer()
+}
+
+// Google's favicon crawler checks /favicon.ico first and requires sizes that
+// are a multiple of 48px. Larger frames (up to 256) keep previews and pinned
+// tabs crisp instead of upscaling a 48px raster.
+async function makeFaviconIco(logoBuf, bg, outPath) {
+  const pngs = await Promise.all(
+    [16, 32, 48, 64, 128, 256].map((size) =>
+      makeSquareIconBuffer(logoBuf, size, bg)
+    )
+  )
+  const ico = await pngToIco(pngs)
+  fs.writeFileSync(outPath, ico)
   console.log("wrote", outPath)
 }
 
@@ -69,3 +101,4 @@ await makeSquareIcon(coloredLogo, 32, lightBg, "public/icon-dark-32x32.png", 0.1
 await makeSquareIcon(coloredLogo, 180, whiteBg, "public/apple-icon.png", 0.16)
 await makeSquareIcon(coloredLogo, 192, whiteBg, "public/icon-192.png", 0.16)
 await makeFaviconSvg(coloredLogo, "public/icon.svg")
+await makeFaviconIco(coloredLogo, whiteBg, "public/favicon.ico")

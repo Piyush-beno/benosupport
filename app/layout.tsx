@@ -54,6 +54,7 @@ export const metadata: Metadata = {
         type: "image/png",
       },
     ],
+    shortcut: "/favicon.ico",
     apple: "/apple-icon.png",
   },
 };
